@@ -16,18 +16,45 @@
       background: #f0f4f0;
     }
 
-    /* Header */
+    /* ── Header ── */
     #header {
       background: #2d5a3d;
       color: white;
-      padding: 14px 16px 10px;
+      padding: 14px 16px 12px;
       padding-top: calc(14px + env(safe-area-inset-top));
       flex-shrink: 0;
     }
-    #header h1 { font-size: 17px; font-weight: 700; letter-spacing: 0.3px; }
-    #header p  { font-size: 11px; opacity: 0.75; margin-top: 2px; }
+    #header h1 { font-size: 18px; font-weight: 800; letter-spacing: 0.2px; }
+    #header p  { font-size: 12px; opacity: 0.7; margin-top: 2px; }
 
-    /* Map view */
+    /* ── Top Tab Bar ── */
+    #top-tabs {
+      display: flex;
+      background: white;
+      border-bottom: 1.5px solid #e5e7eb;
+      flex-shrink: 0;
+    }
+    .top-tab {
+      flex: 1;
+      padding: 13px 8px;
+      border: none;
+      background: none;
+      font-size: 14px;
+      font-weight: 600;
+      color: #9ca3af;
+      border-bottom: 2.5px solid transparent;
+      cursor: pointer;
+      font-family: inherit;
+      transition: all 0.2s;
+      margin-bottom: -1.5px;
+      letter-spacing: 0.2px;
+    }
+    .top-tab.active {
+      color: #2d5a3d;
+      border-bottom-color: #2d5a3d;
+    }
+
+    /* ── Map View ── */
     #map-view {
       display: flex;
       flex-direction: column;
@@ -68,44 +95,40 @@
       border-color: #2d5a3d;
     }
 
-    /* Map */
     #map { flex: 1; }
 
     /* Legend */
     #legend {
       position: fixed;
-      top: 108px;
+      top: 160px;
       right: 10px;
       background: white;
       border-radius: 10px;
       padding: 8px 10px;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+      box-shadow: 0 2px 10px rgba(0,0,0,0.12);
       font-size: 11px;
       z-index: 10;
-      line-height: 1.8;
+      line-height: 1.9;
     }
     .legend-item { display: flex; align-items: center; gap: 6px; }
     .legend-dot {
       width: 10px; height: 10px; border-radius: 50%;
       border: 2px solid white;
-      box-shadow: 0 0 0 1px rgba(0,0,0,0.2);
+      box-shadow: 0 0 0 1px rgba(0,0,0,0.18);
       flex-shrink: 0;
     }
 
-    /* Bottom Sheet */
-    #overlay {
-      display: none;
-      position: fixed; inset: 0;
-      z-index: 100;
-    }
+    /* ── Bottom Sheet ── */
+    #overlay { display: none; position: fixed; inset: 0; z-index: 100; }
     #overlay.open { display: block; }
 
     #sheet {
       position: fixed;
-      bottom: calc(52px + env(safe-area-inset-bottom)); left: 0; right: 0;
+      bottom: 0; left: 0; right: 0;
       background: white;
       border-radius: 20px 20px 0 0;
-      padding: 0 16px 28px;
+      padding: 0 16px;
+      padding-bottom: calc(28px + env(safe-area-inset-bottom));
       box-shadow: 0 -4px 24px rgba(0,0,0,0.18);
       transform: translateY(100%);
       transition: transform 0.28s cubic-bezier(0.34,1.56,0.64,1);
@@ -146,30 +169,11 @@
     .badge-採買 { background: #dcfce7; color: #15803d; }
     .badge-交通 { background: #dbeafe; color: #1d4ed8; }
 
-    #sheet-name {
-      font-size: 19px;
-      font-weight: 700;
-      color: #111827;
-      margin-bottom: 3px;
-      line-height: 1.3;
-    }
-    #sheet-sub {
-      font-size: 12px;
-      color: #6b7280;
-      margin-bottom: 6px;
-    }
-    #sheet-addr {
-      font-size: 13px;
-      color: #4b5563;
-      line-height: 1.5;
-      margin-bottom: 16px;
-    }
+    #sheet-name { font-size: 19px; font-weight: 700; color: #111827; margin-bottom: 3px; line-height: 1.3; }
+    #sheet-sub  { font-size: 12px; color: #6b7280; margin-bottom: 6px; }
+    #sheet-addr { font-size: 13px; color: #4b5563; line-height: 1.5; margin-bottom: 16px; }
 
-    #sheet-btns {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 10px;
-    }
+    #sheet-btns { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
     .nav-btn {
       padding: 13px 8px;
       border-radius: 12px;
@@ -178,288 +182,232 @@
       font-size: 13px;
       font-weight: 600;
       font-family: inherit;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 6px;
-      transition: opacity 0.15s;
+      display: flex; align-items: center; justify-content: center; gap: 6px;
     }
     .nav-btn:active { opacity: 0.75; }
     .btn-google { background: #4285f4; color: white; }
     .btn-apple  { background: #1c1c1e; color: white; }
 
-    /* ── Tab bar ── */
-    #tab-bar {
-      display: flex;
-      background: white;
-      border-top: 1px solid #e5e7eb;
-      flex-shrink: 0;
-      height: calc(52px + env(safe-area-inset-bottom));
-      padding-bottom: env(safe-area-inset-bottom);
-      z-index: 50;
-    }
-    .tab-btn {
-      flex: 1;
-      border: none;
-      background: none;
-      font-size: 11px;
-      color: #9ca3af;
-      cursor: pointer;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      gap: 3px;
-      font-family: inherit;
-      transition: color 0.15s;
-    }
-    .tab-btn.active { color: #2d5a3d; }
-    .tab-icon { font-size: 20px; line-height: 1; }
-
-    /* ── 行前整理頁面 ── */
+    /* ── Info View ── */
     #info-view {
       display: none;
       flex: 1;
       overflow-y: auto;
-      padding: 16px;
-      background: #f0f4f0;
       -webkit-overflow-scrolling: touch;
+      background: #f0f4f0;
     }
 
-    .section-label {
-      font-size: 11px;
-      font-weight: 700;
-      color: #6b7280;
-      letter-spacing: 0.8px;
-      text-transform: uppercase;
-      margin: 20px 0 10px;
+    .info-content {
+      padding: 16px;
+      padding-bottom: calc(28px + env(safe-area-inset-bottom));
     }
-    .section-label:first-child { margin-top: 4px; }
 
-    /* 登機證卡片 */
+    /* Section header */
+    .section-header {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin: 22px 0 12px;
+    }
+    .section-header:first-child { margin-top: 4px; }
+    .section-icon {
+      width: 32px; height: 32px;
+      border-radius: 9px;
+      background: #2d5a3d;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 16px;
+      flex-shrink: 0;
+    }
+    .section-title-text {
+      font-size: 16px;
+      font-weight: 800;
+      color: #111827;
+      letter-spacing: 0.2px;
+    }
+
+    /* ── Boarding Pass Card ── */
     .flight-card {
       background: white;
-      border-radius: 16px;
+      border-radius: 20px;
       overflow: hidden;
-      box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+      box-shadow: 0 2px 14px rgba(0,0,0,0.08);
       margin-bottom: 12px;
     }
-    .flight-card-header {
-      background: #2d5a3d;
-      color: white;
-      padding: 11px 16px;
+    .flight-header {
+      background: linear-gradient(135deg, #1e3d29, #2d5a3d);
+      padding: 16px 18px;
       display: flex;
       justify-content: space-between;
-      align-items: center;
+      align-items: flex-start;
     }
-    .flight-direction {
-      font-size: 13px;
-      font-weight: 700;
+    .flight-dir {
+      font-size: 16px;
+      font-weight: 800;
+      color: white;
     }
-    .flight-meta-top {
+    .flight-airline {
       font-size: 11px;
-      opacity: 0.8;
-      text-align: right;
+      color: rgba(255,255,255,0.65);
+      margin-top: 3px;
     }
-    .flight-body {
-      padding: 16px;
+    .flight-class-pill {
+      background: rgba(255,255,255,0.18);
+      color: white;
+      font-size: 11px;
+      font-weight: 700;
+      padding: 4px 11px;
+      border-radius: 20px;
+      flex-shrink: 0;
+      margin-top: 2px;
     }
+
+    .flight-body { padding: 18px 18px 16px; }
+
     .flight-route {
       display: flex;
       align-items: flex-start;
-      justify-content: space-between;
-      gap: 8px;
     }
-    .airport-block {
-      flex-shrink: 0;
-      width: 72px;
-    }
-    .airport-block.right { text-align: right; }
-    .airport-code {
+    .airport-col { flex: none; }
+    .airport-col.right { text-align: right; }
+
+    .airport-time {
       font-size: 28px;
-      font-weight: 800;
+      font-weight: 900;
       color: #111827;
       letter-spacing: -1px;
+      line-height: 1;
     }
-    .airport-city {
-      font-size: 11px;
-      color: #6b7280;
-      margin-top: 1px;
+    .airport-code-sm {
+      font-size: 14px;
+      font-weight: 800;
+      color: #2d5a3d;
+      margin-top: 5px;
+      letter-spacing: 0.5px;
     }
-    .airport-terminal {
+    .airport-date {
       font-size: 11px;
       color: #9ca3af;
-      margin-top: 1px;
+      margin-top: 2px;
     }
-    .flight-time {
-      font-size: 20px;
-      font-weight: 700;
-      color: #111827;
-    }
-    .flight-date-row {
+    .airport-terminal {
       font-size: 11px;
       color: #6b7280;
       margin-top: 2px;
     }
-    .route-middle {
+
+    .route-mid {
       flex: 1;
       display: flex;
       flex-direction: column;
       align-items: center;
-      padding-top: 8px;
+      padding: 7px 10px 0;
       gap: 4px;
     }
-    .route-duration {
-      font-size: 10px;
-      color: #9ca3af;
-    }
-    .route-line {
+    .route-dur { font-size: 10px; color: #9ca3af; font-weight: 600; }
+    .route-line-wrap {
       width: 100%;
       display: flex;
       align-items: center;
       gap: 3px;
     }
-    .route-line-bar {
-      flex: 1;
-      height: 1px;
-      background: #d1d5db;
-    }
-    .route-plane {
-      font-size: 13px;
-      color: #6b7280;
-    }
+    .r-dot { width: 5px; height: 5px; border-radius: 50%; background: #d1d5db; flex-shrink: 0; }
+    .r-line { flex: 1; height: 1.5px; background: #e5e7eb; }
+    .r-plane { font-size: 14px; color: #6b7280; flex-shrink: 0; }
+
     .flight-divider {
       border: none;
-      border-top: 1.5px dashed #e5e7eb;
-      margin: 12px 0;
+      border-top: 1.5px dashed #f0f0f0;
+      margin: 14px 0 12px;
     }
-    .flight-info-row {
-      display: flex;
-      gap: 16px;
-      flex-wrap: wrap;
+    .flight-chips { display: flex; gap: 6px; flex-wrap: wrap; }
+    .chip {
+      background: #f0f4f0;
+      border-radius: 8px;
+      padding: 5px 10px;
+      font-size: 11px;
+      color: #4b5563;
     }
-    .flight-info-item {
-      font-size: 12px;
-      color: #6b7280;
-    }
-    .flight-info-item span {
-      color: #374151;
-      font-weight: 600;
-    }
+    .chip b { color: #111827; font-weight: 700; }
 
-    /* SFO 流程 */
+    /* ── Steps Card ── */
     .steps-card {
       background: white;
-      border-radius: 16px;
-      padding: 16px;
-      box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+      border-radius: 20px;
+      padding: 18px;
+      box-shadow: 0 2px 14px rgba(0,0,0,0.08);
     }
     .step-row {
       display: flex;
-      gap: 12px;
-      align-items: flex-start;
+      gap: 14px;
       position: relative;
     }
     .step-row:not(:last-child)::after {
       content: '';
       position: absolute;
-      left: 15px;
-      top: 32px;
-      bottom: -8px;
+      left: 13px;
+      top: 28px;
+      bottom: -6px;
       width: 2px;
-      background: #e5e7eb;
+      background: #f0f4f0;
     }
-    .step-row + .step-row { margin-top: 16px; }
+    .step-row + .step-row { margin-top: 14px; }
     .step-num {
-      width: 30px;
-      height: 30px;
+      width: 28px; height: 28px;
       border-radius: 50%;
       background: #2d5a3d;
       color: white;
-      font-size: 13px;
-      font-weight: 700;
-      display: flex;
-      align-items: center;
-      justify-content: center;
+      font-size: 12px;
+      font-weight: 800;
+      display: flex; align-items: center; justify-content: center;
       flex-shrink: 0;
     }
-    .step-text {
-      padding-top: 5px;
-      flex: 1;
-    }
-    .step-title {
-      font-size: 14px;
-      font-weight: 600;
-      color: #111827;
-      line-height: 1.3;
-    }
-    .step-desc {
-      font-size: 12px;
-      color: #6b7280;
-      margin-top: 2px;
-      line-height: 1.4;
-    }
+    .step-body { flex: 1; padding-top: 4px; }
+    .step-main { font-size: 14px; font-weight: 700; color: #111827; line-height: 1.3; }
+    .step-sub  { font-size: 12px; color: #6b7280; margin-top: 2px; line-height: 1.4; }
 
-    /* 住宿卡片 */
+    /* ── Accommodation Card ── */
     .acc-card {
       background: white;
-      border-radius: 16px;
-      padding: 14px 16px;
-      box-shadow: 0 2px 10px rgba(0,0,0,0.08);
-      margin-bottom: 10px;
-      display: flex;
-      gap: 12px;
-      align-items: flex-start;
+      border-radius: 20px;
+      overflow: hidden;
+      box-shadow: 0 2px 14px rgba(0,0,0,0.08);
+      margin-bottom: 12px;
     }
-    .acc-badge {
-      width: 40px;
-      height: 40px;
-      background: #fee2e2;
-      border-radius: 10px;
+    .acc-header {
+      background: linear-gradient(135deg, #1e3d29, #2d5a3d);
+      padding: 16px 18px;
       display: flex;
+      justify-content: space-between;
       align-items: center;
-      justify-content: center;
-      font-size: 20px;
+    }
+    .acc-title { font-size: 16px; font-weight: 800; color: white; }
+    .acc-dates-label { font-size: 11px; color: rgba(255,255,255,0.65); margin-top: 3px; }
+    .acc-nights-pill {
+      background: rgba(255,255,255,0.18);
+      color: white;
+      font-size: 12px;
+      font-weight: 800;
+      padding: 5px 12px;
+      border-radius: 20px;
       flex-shrink: 0;
     }
-    .acc-info { flex: 1; }
-    .acc-name {
-      font-size: 15px;
-      font-weight: 700;
-      color: #111827;
-    }
-    .acc-dates {
-      font-size: 12px;
-      color: #6b7280;
-      margin-top: 2px;
-    }
-    .acc-addr {
-      font-size: 12px;
-      color: #4b5563;
-      margin-top: 4px;
-      line-height: 1.4;
-    }
-    .acc-payer {
-      font-size: 11px;
-      color: #9ca3af;
-      margin-top: 4px;
-    }
-    .acc-nav-btn {
-      margin-top: 10px;
+    .acc-body { padding: 16px 18px; }
+    .acc-addr { font-size: 13px; color: #374151; line-height: 1.6; margin-bottom: 5px; }
+    .acc-meta { font-size: 12px; color: #9ca3af; margin-bottom: 14px; }
+    .acc-btn {
       width: 100%;
-      padding: 10px;
-      border-radius: 10px;
-      border: 1.5px solid #2d5a3d;
-      background: white;
-      color: #2d5a3d;
-      font-size: 13px;
-      font-weight: 600;
+      padding: 13px;
+      border-radius: 12px;
+      border: none;
+      background: #2d5a3d;
+      color: white;
+      font-size: 14px;
+      font-weight: 700;
       font-family: inherit;
       cursor: pointer;
+      letter-spacing: 0.3px;
     }
-    .acc-nav-btn:active { background: #f0f4f0; }
-
-    .bottom-spacer { height: calc(8px + env(safe-area-inset-bottom)); }
+    .acc-btn:active { opacity: 0.85; }
   </style>
 </head>
 <body>
@@ -467,6 +415,11 @@
 <div id="header">
   <h1>🏔 2026 雪士達旅遊地圖</h1>
   <p>5/16–5/31 · Mount Shasta, California</p>
+</div>
+
+<div id="top-tabs">
+  <button class="top-tab active" id="tab-map" onclick="switchTab('map')">🗺 景點地圖</button>
+  <button class="top-tab" id="tab-info" onclick="switchTab('info')">✈️ 行前整理</button>
 </div>
 
 <!-- 地圖頁 -->
@@ -491,157 +444,169 @@
 
 <!-- 行前整理頁 -->
 <div id="info-view">
+  <div class="info-content">
 
-  <div class="section-label">航班資訊</div>
-
-  <!-- 去程 -->
-  <div class="flight-card">
-    <div class="flight-card-header">
-      <div class="flight-direction">去程</div>
-      <div class="flight-meta-top">星宇航空 JX012<br>經濟艙 · 11h 25m</div>
+    <div class="section-header first">
+      <div class="section-icon">✈</div>
+      <div class="section-title-text">航班資訊</div>
     </div>
-    <div class="flight-body">
-      <div class="flight-route">
-        <div class="airport-block">
-          <div class="flight-time">00:05</div>
-          <div class="flight-date-row">5/17 (日)</div>
-          <div class="airport-code">TPE</div>
-          <div class="airport-city">臺北</div>
-          <div class="airport-terminal">T2 出發</div>
+
+    <div class="flight-card">
+      <div class="flight-header">
+        <div>
+          <div class="flight-dir">去程</div>
+          <div class="flight-airline">星宇航空 STARLUX · JX012</div>
         </div>
-        <div class="route-middle">
-          <div class="route-duration">11h 25m</div>
-          <div class="route-line">
-            <div class="route-line-bar"></div>
-            <div class="route-plane">✈</div>
-            <div class="route-line-bar"></div>
+        <div class="flight-class-pill">經濟艙</div>
+      </div>
+      <div class="flight-body">
+        <div class="flight-route">
+          <div class="airport-col">
+            <div class="airport-time">00:05</div>
+            <div class="airport-code-sm">TPE</div>
+            <div class="airport-date">5/17 (日)</div>
+            <div class="airport-terminal">第 2 航廈</div>
+          </div>
+          <div class="route-mid">
+            <div class="route-dur">11h 25m</div>
+            <div class="route-line-wrap">
+              <div class="r-dot"></div>
+              <div class="r-line"></div>
+              <div class="r-plane">✈</div>
+              <div class="r-line"></div>
+              <div class="r-dot"></div>
+            </div>
+          </div>
+          <div class="airport-col right">
+            <div class="airport-time">20:30</div>
+            <div class="airport-code-sm">SFO</div>
+            <div class="airport-date">5/16 (六)</div>
+            <div class="airport-terminal">國際航廈</div>
           </div>
         </div>
-        <div class="airport-block right">
-          <div class="flight-time">20:30</div>
-          <div class="flight-date-row">5/16 (六)</div>
-          <div class="airport-code">SFO</div>
-          <div class="airport-city">舊金山</div>
-          <div class="airport-terminal">國際航廈抵達</div>
+        <hr class="flight-divider">
+        <div class="flight-chips">
+          <div class="chip"><b>集合</b> 5/17 凌晨前</div>
+          <div class="chip"><b>桃園</b> 第 2 航廈</div>
         </div>
       </div>
-      <hr class="flight-divider">
-      <div class="flight-info-row">
-        <div class="flight-info-item">集合 <span>5/17 凌晨前</span></div>
-        <div class="flight-info-item">桃園 <span>第 2 航廈</span></div>
-      </div>
     </div>
-  </div>
 
-  <!-- 回程 -->
-  <div class="flight-card">
-    <div class="flight-card-header">
-      <div class="flight-direction">回程</div>
-      <div class="flight-meta-top">星宇航空 JX011<br>豪華經濟艙 · 13h 35m</div>
-    </div>
-    <div class="flight-body">
-      <div class="flight-route">
-        <div class="airport-block">
-          <div class="flight-time">00:50</div>
-          <div class="flight-date-row">5/31 (日)</div>
-          <div class="airport-code">SFO</div>
-          <div class="airport-city">舊金山</div>
-          <div class="airport-terminal">國際航廈出發</div>
+    <div class="flight-card">
+      <div class="flight-header">
+        <div>
+          <div class="flight-dir">回程</div>
+          <div class="flight-airline">星宇航空 STARLUX · JX011</div>
         </div>
-        <div class="route-middle">
-          <div class="route-duration">13h 35m</div>
-          <div class="route-line">
-            <div class="route-line-bar"></div>
-            <div class="route-plane">✈</div>
-            <div class="route-line-bar"></div>
+        <div class="flight-class-pill">豪華經濟艙</div>
+      </div>
+      <div class="flight-body">
+        <div class="flight-route">
+          <div class="airport-col">
+            <div class="airport-time">00:50</div>
+            <div class="airport-code-sm">SFO</div>
+            <div class="airport-date">5/31 (日)</div>
+            <div class="airport-terminal">國際航廈</div>
+          </div>
+          <div class="route-mid">
+            <div class="route-dur">13h 35m</div>
+            <div class="route-line-wrap">
+              <div class="r-dot"></div>
+              <div class="r-line"></div>
+              <div class="r-plane">✈</div>
+              <div class="r-line"></div>
+              <div class="r-dot"></div>
+            </div>
+          </div>
+          <div class="airport-col right">
+            <div class="airport-time">05:25</div>
+            <div class="airport-code-sm">TPE</div>
+            <div class="airport-date">6/1 (一)</div>
+            <div class="airport-terminal">第 2 航廈</div>
           </div>
         </div>
-        <div class="airport-block right">
-          <div class="flight-time">05:25</div>
-          <div class="flight-date-row">6/1 (一)</div>
-          <div class="airport-code">TPE</div>
-          <div class="airport-city">臺北</div>
-          <div class="airport-terminal">T2 抵達</div>
+        <hr class="flight-divider">
+        <div class="flight-chips">
+          <div class="chip"><b>桃園</b> 第 2 航廈抵達</div>
         </div>
       </div>
-      <hr class="flight-divider">
-      <div class="flight-info-row">
-        <div class="flight-info-item">桃園 <span>第 2 航廈</span></div>
+    </div>
+
+    <div class="section-header">
+      <div class="section-icon">🚗</div>
+      <div class="section-title-text">SFO 取車流程</div>
+    </div>
+
+    <div class="steps-card">
+      <div class="step-row">
+        <div class="step-num">1</div>
+        <div class="step-body">
+          <div class="step-main">抵達 SFO 國際航廈</div>
+          <div class="step-sub">入境後出 Arrivals，跟著 AirTrain 指標走</div>
+        </div>
+      </div>
+      <div class="step-row">
+        <div class="step-num">2</div>
+        <div class="step-body">
+          <div class="step-main">搭 AirTrain 紅線</div>
+          <div class="step-sub">免費、24 小時，往 Rental Car Center 方向</div>
+        </div>
+      </div>
+      <div class="step-row">
+        <div class="step-num">3</div>
+        <div class="step-body">
+          <div class="step-main">Rental Car Center 站下車</div>
+          <div class="step-sub">所有租車公司集中在同一棟大樓</div>
+        </div>
+      </div>
+      <div class="step-row">
+        <div class="step-num">4</div>
+        <div class="step-body">
+          <div class="step-main">找預訂的租車公司櫃台</div>
+          <div class="step-sub">辦理取車、確認保險，開往 Millbrae 住宿</div>
+        </div>
       </div>
     </div>
+
+    <div class="section-header">
+      <div class="section-icon">🏠</div>
+      <div class="section-title-text">住宿</div>
+    </div>
+
+    <div class="acc-card">
+      <div class="acc-header">
+        <div>
+          <div class="acc-title">Millbrae 住宿</div>
+          <div class="acc-dates-label">5/16 (六) — 5/17 (日)</div>
+        </div>
+        <div class="acc-nights-pill">1 晚</div>
+      </div>
+      <div class="acc-body">
+        <div class="acc-addr">463 Helen Drive, Millbrae, CA 94030</div>
+        <div class="acc-meta">代墊：鳳梨 · 每人攤付 NT$10,756</div>
+        <button class="acc-btn" onclick="navTo('463 Helen Drive, Millbrae, CA 94030')">導航前往</button>
+      </div>
+    </div>
+
+    <div class="acc-card">
+      <div class="acc-header">
+        <div>
+          <div class="acc-title">Mount Shasta 住宿</div>
+          <div class="acc-dates-label">5/17 (日) — 5/31 (日)</div>
+        </div>
+        <div class="acc-nights-pill">14 晚</div>
+      </div>
+      <div class="acc-body">
+        <div class="acc-addr">504 Redwood Road, Mount Shasta, CA 96067</div>
+        <div class="acc-meta">代墊：采鴻</div>
+        <button class="acc-btn" onclick="navTo('504 Redwood Road, Mount Shasta, CA 96067')">導航前往</button>
+      </div>
+    </div>
+
   </div>
-
-  <div class="section-label">SFO 取車流程</div>
-  <div class="steps-card">
-    <div class="step-row">
-      <div class="step-num">1</div>
-      <div class="step-text">
-        <div class="step-title">抵達 SFO 國際航廈</div>
-        <div class="step-desc">入境後出 Arrivals，跟著 AirTrain 指標走</div>
-      </div>
-    </div>
-    <div class="step-row">
-      <div class="step-num">2</div>
-      <div class="step-text">
-        <div class="step-title">搭 AirTrain 紅線</div>
-        <div class="step-desc">免費、24 小時，往 Rental Car Center 方向</div>
-      </div>
-    </div>
-    <div class="step-row">
-      <div class="step-num">3</div>
-      <div class="step-text">
-        <div class="step-title">Rental Car Center 站下車</div>
-        <div class="step-desc">所有租車公司集中在同一棟大樓</div>
-      </div>
-    </div>
-    <div class="step-row">
-      <div class="step-num">4</div>
-      <div class="step-text">
-        <div class="step-title">找預訂的租車公司櫃台</div>
-        <div class="step-desc">辦理取車、確認保險，開往 Millbrae 住宿</div>
-      </div>
-    </div>
-  </div>
-
-  <div class="section-label">住宿</div>
-
-  <div class="acc-card">
-    <div class="acc-badge">🏙</div>
-    <div class="acc-info" style="width:100%">
-      <div class="acc-name">Millbrae 住宿</div>
-      <div class="acc-dates">5/16 (六) – 5/17 (日)，1 晚</div>
-      <div class="acc-addr">463 Helen Drive, Millbrae, CA 94030</div>
-      <div class="acc-payer">代墊：鳳梨 · 每人攤付 NT$10,756</div>
-      <button class="acc-nav-btn" onclick="navTo('463 Helen Drive, Millbrae, CA 94030')">導航前往</button>
-    </div>
-  </div>
-
-  <div class="acc-card">
-    <div class="acc-badge">🏔</div>
-    <div class="acc-info" style="width:100%">
-      <div class="acc-name">Mount Shasta 住宿</div>
-      <div class="acc-dates">5/17 (日) – 5/31 (日)，14 晚</div>
-      <div class="acc-addr">504 Redwood Road, Mount Shasta, CA 96067</div>
-      <div class="acc-payer">代墊：采鴻</div>
-      <button class="acc-nav-btn" onclick="navTo('504 Redwood Road, Mount Shasta, CA 96067')">導航前往</button>
-    </div>
-  </div>
-
-  <div class="bottom-spacer"></div>
 </div>
 
-<!-- Tab Bar -->
-<div id="tab-bar">
-  <button class="tab-btn active" id="tab-map" onclick="switchTab('map')">
-    <span class="tab-icon">🗺</span>
-    <span>景點地圖</span>
-  </button>
-  <button class="tab-btn" id="tab-info" onclick="switchTab('info')">
-    <span class="tab-icon">✈️</span>
-    <span>行前整理</span>
-  </button>
-</div>
-
+<!-- Bottom Sheet -->
 <div id="overlay" onclick="closeSheet()"></div>
 <div id="sheet">
   <div class="sheet-handle"></div>
@@ -663,169 +628,123 @@
 </div>
 
 <script>
-// ── 地點資料 ──────────────────────────────────────────────
 const PLACES = [
-
-  // 住宿
   { id:'acc1', name:'Millbrae 住宿', type:'住宿', area:'灣區',
     sub:'5/16–5/17 · 鳳梨代墊',
     addr:'463 Helen Drive, Millbrae, CA 94030',
     lat:37.5998, lng:-122.3867 },
-
   { id:'acc2', name:'Mount Shasta 住宿', type:'住宿', area:'雪士達',
     sub:'5/17–5/31 · 采鴻代墊',
     addr:'504 Redwood Road, Mount Shasta, CA 96067',
     lat:41.3092, lng:-122.3317 },
-
-  // 交通
   { id:'sfo', name:'SFO 租車中心', type:'交通', area:'灣區',
     sub:'SFO Rental Car Center · AirTrain 可到',
     addr:'SFO Rental Car Center, South McDonnell Rd, San Francisco, CA 94128',
     lat:37.6126, lng:-122.3860 },
-
-  // 採買 — 灣區
   { id:'s1', name:'99 Ranch Market 大華超市', type:'採買', area:'灣區',
     sub:'灣區 · 亞洲超市', addr:'636 El Camino Real, Millbrae, CA 94030',
     lat:37.5994, lng:-122.3882 },
-
   { id:'s2', name:'Nijiya Market 虹屋超市', type:'採買', area:'灣區',
     sub:'灣區 · 日系超市', addr:'231 E 3rd Ave, San Mateo, CA 94401',
     lat:37.5659, lng:-122.3257 },
-
   { id:'s3', name:'Marina Supermarket', type:'採買', area:'灣區',
     sub:'灣區 · 亞洲雜貨', addr:'299 S B St, San Mateo, CA 94401',
     lat:37.5626, lng:-122.3277 },
-
   { id:'s4', name:'Whole Foods Market', type:'採買', area:'灣區',
     sub:'灣區 · 有機超市', addr:'1010 Park Pl, San Mateo, CA 94403',
     lat:37.5575, lng:-122.2987 },
-
   { id:'s5', name:'Costco South San Francisco', type:'採買', area:'灣區',
     sub:'灣區 · 倉儲超市', addr:'451 S Airport Blvd, South San Francisco, CA 94080',
     lat:37.6468, lng:-122.4045 },
-
   { id:'s6', name:'Costco Foster City', type:'採買', area:'灣區',
     sub:'灣區 · 倉儲超市', addr:'1001 Metro Center Blvd, Foster City, CA 94404',
     lat:37.5576, lng:-122.2693 },
-
   { id:'s7', name:'Costco San Francisco', type:'採買', area:'灣區',
     sub:'灣區 · 倉儲超市', addr:'450 10th St, San Francisco, CA 94103',
     lat:37.7728, lng:-122.4099 },
-
   { id:'s8', name:'Livermore Premium Outlets', type:'採買', area:'灣區',
     sub:'灣區 · 購物中心', addr:'2774 Livermore Outlets Dr, Livermore, CA 94551',
     lat:37.6879, lng:-121.8192 },
-
-  // 採買 — 雪士達 / Redding 區
   { id:'s9', name:"Trader Joe's Redding", type:'採買', area:'雪士達',
     sub:'Redding 區', addr:'845 Browning St, Redding, CA 96003',
     lat:40.5829, lng:-122.3813 },
-
   { id:'s10', name:'Costco Redding', type:'採買', area:'雪士達',
     sub:'Redding 區 · 倉儲超市', addr:'4805 Bechelli Ln, Redding, CA 96002',
     lat:40.5494, lng:-122.3597 },
-
   { id:'s11', name:'Walmart Redding', type:'採買', area:'雪士達',
     sub:'Redding 區', addr:'1515 Dana Dr, Redding, CA 96003',
     lat:40.5588, lng:-122.3497 },
-
   { id:'s12', name:'Walmart Yreka', type:'採買', area:'雪士達',
     sub:'Yreka 區（雪士達北）', addr:'1906 Fort Jones Rd, Yreka, CA 96097',
     lat:41.7283, lng:-122.6286 },
-
   { id:'s13', name:'Target Redding', type:'採買', area:'雪士達',
     sub:'Redding 區', addr:'1280 Dana Dr, Redding, CA 96003',
     lat:40.5562, lng:-122.3440 },
-
   { id:'s14', name:'Safeway Redding (Cypress)', type:'採買', area:'雪士達',
     sub:'Redding 區', addr:'1070 E Cypress Ave, Redding, CA 96002',
     lat:40.5898, lng:-122.3614 },
-
   { id:'s15', name:'Safeway Redding (Pine)', type:'採買', area:'雪士達',
     sub:'Redding 區', addr:'2275 Pine St, Redding, CA 96001',
     lat:40.5814, lng:-122.3721 },
-
   { id:'s16', name:'Grocery Outlet Weed', type:'採買', area:'雪士達',
     sub:'Weed 區（雪士達旁）', addr:'268 E Vista Dr, Weed, CA 96094',
     lat:41.4233, lng:-122.3845 },
-
-  // 景點 — 雪士達區
   { id:'a1', name:'雪士達山城市公園 Headwater', type:'景點', area:'雪士達',
     sub:'#1 水源頭', addr:'Mount Shasta City Park, Mount Shasta, CA 96067',
     lat:41.3149, lng:-122.3164 },
-
   { id:'a2', name:'無聲溪流', type:'景點', area:'雪士達',
     sub:'#2 地心世界玉石神廟的地表', addr:'Sacramento River Headwaters, Mount Shasta, CA',
     lat:41.3225, lng:-122.2219 },
-
   { id:'a3', name:'揚升大石 Ascension Temple', type:'景點', area:'雪士達',
     sub:'#3 又名光門', addr:'Mt. Shasta, CA 96067',
     lat:41.3569, lng:-122.2482 },
-
   { id:'a4', name:'美洲豹草原 Panther Meadow', type:'景點', area:'雪士達',
     sub:'#4 山腰高山草原', addr:'Panther Meadow, Mt. Shasta, CA 96067',
     lat:41.3676, lng:-122.1951 },
-
   { id:'a5', name:'城堡湖和心之湖 Castle Lake', type:'景點', area:'雪士達',
     sub:'#5 · 彩虹/另一人 優先', addr:'Castle Lake Rd, Mount Shasta, CA 96067',
     lat:41.2272, lng:-122.3839 },
-
   { id:'a6', name:'冥王星洞 Pluto Cave', type:'景點', area:'雪士達',
     sub:'#6 · 彩虹/另一人 最優先', addr:'Pluto Cave, Weed, CA 96094',
     lat:41.5161, lng:-122.2756 },
-
   { id:'a7', name:'火山活口湖 Crater Lake', type:'景點', area:'雪士達',
     sub:'#7 · 奧勒岡州（車程約 3.5 小時）', addr:'Crater Lake National Park, OR 97604',
     lat:42.9446, lng:-122.1090 },
-
   { id:'a10', name:'麥克勞瀑布 McCloud Falls', type:'景點', area:'雪士達',
     sub:'#10 三段瀑布', addr:'McCloud Falls, McCloud, CA 96057',
     lat:41.2419, lng:-122.0289 },
-
   { id:'a11', name:'黑尖山 Black Butte Summit', type:'景點', area:'雪士達',
     sub:'#11 火山錐健行', addr:'Black Butte Trailhead, Mount Shasta, CA 96067',
     lat:41.3543, lng:-122.3355 },
-
   { id:'a12', name:'城堡險崖 Castle Crags', type:'景點', area:'雪士達',
     sub:'#12 州立公園', addr:'Castle Crags State Park, Castella, CA 96017',
     lat:41.1513, lng:-122.3222 },
-
   { id:'a13', name:'粟鼠平原 Bunny Flat', type:'景點', area:'雪士達',
     sub:'#13 登山步道起點', addr:'Bunny Flat Trailhead, Mt. Shasta, CA 96067',
     lat:41.3739, lng:-122.2196 },
-
   { id:'a14', name:'伯尼瀑布 Burney Falls', type:'景點', area:'雪士達',
     sub:'#14 加州最美瀑布之一', addr:'McArthur-Burney Falls Memorial State Park, Burney, CA 96013',
     lat:41.0119, lng:-121.6527 },
-
   { id:'a15', name:'青苔斜坡瀑布 Mossbrae Falls', type:'景點', area:'雪士達',
     sub:'#15 鐵道旁秘境', addr:'Mossbrae Falls Trail, Dunsmuir, CA 96025',
     lat:41.2103, lng:-122.2742 },
-
   { id:'a16', name:'樹籬溪瀑布 Hedge Creek Falls', type:'景點', area:'雪士達',
     sub:'彩虹/另一人 優先', addr:'Hedge Creek Falls, Dunsmuir, CA 96025',
     lat:41.2047, lng:-122.2761 },
-
   { id:'a17', name:'史都華火山溫泉 Stewart Mineral Springs', type:'景點', area:'雪士達',
     sub:'彩虹/另一人 優先', addr:'4617 Stewart Springs Rd, Weed, CA 96094',
     lat:41.5303, lng:-122.3958 },
-
   { id:'a18', name:'藥輪 Medicine Wheel', type:'景點', area:'雪士達',
     sub:'另一人 優先 · 靈性聖地', addr:'Mt. Shasta Medicine Wheel, Mount Shasta, CA 96067',
     lat:41.3092, lng:-122.2650 },
 ];
 
-// ── 地圖顏色設定 ───────────────────────────────────────────
 const TYPE_COLOR = {
-  '住宿': '#dc2626',
-  '景點': '#d97706',
-  '採買': '#16a34a',
-  '交通': '#2563eb',
+  '住宿': '#dc2626', '景點': '#d97706', '採買': '#16a34a', '交通': '#2563eb',
 };
 
 let map, markers = [], currentPlace = null;
 
-// ── 地圖初始化 ─────────────────────────────────────────────
 function initMap() {
   map = new google.maps.Map(document.getElementById('map'), {
     center: { lat: 41.31, lng: -122.33 },
@@ -834,11 +753,8 @@ function initMap() {
     streetViewControl: false,
     fullscreenControl: false,
     clickableIcons: false,
-    zoomControlOptions: {
-      position: google.maps.ControlPosition.RIGHT_CENTER,
-    },
+    zoomControlOptions: { position: google.maps.ControlPosition.RIGHT_CENTER },
   });
-
   PLACES.forEach(place => {
     const marker = new google.maps.Marker({
       position: { lat: place.lat, lng: place.lng },
@@ -859,31 +775,25 @@ function initMap() {
   });
 }
 
-// ── 篩選 ───────────────────────────────────────────────────
 function setFilter(btn, filter) {
   document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
   btn.classList.add('active');
-
   markers.forEach(m => {
     const p = m.placeData;
-    const show =
-      filter === '全部' ? true :
-      filter === '灣區' || filter === '雪士達' ? p.area === filter :
-      p.type === filter;
+    const show = filter === '全部' ? true :
+      (filter === '灣區' || filter === '雪士達') ? p.area === filter : p.type === filter;
     m.setVisible(show);
   });
-
   closeSheet();
 }
 
-// ── 底部資訊卡 ────────────────────────────────────────────
 function showSheet(place) {
   currentPlace = place;
-  document.getElementById('sheet-badge').textContent  = place.type;
-  document.getElementById('sheet-badge').className    = `badge-${place.type}`;
-  document.getElementById('sheet-name').textContent   = place.name;
-  document.getElementById('sheet-sub').textContent    = place.sub || '';
-  document.getElementById('sheet-addr').textContent   = place.addr;
+  document.getElementById('sheet-badge').textContent = place.type;
+  document.getElementById('sheet-badge').className   = `badge-${place.type}`;
+  document.getElementById('sheet-name').textContent  = place.name;
+  document.getElementById('sheet-sub').textContent   = place.sub || '';
+  document.getElementById('sheet-addr').textContent  = place.addr;
   document.getElementById('sheet').classList.add('open');
   document.getElementById('overlay').classList.add('open');
 }
@@ -894,37 +804,31 @@ function closeSheet() {
   currentPlace = null;
 }
 
-// ── 導航連結 ───────────────────────────────────────────────
 function openGoogle() {
   if (!currentPlace) return;
-  const q = encodeURIComponent(currentPlace.addr);
-  window.open(`https://www.google.com/maps/dir/?api=1&destination=${q}`, '_blank');
+  window.open(`https://www.google.com/maps/dir/?api=1&destination=${encodeURIComponent(currentPlace.addr)}`, '_blank');
 }
 
 function openApple() {
   if (!currentPlace) return;
-  const q = encodeURIComponent(currentPlace.addr);
-  window.location.href = `maps://?daddr=${q}&dirflg=d`;
+  window.location.href = `maps://?daddr=${encodeURIComponent(currentPlace.addr)}&dirflg=d`;
 }
 
 function navTo(addr) {
   const q = encodeURIComponent(addr);
-  const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent);
-  if (isIOS) {
+  if (/iPad|iPhone|iPod/.test(navigator.userAgent)) {
     window.location.href = `maps://?daddr=${q}&dirflg=d`;
   } else {
     window.open(`https://www.google.com/maps/dir/?api=1&destination=${q}`, '_blank');
   }
 }
 
-// ── Tab 切換 ───────────────────────────────────────────────
 function switchTab(tab) {
   const mapView  = document.getElementById('map-view');
   const infoView = document.getElementById('info-view');
   const legend   = document.getElementById('legend');
   const tabMap   = document.getElementById('tab-map');
   const tabInfo  = document.getElementById('tab-info');
-
   if (tab === 'map') {
     mapView.style.display  = 'flex';
     infoView.style.display = 'none';
