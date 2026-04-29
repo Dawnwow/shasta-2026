@@ -434,6 +434,117 @@
       letter-spacing: 0.3px;
     }
     .acc-btn:active { opacity: 0.85; }
+
+    /* ── 行前宣誓 ── */
+    .pledge-card {
+      background: white;
+      border-radius: 22px;
+      overflow: hidden;
+      box-shadow: 0 3px 20px rgba(74,122,94,0.10);
+      border: 1px solid rgba(0,0,0,0.04);
+    }
+    .pledge-header {
+      background: linear-gradient(135deg, #2E5740, #4A7A5E);
+      padding: 16px 18px;
+    }
+    .pledge-header-title { font-size: 16px; font-weight: 700; color: white; }
+    .pledge-header-sub { font-size: 11px; color: rgba(255,255,255,0.65); margin-top: 3px; }
+    .pledge-body { padding: 6px 18px 14px; }
+    .pledge-item {
+      display: flex;
+      gap: 14px;
+      align-items: flex-start;
+      padding: 12px 0;
+      border-bottom: 1px solid #F4F1EC;
+    }
+    .pledge-item:last-child { border-bottom: none; padding-bottom: 4px; }
+    .pledge-num {
+      width: 26px; height: 26px;
+      border-radius: 50%;
+      background: #EDF4EF;
+      color: #4A7A5E;
+      font-size: 12px;
+      font-weight: 800;
+      display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0;
+      margin-top: 1px;
+    }
+    .pledge-text { font-size: 14px; color: #2A2A2A; line-height: 1.55; }
+
+    /* ── 注意事項 grid ── */
+    .tips-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+    }
+    .tip-card {
+      background: white;
+      border-radius: 16px;
+      padding: 14px 13px;
+      box-shadow: 0 2px 12px rgba(74,122,94,0.08);
+      border: 1px solid rgba(0,0,0,0.04);
+    }
+    .tip-icon { font-size: 22px; margin-bottom: 8px; display: block; }
+    .tip-title { font-size: 13px; font-weight: 700; color: #1A1A1A; margin-bottom: 4px; }
+    .tip-desc { font-size: 11px; color: #7A7A7A; line-height: 1.55; }
+
+    /* ── 入境與注意事項 ── */
+    .entry-card {
+      background: white;
+      border-radius: 22px;
+      overflow: hidden;
+      box-shadow: 0 3px 20px rgba(74,122,94,0.10);
+      border: 1px solid rgba(0,0,0,0.04);
+      margin-bottom: 10px;
+    }
+    .entry-section-title {
+      font-size: 12px;
+      font-weight: 700;
+      color: #4A7A5E;
+      letter-spacing: 0.5px;
+      padding: 14px 18px 10px;
+      border-bottom: 1px solid #F4F1EC;
+    }
+    .entry-list { padding: 4px 18px 14px; }
+    .entry-item {
+      display: flex;
+      gap: 12px;
+      align-items: flex-start;
+      padding: 10px 0;
+      border-bottom: 1px solid #F8F5F1;
+    }
+    .entry-item:last-child { border-bottom: none; padding-bottom: 2px; }
+    .entry-check {
+      width: 20px; height: 20px;
+      border-radius: 50%;
+      flex-shrink: 0;
+      margin-top: 2px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 10px;
+      font-weight: 800;
+    }
+    .check-ok   { background: #E8F5EC; color: #2E7D4A; }
+    .check-warn { background: #FEF6E0; color: #A07010; }
+    .check-ban  { background: #FEEAEA; color: #B83232; }
+    .entry-main { font-size: 13px; font-weight: 600; color: #1A1A1A; }
+    .entry-sub  { font-size: 11px; color: #8A8A8A; margin-top: 2px; line-height: 1.5; }
+
+    /* ── 出發前提醒 ── */
+    .reminder-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+    }
+    .reminder-card {
+      background: white;
+      border-radius: 16px;
+      padding: 14px 13px;
+      box-shadow: 0 2px 12px rgba(74,122,94,0.08);
+      border: 1px solid rgba(0,0,0,0.04);
+    }
+    .reminder-icon { font-size: 22px; margin-bottom: 8px; display: block; }
+    .reminder-title { font-size: 13px; font-weight: 700; color: #1A1A1A; margin-bottom: 4px; }
+    .reminder-desc { font-size: 11px; color: #7A7A7A; line-height: 1.55; }
   </style>
 </head>
 <body>
@@ -476,7 +587,196 @@
 <div id="info-view">
   <div class="info-content">
 
-    <div class="section-header first">
+    <!-- 行前宣誓 -->
+    <div class="section-header" style="margin-top:4px">
+      <div class="section-icon">🤝</div>
+      <div class="section-title-text">行前宣誓</div>
+    </div>
+
+    <div class="pledge-card">
+      <div class="pledge-header">
+        <div class="pledge-header-title">出發前，我們先約好</div>
+        <div class="pledge-header-sub">2026 雪士達 15 日出走公約</div>
+      </div>
+      <div class="pledge-body">
+        <div class="pledge-item">
+          <div class="pledge-num">1</div>
+          <div class="pledge-text">快樂出門、平安回家，全程保持正能量</div>
+        </div>
+        <div class="pledge-item">
+          <div class="pledge-num">2</div>
+          <div class="pledge-text">不臭臉、不抱怨，有意見直接說，別憋著</div>
+        </div>
+        <div class="pledge-item">
+          <div class="pledge-num">3</div>
+          <div class="pledge-text">集合準時到，讓大家等你就罰請喝咖啡</div>
+        </div>
+        <div class="pledge-item">
+          <div class="pledge-num">4</div>
+          <div class="pledge-text">美景美食都要拍，好照片統一丟群組分享</div>
+        </div>
+        <div class="pledge-item">
+          <div class="pledge-num">5</div>
+          <div class="pledge-text">尊重彼此步調，想獨處就說，不需要解釋</div>
+        </div>
+        <div class="pledge-item">
+          <div class="pledge-num">6</div>
+          <div class="pledge-text">行程彈性調整，沒人是神明，天氣說了算</div>
+        </div>
+        <div class="pledge-item">
+          <div class="pledge-num">7</div>
+          <div class="pledge-text">15 天的珍貴回憶，全力以赴，不省這個</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 在美國要知道的事 -->
+    <div class="section-header">
+      <div class="section-icon">💡</div>
+      <div class="section-title-text">在美國要知道的事</div>
+    </div>
+
+    <div class="tips-grid">
+      <div class="tip-card">
+        <span class="tip-icon">💵</span>
+        <div class="tip-title">小費文化</div>
+        <div class="tip-desc">餐廳建議給 18–20%，外帶可給 10% 或不給</div>
+      </div>
+      <div class="tip-card">
+        <span class="tip-icon">🏷️</span>
+        <div class="tip-title">稅金另計</div>
+        <div class="tip-desc">標價未含稅，加州稅率約 8–10%，結帳才加上</div>
+      </div>
+      <div class="tip-card">
+        <span class="tip-icon">🍺</span>
+        <div class="tip-title">飲酒年齡</div>
+        <div class="tip-desc">21 歲以上才能買酒，超商可能要出示護照</div>
+      </div>
+      <div class="tip-card">
+        <span class="tip-icon">🆘</span>
+        <div class="tip-title">緊急電話</div>
+        <div class="tip-desc">911 為緊急救援，警察 / 火警 / 救護車統一撥打</div>
+      </div>
+      <div class="tip-card">
+        <span class="tip-icon">🕐</span>
+        <div class="tip-title">時差</div>
+        <div class="tip-desc">美西 PDT = 台灣 − 15 小時（5–6 月夏令時間）</div>
+      </div>
+      <div class="tip-card">
+        <span class="tip-icon">🚗</span>
+        <div class="tip-title">加州開車</div>
+        <div class="tip-desc">靠右行駛，紅燈可右轉（確認無禁止標誌），速限英里制</div>
+      </div>
+    </div>
+
+    <!-- 入境與注意事項 -->
+    <div class="section-header">
+      <div class="section-icon">🛂</div>
+      <div class="section-title-text">入境與注意事項</div>
+    </div>
+
+    <div class="entry-card">
+      <div class="entry-section-title">準備事項</div>
+      <div class="entry-list">
+        <div class="entry-item">
+          <div class="entry-check check-ok">✓</div>
+          <div>
+            <div class="entry-main">護照效期 6 個月以上</div>
+            <div class="entry-sub">入境美國要求效期超過停留期間</div>
+          </div>
+        </div>
+        <div class="entry-item">
+          <div class="entry-check check-ok">✓</div>
+          <div>
+            <div class="entry-main">提前申請 ESTA</div>
+            <div class="entry-sub">台灣適用免簽計畫（VWP），出發 72 小時前申請，官網 esta.cbp.dhs.gov</div>
+          </div>
+        </div>
+        <div class="entry-item">
+          <div class="entry-check check-ok">✓</div>
+          <div>
+            <div class="entry-main">海關申報表（CBP Form 6059B）</div>
+            <div class="entry-sub">機上會發，如實填寫，虛報有刑責</div>
+          </div>
+        </div>
+        <div class="entry-item">
+          <div class="entry-check check-warn">!</div>
+          <div>
+            <div class="entry-main">現金超過 $10,000 USD 需申報</div>
+            <div class="entry-sub">超過不一定沒收，但不申報違法</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="entry-card">
+      <div class="entry-section-title">禁止攜帶入境</div>
+      <div class="entry-list">
+        <div class="entry-item">
+          <div class="entry-check check-ban">✕</div>
+          <div>
+            <div class="entry-main">肉類及肉製品</div>
+            <div class="entry-sub">含泡麵、肉乾、湯塊等含肉成分食品，一律禁止</div>
+          </div>
+        </div>
+        <div class="entry-item">
+          <div class="entry-check check-ban">✕</div>
+          <div>
+            <div class="entry-main">新鮮蔬果</div>
+            <div class="entry-sub">大部分新鮮農產品禁止攜入，加工 / 罐裝可帶</div>
+          </div>
+        </div>
+        <div class="entry-item">
+          <div class="entry-check check-ok">✓</div>
+          <div>
+            <div class="entry-main">可帶：純素泡麵、餅乾、糖果、茶葉、調味料</div>
+            <div class="entry-sub">確認無肉類成分，建議保留原包裝</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 出發前提醒 -->
+    <div class="section-header">
+      <div class="section-icon">📋</div>
+      <div class="section-title-text">出發前提醒</div>
+    </div>
+
+    <div class="reminder-grid">
+      <div class="reminder-card">
+        <span class="reminder-icon">🛡️</span>
+        <div class="reminder-title">旅遊保險</div>
+        <div class="reminder-desc">建議含醫療的旅遊險，美國就醫費用極高</div>
+      </div>
+      <div class="reminder-card">
+        <span class="reminder-icon">📱</span>
+        <div class="reminder-title">網路 / eSIM</div>
+        <div class="reminder-desc">推薦 T-Mobile eSIM，出發前確認手機支援</div>
+      </div>
+      <div class="reminder-card">
+        <span class="reminder-icon">💱</span>
+        <div class="reminder-title">換匯</div>
+        <div class="reminder-desc">帶少量美元現金，日常刷卡為主，ATM 手續費高</div>
+      </div>
+      <div class="reminder-card">
+        <span class="reminder-icon">🪪</span>
+        <div class="reminder-title">國際駕照</div>
+        <div class="reminder-desc">需在台灣監理所辦理，與台灣駕照一起帶缺一不可</div>
+      </div>
+      <div class="reminder-card">
+        <span class="reminder-icon">🔋</span>
+        <div class="reminder-title">行動電源</div>
+        <div class="reminder-desc">必須放隨身行李，禁止托運，上限 100Wh</div>
+      </div>
+      <div class="reminder-card">
+        <span class="reminder-icon">💊</span>
+        <div class="reminder-title">常備藥品</div>
+        <div class="reminder-desc">腸胃藥、感冒藥、暈車藥、痠痛貼布備齊</div>
+      </div>
+    </div>
+
+    <!-- 航班資訊 -->
+    <div class="section-header">
       <div class="section-icon">✈</div>
       <div class="section-title-text">航班資訊</div>
     </div>
