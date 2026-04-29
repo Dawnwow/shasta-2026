@@ -545,6 +545,90 @@
     .reminder-icon { font-size: 22px; margin-bottom: 8px; display: block; }
     .reminder-title { font-size: 13px; font-weight: 700; color: #1A1A1A; margin-bottom: 4px; }
     .reminder-desc { font-size: 11px; color: #7A7A7A; line-height: 1.55; }
+
+    /* ── 行李清單 ── */
+    .checklist-card {
+      background: white;
+      border-radius: 22px;
+      overflow: hidden;
+      box-shadow: 0 3px 20px rgba(74,122,94,0.10);
+      border: 1px solid rgba(0,0,0,0.04);
+      margin-bottom: 10px;
+    }
+    .checklist-header {
+      background: linear-gradient(135deg, #2E5740, #4A7A5E);
+      padding: 14px 18px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .checklist-header-title { font-size: 15px; font-weight: 700; color: white; }
+    .checklist-note {
+      font-size: 10px;
+      color: rgba(255,255,255,0.85);
+      background: rgba(255,255,255,0.18);
+      padding: 3px 9px;
+      border-radius: 10px;
+      flex-shrink: 0;
+    }
+    .checklist-body { padding: 6px 18px 14px; }
+    .check-item {
+      display: flex;
+      align-items: center;
+      gap: 13px;
+      padding: 11px 0;
+      border-bottom: 1px solid #F4F1EC;
+      cursor: pointer;
+    }
+    .check-item:last-child { border-bottom: none; padding-bottom: 4px; }
+    .check-item input[type="checkbox"] {
+      width: 20px; height: 20px;
+      accent-color: #4A7A5E;
+      flex-shrink: 0;
+      cursor: pointer;
+    }
+    .check-label {
+      font-size: 14px;
+      color: #2A2A2A;
+      line-height: 1.4;
+      cursor: pointer;
+      flex: 1;
+    }
+    .check-item input:checked ~ .check-label {
+      color: #C0BCBA;
+      text-decoration: line-through;
+    }
+    .must-have-card {
+      background: linear-gradient(135deg, #3D2E1E, #6B4226);
+      border-radius: 22px;
+      padding: 16px 18px;
+      box-shadow: 0 3px 20px rgba(107,66,38,0.18);
+    }
+    .must-have-title { font-size: 14px; font-weight: 700; color: white; margin-bottom: 12px; }
+    .must-item {
+      display: flex;
+      align-items: center;
+      gap: 13px;
+      padding: 9px 0;
+      border-bottom: 1px solid rgba(255,255,255,0.1);
+      cursor: pointer;
+    }
+    .must-item:last-child { border-bottom: none; padding-bottom: 0; }
+    .must-item input[type="checkbox"] {
+      width: 20px; height: 20px;
+      accent-color: #D4935A;
+      flex-shrink: 0;
+    }
+    .must-label {
+      font-size: 14px;
+      color: rgba(255,255,255,0.92);
+      flex: 1;
+      cursor: pointer;
+    }
+    .must-item input:checked ~ .must-label {
+      color: rgba(255,255,255,0.35);
+      text-decoration: line-through;
+    }
   </style>
 </head>
 <body>
@@ -773,6 +857,62 @@
         <div class="reminder-title">常備藥品</div>
         <div class="reminder-desc">腸胃藥、感冒藥、暈車藥、痠痛貼布備齊</div>
       </div>
+    </div>
+
+    <!-- 行李清單 -->
+    <div class="section-header">
+      <div class="section-icon">🧳</div>
+      <div class="section-title-text">行李 Check List</div>
+    </div>
+
+    <div class="checklist-card">
+      <div class="checklist-header">
+        <div class="checklist-header-title">行李箱清單</div>
+        <div class="checklist-note">⚠️ 禁放電子產品</div>
+      </div>
+      <div class="checklist-body">
+        <label class="check-item"><input type="checkbox"><span class="check-label">個人盥洗用品</span></label>
+        <label class="check-item"><input type="checkbox"><span class="check-label">鞋子、登山鞋、拖鞋</span></label>
+        <label class="check-item"><input type="checkbox"><span class="check-label">衣物（建議分層穿法，日夜溫差大）</span></label>
+        <label class="check-item"><input type="checkbox"><span class="check-label">每日穿搭（5–20°C 溫差，帶保暖層）</span></label>
+        <label class="check-item"><input type="checkbox"><span class="check-label">內衣、內褲、睡衣、襪子</span></label>
+        <label class="check-item"><input type="checkbox"><span class="check-label">保暖外套（山區夜間偏冷）</span></label>
+        <label class="check-item"><input type="checkbox"><span class="check-label">雨具（雨傘或輕量雨衣）</span></label>
+        <label class="check-item"><input type="checkbox"><span class="check-label">化妝 / 保養品（瓶罐裝）</span></label>
+        <label class="check-item"><input type="checkbox"><span class="check-label">隱形眼鏡及清潔液</span></label>
+        <label class="check-item"><input type="checkbox"><span class="check-label">個人藥品</span></label>
+        <label class="check-item"><input type="checkbox"><span class="check-label">防曬乳（高海拔 UV 強，重要！）</span></label>
+        <label class="check-item"><input type="checkbox"><span class="check-label">防蚊液 / 防蟲噴霧</span></label>
+        <label class="check-item"><input type="checkbox"><span class="check-label">毛巾</span></label>
+        <label class="check-item"><input type="checkbox"><span class="check-label">購物袋（環保、方便採買）</span></label>
+      </div>
+    </div>
+
+    <div class="checklist-card">
+      <div class="checklist-header">
+        <div class="checklist-header-title">隨身行李清單</div>
+        <div class="checklist-note">帶上飛機</div>
+      </div>
+      <div class="checklist-body">
+        <label class="check-item"><input type="checkbox"><span class="check-label">眼鏡、墨鏡、帽子等配件</span></label>
+        <label class="check-item"><input type="checkbox"><span class="check-label">充電器、充電線</span></label>
+        <label class="check-item"><input type="checkbox"><span class="check-label">行動電源（禁止托運，容量 ≤ 100Wh）</span></label>
+        <label class="check-item"><input type="checkbox"><span class="check-label">化妝品、藥品小容量版</span></label>
+        <label class="check-item"><input type="checkbox"><span class="check-label">液體遵守 3-1-1：每罐 ≤ 100ml，裝透明夾鏈袋</span></label>
+        <label class="check-item"><input type="checkbox"><span class="check-label">耳機</span></label>
+        <label class="check-item"><input type="checkbox"><span class="check-label">頸枕（長途飛行必備）</span></label>
+        <label class="check-item"><input type="checkbox"><span class="check-label">零食（機上備用）</span></label>
+        <label class="check-item"><input type="checkbox"><span class="check-label">eSIM 或 SIM 卡（事先購買）</span></label>
+      </div>
+    </div>
+
+    <div class="must-have-card">
+      <div class="must-have-title">超重要 — 隨時放身上</div>
+      <label class="must-item"><input type="checkbox"><span class="must-label">護照 + ESTA 申請確認信</span></label>
+      <label class="must-item"><input type="checkbox"><span class="must-label">國際駕照 + 台灣駕照（缺一不可）</span></label>
+      <label class="must-item"><input type="checkbox"><span class="must-label">手機、充電線</span></label>
+      <label class="must-item"><input type="checkbox"><span class="must-label">美元現金 + 信用卡</span></label>
+      <label class="must-item"><input type="checkbox"><span class="must-label">旅遊保險證明</span></label>
     </div>
 
     <!-- 航班資訊 -->
