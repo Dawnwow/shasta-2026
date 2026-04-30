@@ -734,8 +734,7 @@
     }
     .luggage-col:last-child { border-right: none; }
     .luggage-col-title {
-      font-size: 10px; font-weight: 800;
-      letter-spacing: 0.5px; text-transform: uppercase;
+      font-size: 14px; font-weight: 800;
       margin-bottom: 8px; padding-bottom: 7px;
       border-bottom: 1px solid var(--bdr-l);
     }
@@ -756,7 +755,7 @@
       background: var(--red-l);
       padding: 10px 16px;
       border-top: 1px solid rgba(200,59,59,0.15);
-      font-size: 14px; color: var(--red); font-weight: 600;
+      font-size: 13px; color: var(--red); font-weight: 600;
       line-height: 1.5;
     }
     .allowance-row {
@@ -1149,8 +1148,14 @@
         <label class="check-item"><input type="checkbox"><span class="check-label">常備藥品（腸胃藥、感冒藥、暈車藥、痠痛貼布備齊）</span></label>
         <label class="check-item"><input type="checkbox"><span class="check-label">防曬乳（高海拔 UV 強，重要！）</span></label>
         <label class="check-item"><input type="checkbox"><span class="check-label">防蚊液 / 防蟲噴霧</span></label>
-        <label class="check-item"><input type="checkbox"><span class="check-label">毛巾</span></label>
+        <label class="check-item"><input type="checkbox"><span class="check-label">毛巾、浴巾</span></label>
         <label class="check-item"><input type="checkbox"><span class="check-label">購物袋（環保、方便採買）</span></label>
+        <label class="check-item"><input type="checkbox"><span class="check-label">登山杖</span></label>
+        <label class="check-item"><input type="checkbox"><span class="check-label">攀爬用手套（或工具用手套）</span></label>
+        <label class="check-item"><input type="checkbox"><span class="check-label">洗衣袋（洗衣服跟泡水晶）</span></label>
+        <label class="check-item"><input type="checkbox"><span class="check-label">衣架（可帶可不帶）</span></label>
+        <label class="check-item"><input type="checkbox"><span class="check-label">水晶</span></label>
+        <label class="check-item"><input type="checkbox"><span class="check-label">蠟燭</span></label>
       </div>
     </div>
 
@@ -1169,6 +1174,10 @@
         <label class="check-item"><input type="checkbox"><span class="check-label">頸枕（長途飛行必備）</span></label>
         <label class="check-item"><input type="checkbox"><span class="check-label">零食（機上備用）</span></label>
         <label class="check-item"><input type="checkbox"><span class="check-label">eSIM 或 SIM 卡（事先購買）</span></label>
+        <label class="check-item"><input type="checkbox"><span class="check-label">電動牙刷</span></label>
+        <label class="check-item"><input type="checkbox"><span class="check-label">隨身水瓶</span></label>
+        <label class="check-item"><input type="checkbox"><span class="check-label">頭燈</span></label>
+        <label class="check-item"><input type="checkbox"><span class="check-label">酒精</span></label>
       </div>
     </div>
 
@@ -1178,7 +1187,7 @@
       <label class="must-item"><input type="checkbox"><span class="must-label">國際駕照 + 台灣駕照（缺一不可）</span></label>
       <label class="must-item"><input type="checkbox"><span class="must-label">手機、充電線</span></label>
       <label class="must-item"><input type="checkbox"><span class="must-label">美元現金 + 信用卡</span></label>
-      <label class="must-item"><input type="checkbox"><span class="must-label">旅遊保險證明</span></label>
+      <label class="must-item"><input type="checkbox"><span class="must-label">旅遊保險證明（5/17－6/1）</span></label>
     </div>
 
     <!-- 航班資訊 -->
@@ -1255,37 +1264,8 @@
 
     <!-- AirTrain 路線圖 -->
     <div class="airtrain-card">
-      <div class="airtrain-header">
-        AirTrain 紅線路線圖
-        <span>免費 · 24 小時運行</span>
-      </div>
-      <div class="airtrain-track">
-        <div class="airtrain-stop">
-          <div class="airtrain-dot key"></div>
-          <div class="airtrain-name highlight">國際航廈<br>入境口</div>
-        </div>
-        <div class="airtrain-line"></div>
-        <div class="airtrain-stop">
-          <div class="airtrain-dot"></div>
-          <div class="airtrain-name">Terminal<br>1</div>
-        </div>
-        <div class="airtrain-line"></div>
-        <div class="airtrain-stop">
-          <div class="airtrain-dot"></div>
-          <div class="airtrain-name">Terminal<br>2 / 3</div>
-        </div>
-        <div class="airtrain-line"></div>
-        <div class="airtrain-stop">
-          <div class="airtrain-dot dest"></div>
-          <div class="airtrain-name highlight">Rental<br>Car Ctr</div>
-        </div>
-        <div class="airtrain-line"></div>
-        <div class="airtrain-stop">
-          <div class="airtrain-dot"></div>
-          <div class="airtrain-name">BART<br>站</div>
-        </div>
-      </div>
-      <div class="airtrain-note">入境後出 Arrivals → 跟著紅色 AirTrain 指標 → 約 5–10 分鐘抵達 Rental Car Center 站</div>
+      <img src="img/sfo-airtrain.jpg" alt="SFO AirTrain 路線圖" style="width:100%;display:block;border-radius:10px;">
+      <div class="airtrain-note">入境後出 Arrivals → 跟著藍色 AirTrain 指標 → 約 5–10 分鐘抵達 Rental Car Center 站</div>
     </div>
 
     <div class="steps-card">
@@ -1423,30 +1403,30 @@ const PLACES = [
     sub:'Weed 區（雪士達旁）', addr:'268 E Vista Dr, Weed, CA 96094',
     lat:41.4233, lng:-122.3845 },
   { id:'a1', name:'雪士達山城市公園 Headwater', type:'景點', area:'雪士達',
-    sub:'#1 水源頭', addr:'Mount Shasta City Park, Mount Shasta, CA 96067',
+    sub:'#1 水源頭', addr:'41.3149,-122.3164',
     lat:41.3149, lng:-122.3164 },
-  { id:'a2', name:'無聲溪流', type:'景點', area:'雪士達',
-    sub:'#2 地心世界玉石神廟的地表', addr:'Sacramento River Headwaters, Mount Shasta, CA',
-    lat:41.3225, lng:-122.2219 },
+  { id:'a2', name:'無聲的溪流 Elsa Rupp Nature Study Area', type:'景點', area:'雪士達',
+    sub:'#2 無聲的溪流（心輪）', addr:'28-220 N Old Stage Rd, Mt Shasta, CA 96067',
+    lat:41.3122, lng:-122.3170 },
   { id:'a3', name:'揚升大石 Ascension Temple', type:'景點', area:'雪士達',
     sub:'#3 又名光門', addr:'Mt. Shasta, CA 96067',
     lat:41.3569, lng:-122.2482 },
-  { id:'a4', name:'美洲豹草原 Panther Meadow', type:'景點', area:'雪士達',
-    sub:'#4 山腰高山草原', addr:'Panther Meadow, Mt. Shasta, CA 96067',
+  { id:'a4', name:'Panther Meadows', type:'景點', area:'雪士達',
+    sub:'#4 山腰高山草原', addr:'41.3676,-122.1951',
     lat:41.3676, lng:-122.1951 },
   { id:'a5', name:'城堡湖和心之湖 Castle Lake', type:'景點', area:'雪士達',
     sub:'#5 · 彩虹/另一人 優先', addr:'Castle Lake Rd, Mount Shasta, CA 96067',
     lat:41.2272, lng:-122.3839 },
-  { id:'a6', name:'冥王星洞 Pluto Cave', type:'景點', area:'雪士達',
-    sub:'#6 · 彩虹/另一人 最優先', addr:'Pluto Cave, Weed, CA 96094',
-    lat:41.5161, lng:-122.2756 },
+  { id:'a6', name:'冥王洞 Pluto\'s Cave', type:'景點', area:'雪士達',
+    sub:'#6 · 彩虹/另一人 最優先', addr:'41.7330,-122.4377',
+    lat:41.7330, lng:-122.4377 },
   { id:'a7', name:'火山活口湖 Crater Lake', type:'景點', area:'雪士達',
     sub:'#7 · 奧勒岡州（車程約 3.5 小時）', addr:'Crater Lake National Park, OR 97604',
     lat:42.9446, lng:-122.1090 },
-  { id:'a10', name:'麥克勞瀑布 McCloud Falls', type:'景點', area:'雪士達',
-    sub:'#10 三段瀑布', addr:'McCloud Falls, McCloud, CA 96057',
-    lat:41.2419, lng:-122.0289 },
-  { id:'a11', name:'黑尖山 Black Butte Summit', type:'景點', area:'雪士達',
+  { id:'a10', name:'麥克勞瀑布 McCloud Falls - Upper Fall', type:'景點', area:'雪士達',
+    sub:'#10 三段瀑布', addr:'Upper Fall Rd, McCloud, CA 96057',
+    lat:41.2419, lng:-122.1525 },
+  { id:'a11', name:'黑尖山登山口 Black Butte Trailhead', type:'景點', area:'雪士達',
     sub:'#11 火山錐健行', addr:'Black Butte Trailhead, Mount Shasta, CA 96067',
     lat:41.3543, lng:-122.3355 },
   { id:'a12', name:'城堡險崖 Castle Crags', type:'景點', area:'雪士達',
@@ -1458,18 +1438,27 @@ const PLACES = [
   { id:'a14', name:'伯尼瀑布 Burney Falls', type:'景點', area:'雪士達',
     sub:'#14 加州最美瀑布之一', addr:'McArthur-Burney Falls Memorial State Park, Burney, CA 96013',
     lat:41.0119, lng:-121.6527 },
-  { id:'a15', name:'青苔斜坡瀑布 Mossbrae Falls', type:'景點', area:'雪士達',
-    sub:'#15 鐵道旁秘境', addr:'Mossbrae Falls Trail, Dunsmuir, CA 96025',
-    lat:41.2103, lng:-122.2742 },
+  { id:'a15', name:'莫斯比瀑布 Mossbrae Falls', type:'景點', area:'雪士達',
+    sub:'#15 鐵道旁秘境 · 停車導航用', addr:'4705 Dunsmuir Ave, Dunsmuir, CA 96025',
+    lat:41.2361, lng:-122.2752 },
   { id:'a16', name:'樹籬溪瀑布 Hedge Creek Falls', type:'景點', area:'雪士達',
-    sub:'彩虹/另一人 優先', addr:'Hedge Creek Falls, Dunsmuir, CA 96025',
-    lat:41.2047, lng:-122.2761 },
+    sub:'彩虹/另一人 優先', addr:'4131 Dunsmuir Ave, Dunsmuir, CA 96025',
+    lat:41.2128, lng:-122.2740 },
   { id:'a17', name:'史都華火山溫泉 Stewart Mineral Springs', type:'景點', area:'雪士達',
     sub:'彩虹/另一人 優先', addr:'4617 Stewart Springs Rd, Weed, CA 96094',
     lat:41.5303, lng:-122.3958 },
   { id:'a18', name:'藥輪 Medicine Wheel', type:'景點', area:'雪士達',
     sub:'另一人 優先 · 靈性聖地', addr:'Mt. Shasta Medicine Wheel, Mount Shasta, CA 96067',
     lat:41.3092, lng:-122.2650 },
+  { id:'a19', name:'沙斯塔湖洞穴 Shasta Caverns', type:'景點', area:'雪士達',
+    sub:'鐘乳石洞穴 · 含船遊湖 · 需預約', addr:'20359 Shasta Caverns Rd, Lakehead, CA 96051',
+    lat:40.8440, lng:-122.2610 },
+  { id:'a20', name:'希斯基尤湖觀景台 Lake Siskiyou View Point', type:'景點', area:'雪士達',
+    sub:'沙斯塔山倒影湖景', addr:'Lake Siskiyou View Point, Mt Shasta, CA 96067',
+    lat:41.3080, lng:-122.3515 },
+  { id:'a21', name:'雪世達博物館 Mt. Shasta Sisson Museum', type:'景點', area:'雪士達',
+    sub:'當地歷史博物館', addr:'1 N Old Stage Rd, Mt Shasta, CA 96067',
+    lat:41.3129, lng:-122.3158 },
 ];
 
 const BADGE_CLASS = {
