@@ -120,7 +120,7 @@
     .top-tab.active { color: var(--p); border-bottom-color: var(--p); }
 
     /* ── Map View ── */
-    #map-view { display: flex; flex-direction: column; flex: 1; overflow: hidden; }
+    #map-view { display: flex; flex-direction: column; flex: 1; overflow: hidden; position: relative; }
 
     #filters {
       background: var(--surf);
@@ -158,8 +158,8 @@
     #map { flex: 1; }
 
     #legend {
-      position: fixed;
-      top: 160px; right: 10px;
+      position: absolute;
+      top: 10px; right: 10px;
       background: var(--surf);
       border-radius: 12px;
       padding: 10px 13px;
@@ -586,13 +586,12 @@
     <button class="filter-btn" onclick="setFilter(this,'雪士達')">雪士達</button>
   </div>
   <div id="map"></div>
-</div>
-
-<div id="legend">
-  <div class="legend-item"><div class="legend-dot" style="background:#dc2626"></div>住宿</div>
-  <div class="legend-item"><div class="legend-dot" style="background:#d97706"></div>景點</div>
-  <div class="legend-item"><div class="legend-dot" style="background:#16a34a"></div>採買</div>
-  <div class="legend-item"><div class="legend-dot" style="background:#2563eb"></div>交通</div>
+  <div id="legend">
+    <div class="legend-item"><div class="legend-dot" style="background:#dc2626"></div>住宿</div>
+    <div class="legend-item"><div class="legend-dot" style="background:#d97706"></div>景點</div>
+    <div class="legend-item"><div class="legend-dot" style="background:#16a34a"></div>採買</div>
+    <div class="legend-item"><div class="legend-dot" style="background:#2563eb"></div>交通</div>
+  </div>
 </div>
 
 <!-- 行前整理頁 -->
@@ -1115,14 +1114,17 @@ let map, markers = [], currentPlace = null;
 
 function initMap() {
   map = new google.maps.Map(document.getElementById('map'), {
-    center: { lat: 41.31, lng: -122.33 },
-    zoom: 8,
+    center: { lat: 39.5, lng: -122.33 },
+    zoom: 7,
     mapTypeControl: false,
     streetViewControl: false,
     fullscreenControl: false,
     clickableIcons: false,
     zoomControlOptions: { position: google.maps.ControlPosition.RIGHT_CENTER },
   });
+
+  const bounds = new google.maps.LatLngBounds();
+
   PLACES.forEach(place => {
     const marker = new google.maps.Marker({
       position: { lat: place.lat, lng: place.lng },
@@ -1140,7 +1142,10 @@ function initMap() {
     marker.placeData = place;
     marker.addListener('click', () => showSheet(place));
     markers.push(marker);
+    bounds.extend({ lat: place.lat, lng: place.lng });
   });
+
+  map.fitBounds(bounds, { top: 20, right: 20, bottom: 20, left: 20 });
 }
 
 function setFilter(btn, filter) {
@@ -1194,19 +1199,16 @@ function navTo(addr) {
 function switchTab(tab) {
   const mapView  = document.getElementById('map-view');
   const infoView = document.getElementById('info-view');
-  const legend   = document.getElementById('legend');
   const tabMap   = document.getElementById('tab-map');
   const tabInfo  = document.getElementById('tab-info');
   if (tab === 'map') {
     mapView.style.display  = 'flex';
     infoView.style.display = 'none';
-    legend.style.display   = 'block';
     tabMap.classList.add('active');
     tabInfo.classList.remove('active');
   } else {
     mapView.style.display  = 'none';
     infoView.style.display = 'block';
-    legend.style.display   = 'none';
     tabMap.classList.remove('active');
     tabInfo.classList.add('active');
     closeSheet();
