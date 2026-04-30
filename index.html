@@ -172,15 +172,15 @@
       padding: 18px 14px 16px;
     }
     .coin-wrap { display: flex; flex-direction: column; align-items: center; gap: 7px; }
-    .coin-circle {
-      border-radius: 50%; display: flex; align-items: center; justify-content: center;
-      font-size: 10px; font-weight: 800; color: rgba(0,0,0,0.35);
-      box-shadow: 0 3px 8px rgba(0,0,0,0.18), inset 0 1px 2px rgba(255,255,255,0.5);
+    .coin-img {
+      border-radius: 50%; object-fit: cover;
+      box-shadow: 0 3px 10px rgba(0,0,0,0.22);
+      display: block;
     }
-    .coin-penny   { background: linear-gradient(135deg,#d9924a,#b8622a); width:36px; height:36px; }
-    .coin-nickel  { background: linear-gradient(135deg,#d4d4da,#b2b2b8); width:40px; height:40px; }
-    .coin-dime    { background: linear-gradient(135deg,#ccd4dc,#a8b0b8); width:32px; height:32px; }
-    .coin-quarter { background: linear-gradient(135deg,#dcdce4,#bcbcc4); width:46px; height:46px; }
+    .coin-penny   { width:54px; height:54px; }
+    .coin-nickel  { width:60px; height:60px; }
+    .coin-dime    { width:48px; height:48px; }
+    .coin-quarter { width:68px; height:68px; }
     .coin-value { font-size: 16px; font-weight: 800; color: var(--tx); }
     .coin-name  { font-size: 10px; color: var(--tx3); font-weight: 600; }
 
@@ -742,13 +742,13 @@
     .luggage-col-title.checked { color: var(--blue); }
     .luggage-col-title.cabin   { color: var(--p); }
     .luggage-list-item {
-      font-size: 11px; color: var(--tx2);
+      font-size: 14px; color: var(--tx2);
       padding: 3px 0; line-height: 1.45; font-weight: 500;
       display: flex; gap: 5px;
     }
     .luggage-list-item::before { content: '·'; color: var(--tx3); flex-shrink: 0; }
     .luggage-must {
-      font-size: 11px; color: var(--red); font-weight: 700;
+      font-size: 14px; color: var(--red); font-weight: 700;
       padding: 3px 0; display: flex; gap: 5px;
     }
     .luggage-must::before { content: '!'; flex-shrink: 0; }
@@ -756,7 +756,7 @@
       background: var(--red-l);
       padding: 10px 16px;
       border-top: 1px solid rgba(200,59,59,0.15);
-      font-size: 11px; color: var(--red); font-weight: 600;
+      font-size: 14px; color: var(--red); font-weight: 600;
       line-height: 1.5;
     }
     .allowance-row {
@@ -896,22 +896,22 @@
       </div>
       <div class="coin-row">
         <div class="coin-wrap">
-          <div class="coin-circle coin-dime"></div>
+          <img class="coin-img coin-dime" src="https://upload.wikimedia.org/wikipedia/commons/3/3c/Dime_Obverse_13.png" alt="Dime">
           <div class="coin-value">10¢</div>
           <div class="coin-name">Dime</div>
         </div>
         <div class="coin-wrap">
-          <div class="coin-circle coin-penny"></div>
+          <img class="coin-img coin-penny" src="https://upload.wikimedia.org/wikipedia/commons/2/2e/US_One_Cent_Obv.png" alt="Penny">
           <div class="coin-value">1¢</div>
           <div class="coin-name">Penny</div>
         </div>
         <div class="coin-wrap">
-          <div class="coin-circle coin-nickel"></div>
+          <img class="coin-img coin-nickel" src="https://upload.wikimedia.org/wikipedia/commons/7/72/Jefferson-Nickel-Unc-Obv.jpg" alt="Nickel">
           <div class="coin-value">5¢</div>
           <div class="coin-name">Nickel</div>
         </div>
         <div class="coin-wrap">
-          <div class="coin-circle coin-quarter"></div>
+          <img class="coin-img coin-quarter" src="https://upload.wikimedia.org/wikipedia/commons/2/28/98_quarter_obverse.png" alt="Quarter">
           <div class="coin-value">25¢</div>
           <div class="coin-name">Quarter</div>
         </div>
