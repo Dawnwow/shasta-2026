@@ -458,48 +458,6 @@
       color: rgba(255,255,255,0.28); text-decoration: line-through;
     }
 
-    /* ── Flight card ── */
-    .flight-card {
-      background: var(--surf);
-      border-radius: 20px;
-      overflow: hidden;
-      box-shadow: 0 2px 18px rgba(44,88,66,0.09), 0 0 0 1px rgba(0,0,0,0.04);
-      margin-bottom: 12px;
-    }
-    .flight-body { padding: 20px 18px 18px; }
-    .flight-route { display: flex; align-items: flex-start; }
-    .airport-col { flex: none; }
-    .airport-col.right { text-align: right; }
-    .airport-time {
-      font-size: 30px; font-weight: 800;
-      color: var(--tx); letter-spacing: -1.5px; line-height: 1;
-    }
-    .airport-code-sm {
-      font-size: 13px; font-weight: 800; color: var(--p);
-      margin-top: 6px; letter-spacing: 1.2px;
-    }
-    .airport-date   { font-size: 11px; color: var(--tx3); margin-top: 3px; font-weight: 500; }
-    .airport-terminal { font-size: 11px; color: var(--tx3); margin-top: 1px; font-weight: 500; }
-    .route-mid {
-      flex: 1; display: flex; flex-direction: column;
-      align-items: center; padding: 6px 12px 0; gap: 5px;
-    }
-    .route-dur { font-size: 10px; color: var(--tx3); font-weight: 700; letter-spacing: 0.5px; }
-    .route-line-wrap { width: 100%; display: flex; align-items: center; gap: 3px; }
-    .r-dot  { width: 5px; height: 5px; border-radius: 50%; background: var(--bdr); flex-shrink: 0; }
-    .r-line { flex: 1; height: 1.5px; background: var(--bdr-l); }
-    .r-plane { font-size: 13px; color: var(--tx3); flex-shrink: 0; }
-    .flight-divider {
-      border: none; border-top: 1.5px dashed var(--bdr-l);
-      margin: 16px 0 13px;
-    }
-    .flight-chips { display: flex; gap: 7px; flex-wrap: wrap; }
-    .chip {
-      background: var(--bg); border-radius: 8px;
-      padding: 5px 11px; font-size: 11px; color: var(--tx2); font-weight: 500;
-    }
-    .chip b { color: var(--tx); font-weight: 700; }
-
     /* ── Steps card ── */
     .steps-card {
       background: var(--surf);
@@ -526,27 +484,252 @@
     .step-main { font-size: 14px; font-weight: 700; color: var(--tx); line-height: 1.3; }
     .step-sub  { font-size: 12px; color: var(--tx2); margin-top: 3px; line-height: 1.5; font-weight: 500; }
 
-    /* ── Accommodation card ── */
-    .acc-card {
+    /* ── Accommodation compact grid ── */
+    .acc-compact {
+      background: var(--surf);
+      border-radius: 16px; overflow: hidden;
+      box-shadow: 0 2px 12px rgba(44,88,66,0.07), 0 0 0 1px rgba(0,0,0,0.04);
+    }
+    .acc-compact-hdr {
+      background: linear-gradient(130deg, var(--p-dd) 0%, var(--p) 100%);
+      padding: 12px 14px;
+    }
+    .acc-compact-title { font-size: 13px; font-weight: 700; color: white; line-height: 1.3; }
+    .acc-compact-dates { font-size: 10px; color: rgba(255,255,255,0.65); margin-top: 3px; font-weight: 500; }
+    .acc-compact-body  { padding: 12px 14px; }
+    .acc-compact-addr  { font-size: 11px; color: var(--tx2); line-height: 1.6; margin-bottom: 10px; font-weight: 500; }
+    .acc-compact-btn {
+      width: 100%; padding: 10px 8px;
+      border-radius: 10px; border: none;
+      background: var(--p); color: white;
+      font-size: 12px; font-weight: 700; font-family: inherit;
+      cursor: pointer; letter-spacing: 0.1px;
+      display: flex; align-items: center; justify-content: center; gap: 5px;
+      transition: opacity 0.15s;
+    }
+    .acc-compact-btn:active { opacity: 0.85; }
+    .acc-compact-btn svg { width: 13px; height: 13px; }
+
+    /* ── Compact flight grid ── */
+    .flight-compact {
+      background: var(--surf);
+      border-radius: 16px; overflow: hidden;
+      box-shadow: 0 2px 12px rgba(44,88,66,0.07), 0 0 0 1px rgba(0,0,0,0.04);
+    }
+    .fc-hdr {
+      background: linear-gradient(130deg, var(--p-dd) 0%, var(--p) 100%);
+      padding: 10px 13px;
+      display: flex; justify-content: space-between; align-items: center;
+    }
+    .fc-title { font-size: 12px; font-weight: 700; color: white; }
+    .fc-pill  {
+      font-size: 9px; font-weight: 700; color: white;
+      background: rgba(255,255,255,0.2); padding: 2px 8px; border-radius: 99px;
+    }
+    .fc-body { padding: 13px 13px 12px; }
+    .fc-airline { font-size: 10px; color: var(--tx3); font-weight: 600; margin-bottom: 10px; letter-spacing: 0.3px; }
+    .fc-airport { display: flex; align-items: baseline; gap: 5px; margin-bottom: 1px; }
+    .fc-time { font-size: 22px; font-weight: 800; color: var(--tx); letter-spacing: -1px; line-height: 1; }
+    .fc-code { font-size: 12px; font-weight: 800; color: var(--p); letter-spacing: 0.8px; }
+    .fc-date { font-size: 10px; color: var(--tx3); font-weight: 500; margin-bottom: 8px; }
+    .fc-mid  {
+      display: flex; align-items: center; gap: 5px;
+      margin: 6px 0 8px;
+    }
+    .fc-mid-line { flex: 1; height: 1px; background: var(--bdr-l); }
+    .fc-mid-info { font-size: 9px; color: var(--tx3); font-weight: 700; letter-spacing: 0.3px; white-space: nowrap; }
+    .fc-reminder {
+      background: var(--amber-l);
+      border-radius: 8px; padding: 6px 9px;
+      font-size: 10px; color: var(--amber); font-weight: 700;
+      margin-top: 9px; line-height: 1.4;
+    }
+    .fc-dateline-note {
+      background: var(--blue-l);
+      border-radius: 8px; padding: 5px 9px;
+      font-size: 10px; color: var(--blue); font-weight: 600;
+      margin-top: 5px; line-height: 1.4;
+    }
+
+    /* ── Time zone table ── */
+    .tz-card {
+      background: var(--surf);
+      border-radius: 20px; overflow: hidden;
+      box-shadow: 0 2px 18px rgba(44,88,66,0.09), 0 0 0 1px rgba(0,0,0,0.04);
+      margin-top: 10px;
+    }
+    .tz-col-heads {
+      display: grid; grid-template-columns: 1fr 1fr;
+      background: linear-gradient(130deg, var(--p-dd) 0%, var(--p) 100%);
+      padding: 12px 18px;
+    }
+    .tz-col-head {
+      font-size: 11px; font-weight: 700; color: white;
+      text-align: center;
+    }
+    .tz-col-head span { color: rgba(255,255,255,0.6); font-weight: 500; }
+    .tz-body { padding: 2px 0 4px; }
+    .tz-row {
+      display: grid; grid-template-columns: 1fr 1fr;
+      border-bottom: 1px solid var(--bdr-l);
+    }
+    .tz-row:last-child { border-bottom: none; }
+    .tz-cell {
+      padding: 9px 18px; text-align: center;
+      border-right: 1px solid var(--bdr-l);
+    }
+    .tz-cell:last-child { border-right: none; }
+    .tz-time { font-size: 16px; font-weight: 800; color: var(--tx); }
+    .tz-label { font-size: 10px; color: var(--tx3); font-weight: 500; margin-top: 1px; }
+    .tz-note {
+      padding: 10px 18px;
+      font-size: 11px; color: var(--tx3); font-weight: 500;
+      background: var(--bg); border-top: 1px solid var(--bdr-l);
+      text-align: center;
+    }
+
+    /* ── Driving tips card ── */
+    .drive-card {
+      background: var(--surf);
+      border-radius: 20px; overflow: hidden;
+      box-shadow: 0 2px 18px rgba(44,88,66,0.09), 0 0 0 1px rgba(0,0,0,0.04);
+      margin-top: 10px;
+    }
+    .drive-list { padding: 4px 18px 12px; }
+    .drive-item {
+      display: flex; gap: 12px; align-items: flex-start;
+      padding: 9px 0;
+      border-bottom: 1px solid var(--bdr-l);
+    }
+    .drive-item:last-child { border-bottom: none; }
+    .drive-badge {
+      min-width: 26px; height: 26px;
+      border-radius: 7px;
+      background: var(--p-l); color: var(--p);
+      font-size: 11px; font-weight: 800;
+      display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0; padding: 0 4px;
+      margin-top: 1px;
+    }
+    .drive-badge.warn { background: var(--amber-l); color: var(--amber); }
+    .drive-badge.danger { background: var(--red-l); color: var(--red); }
+    .drive-text { font-size: 12px; color: var(--tx); line-height: 1.6; font-weight: 500; }
+    .drive-text b { color: var(--tx); font-weight: 700; }
+
+    /* ── AirTrain route visual ── */
+    .airtrain-card {
       background: var(--surf);
       border-radius: 20px; overflow: hidden;
       box-shadow: 0 2px 18px rgba(44,88,66,0.09), 0 0 0 1px rgba(0,0,0,0.04);
       margin-bottom: 12px;
     }
-    .acc-body { padding: 16px 18px; }
-    .acc-addr { font-size: 13px; color: var(--tx2); line-height: 1.7; margin-bottom: 4px; font-weight: 500; }
-    .acc-meta { font-size: 12px; color: var(--tx3); margin-bottom: 14px; font-weight: 500; }
-    .acc-btn {
-      width: 100%; padding: 13px;
-      border-radius: 12px; border: none;
-      background: var(--p); color: white;
-      font-size: 13px; font-weight: 700; font-family: inherit;
-      cursor: pointer; letter-spacing: 0.2px;
-      display: flex; align-items: center; justify-content: center; gap: 7px;
-      transition: opacity 0.15s;
+    .airtrain-header {
+      background: linear-gradient(130deg, var(--p-dd) 0%, var(--p) 100%);
+      padding: 12px 18px;
+      font-size: 13px; font-weight: 700; color: white;
+      display: flex; align-items: center; justify-content: space-between;
     }
-    .acc-btn:active { opacity: 0.85; }
-    .acc-btn svg { width: 15px; height: 15px; }
+    .airtrain-header span {
+      font-size: 10px; font-weight: 600;
+      color: rgba(255,255,255,0.65);
+    }
+    .airtrain-track {
+      padding: 18px 18px 14px;
+      display: flex; align-items: center;
+      overflow-x: auto; gap: 0;
+      -webkit-overflow-scrolling: touch;
+      scrollbar-width: none;
+    }
+    .airtrain-track::-webkit-scrollbar { display: none; }
+    .airtrain-stop { display: flex; flex-direction: column; align-items: center; flex-shrink: 0; }
+    .airtrain-dot {
+      width: 12px; height: 12px; border-radius: 50%;
+      background: var(--tx3);
+      border: 2.5px solid white;
+      box-shadow: 0 0 0 2px var(--tx3);
+    }
+    .airtrain-dot.key {
+      background: var(--red);
+      box-shadow: 0 0 0 2px var(--red);
+      width: 14px; height: 14px;
+    }
+    .airtrain-dot.dest {
+      background: var(--p);
+      box-shadow: 0 0 0 2px var(--p);
+      width: 14px; height: 14px;
+    }
+    .airtrain-name {
+      font-size: 9px; font-weight: 700;
+      color: var(--tx2); text-align: center;
+      margin-top: 6px; max-width: 58px; line-height: 1.3;
+    }
+    .airtrain-name.highlight { color: var(--p); }
+    .airtrain-line {
+      flex: 1; height: 3px;
+      background: var(--red);
+      min-width: 22px;
+      margin-bottom: 18px;
+    }
+    .airtrain-note {
+      padding: 10px 18px;
+      font-size: 11px; color: var(--tx3); font-weight: 500;
+      background: var(--bg); border-top: 1px solid var(--bdr-l);
+    }
+
+    /* ── Luggage rules ── */
+    .luggage-rule-card {
+      background: var(--surf);
+      border-radius: 20px; overflow: hidden;
+      box-shadow: 0 2px 18px rgba(44,88,66,0.09), 0 0 0 1px rgba(0,0,0,0.04);
+      margin-bottom: 10px;
+    }
+    .luggage-cols {
+      display: grid; grid-template-columns: 1fr 1fr;
+    }
+    .luggage-col {
+      padding: 14px 16px;
+      border-right: 1px solid var(--bdr-l);
+    }
+    .luggage-col:last-child { border-right: none; }
+    .luggage-col-title {
+      font-size: 10px; font-weight: 800;
+      letter-spacing: 0.5px; text-transform: uppercase;
+      margin-bottom: 8px; padding-bottom: 7px;
+      border-bottom: 1px solid var(--bdr-l);
+    }
+    .luggage-col-title.checked { color: var(--blue); }
+    .luggage-col-title.cabin   { color: var(--p); }
+    .luggage-list-item {
+      font-size: 11px; color: var(--tx2);
+      padding: 3px 0; line-height: 1.45; font-weight: 500;
+      display: flex; gap: 5px;
+    }
+    .luggage-list-item::before { content: '·'; color: var(--tx3); flex-shrink: 0; }
+    .luggage-must {
+      font-size: 11px; color: var(--red); font-weight: 700;
+      padding: 3px 0; display: flex; gap: 5px;
+    }
+    .luggage-must::before { content: '!'; flex-shrink: 0; }
+    .luggage-warn-row {
+      background: var(--red-l);
+      padding: 10px 16px;
+      border-top: 1px solid rgba(200,59,59,0.15);
+      font-size: 11px; color: var(--red); font-weight: 600;
+      line-height: 1.5;
+    }
+    .allowance-row {
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: 0;
+      border-bottom: 1px solid var(--bdr-l);
+    }
+    .allowance-col {
+      padding: 12px 16px;
+      border-right: 1px solid var(--bdr-l);
+    }
+    .allowance-col:last-child { border-right: none; }
+    .allowance-label { font-size: 9px; font-weight: 800; color: var(--p); letter-spacing: 0.8px; text-transform: uppercase; margin-bottom: 6px; }
+    .allowance-item { font-size: 11px; color: var(--tx2); font-weight: 500; line-height: 1.5; }
+    .allowance-item b { color: var(--tx); font-weight: 700; }
   </style>
 </head>
 <body>
@@ -615,12 +798,9 @@
       </div>
       <div class="pledge-body">
         <div class="pledge-item"><div class="pledge-num">1</div><div class="pledge-text">快樂出門、平安回家，全程保持正能量</div></div>
-        <div class="pledge-item"><div class="pledge-num">2</div><div class="pledge-text">不臭臉、不抱怨，有意見直接說，別憋著</div></div>
-        <div class="pledge-item"><div class="pledge-num">3</div><div class="pledge-text">集合準時到，讓大家等你就罰請喝咖啡</div></div>
-        <div class="pledge-item"><div class="pledge-num">4</div><div class="pledge-text">美景美食都要拍，好照片統一丟群組分享</div></div>
-        <div class="pledge-item"><div class="pledge-num">5</div><div class="pledge-text">尊重彼此步調，想獨處就說，不需要解釋</div></div>
-        <div class="pledge-item"><div class="pledge-num">6</div><div class="pledge-text">行程彈性調整，沒人是神明，天氣說了算</div></div>
-        <div class="pledge-item"><div class="pledge-num">7</div><div class="pledge-text">15 天的珍貴回憶，全力以赴，不省這個</div></div>
+        <div class="pledge-item"><div class="pledge-num">2</div><div class="pledge-text">尊重彼此步調，想獨處就說，不需要解釋</div></div>
+        <div class="pledge-item"><div class="pledge-num">3</div><div class="pledge-text">行程彈性調整，沒人是神明，天氣說了算</div></div>
+        <div class="pledge-item"><div class="pledge-num">4</div><div class="pledge-text">15 天的珍貴回憶，全力以赴，不省這個</div></div>
       </div>
     </div>
 
@@ -636,12 +816,12 @@
       <div class="grid-card">
         <div class="grid-icon"><svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 6v12m-3-2.818.879.659c1.171.879 3.07.879 4.242 0 1.172-.879 1.172-2.303 0-3.182C13.536 12.219 12.768 12 12 12c-.725 0-1.45-.22-2.003-.659-1.106-.879-1.106-2.303 0-3.182s2.9-.879 4.006 0l.415.33M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z"/></svg></div>
         <div class="grid-title">小費文化</div>
-        <div class="grid-desc">餐廳建議給 18–20%，外帶可給 10% 或不給</div>
+        <div class="grid-desc">餐廳建議給 18–20%，外帶可給 10% 或不給，點餐機通常自動帶入</div>
       </div>
       <div class="grid-card">
         <div class="grid-icon"><svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 14.25l6-6m4.5-3.493V21.75l-3.75-1.5-3.75 1.5-3.75-1.5-3.75 1.5V4.757c0-1.108.806-2.057 1.907-2.185a48.507 48.507 0 0 1 11.186 0c1.1.128 1.907 1.077 1.907 2.185ZM9.75 9h.008v.008H9.75V9Zm.375 0a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Zm4.125 4.5h.008v.008h-.008V13.5Zm.375 0a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Z"/></svg></div>
         <div class="grid-title">稅金另計</div>
-        <div class="grid-desc">標價未含稅，加州稅率約 8–10%，結帳才加上</div>
+        <div class="grid-desc">標價未含稅，加州稅率約 8–10%，結帳才會加上</div>
       </div>
       <div class="grid-card">
         <div class="grid-icon"><svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M15.75 10.5V6a3.75 3.75 0 1 0-7.5 0v4.5m11.356-1.993 1.263 12c.07.665-.45 1.243-1.119 1.243H4.25a1.125 1.125 0 0 1-1.12-1.243l1.264-12A1.125 1.125 0 0 1 5.513 7.5h12.974c.576 0 1.059.435 1.119 1.007ZM8.625 10.5a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Zm7.5 0a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Z"/></svg></div>
@@ -656,25 +836,116 @@
       <div class="grid-card">
         <div class="grid-icon"><svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 6v6h4.5m4.5 0a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z"/></svg></div>
         <div class="grid-title">時差</div>
-        <div class="grid-desc">美西 PDT = 台灣 − 15 小時（5–6 月夏令時間）</div>
+        <div class="grid-desc">美西 PDT（UTC-7）= 台灣 − 15 小時，5–6 月夏令時間</div>
       </div>
       <div class="grid-card">
         <div class="grid-icon"><svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M8.25 18.75a1.5 1.5 0 0 1-3 0m3 0a1.5 1.5 0 0 0-3 0m3 0h6m-9 0H3.375a1.125 1.125 0 0 1-1.125-1.125V14.25m17.25 4.5a1.5 1.5 0 0 1-3 0m3 0a1.5 1.5 0 0 0-3 0m3 0h1.125c.621 0 1.129-.504 1.09-1.124a17.902 17.902 0 0 0-3.213-9.193 2.056 2.056 0 0 0-1.58-.86H14.25M16.5 18.75h-2.25m0-11.177v-.958c0-.568-.422-1.048-.987-1.106a48.554 48.554 0 0 0-10.026 0 1.106 1.106 0 0 0-.987 1.106v7.635m12-6.677v6.677m0 4.5v-4.5m0 0h-12"/></svg></div>
         <div class="grid-title">加州開車</div>
-        <div class="grid-desc">靠右行駛，紅燈可右轉（確認無禁止標誌），速限英里制</div>
+        <div class="grid-desc">靠右行駛，詳細規則見下方↓</div>
       </div>
     </div>
 
-    <!-- 入境與注意事項 -->
+    <!-- 時差對照表 -->
+    <div class="tz-card">
+      <div class="tz-col-heads">
+        <div class="tz-col-head">🇹🇼 台灣時間 <span>(UTC+8)</span></div>
+        <div class="tz-col-head">🇺🇸 美國 PDT <span>(UTC-7)</span></div>
+      </div>
+      <div class="tz-body">
+        <div class="tz-row">
+          <div class="tz-cell"><div class="tz-time">00:00</div><div class="tz-label">台灣午夜</div></div>
+          <div class="tz-cell"><div class="tz-time">09:00</div><div class="tz-label">前一天早上</div></div>
+        </div>
+        <div class="tz-row">
+          <div class="tz-cell"><div class="tz-time">06:00</div><div class="tz-label">台灣早上</div></div>
+          <div class="tz-cell"><div class="tz-time">15:00</div><div class="tz-label">前一天下午</div></div>
+        </div>
+        <div class="tz-row">
+          <div class="tz-cell"><div class="tz-time">09:00</div><div class="tz-label">台灣早上</div></div>
+          <div class="tz-cell"><div class="tz-time">18:00</div><div class="tz-label">前一天傍晚</div></div>
+        </div>
+        <div class="tz-row">
+          <div class="tz-cell"><div class="tz-time">12:00</div><div class="tz-label">台灣中午</div></div>
+          <div class="tz-cell"><div class="tz-time">21:00</div><div class="tz-label">前一天晚上</div></div>
+        </div>
+        <div class="tz-row">
+          <div class="tz-cell"><div class="tz-time">15:00</div><div class="tz-label">台灣下午</div></div>
+          <div class="tz-cell"><div class="tz-time">00:00</div><div class="tz-label">當日午夜</div></div>
+        </div>
+        <div class="tz-row">
+          <div class="tz-cell"><div class="tz-time">18:00</div><div class="tz-label">台灣傍晚</div></div>
+          <div class="tz-cell"><div class="tz-time">03:00</div><div class="tz-label">當日凌晨</div></div>
+        </div>
+        <div class="tz-row">
+          <div class="tz-cell"><div class="tz-time">21:00</div><div class="tz-label">台灣晚上</div></div>
+          <div class="tz-cell"><div class="tz-time">06:00</div><div class="tz-label">當日早上</div></div>
+        </div>
+      </div>
+      <div class="tz-note">台灣時間 − 15 小時 = 美國 PDT（5–6 月夏令）</div>
+    </div>
+
+    <!-- 開車注意事項 -->
+    <div class="drive-card" style="margin-top:10px">
+      <div class="card-hdr">
+        <div>
+          <div class="card-hdr-title">加州開車注意事項</div>
+          <div class="card-hdr-sub">台灣駕照 + 國際駕照一起帶，缺一不可</div>
+        </div>
+      </div>
+      <div class="drive-list">
+        <div class="drive-item">
+          <div class="drive-badge">①</div>
+          <div class="drive-text"><b>靠右行駛</b>，方向盤在左邊，與台灣相反</div>
+        </div>
+        <div class="drive-item">
+          <div class="drive-badge">②</div>
+          <div class="drive-text"><b>紅燈可右轉</b>，但須先確認無行人穿越，且路口無「No Turn on Red」標誌</div>
+        </div>
+        <div class="drive-item">
+          <div class="drive-badge">③</div>
+          <div class="drive-text"><b>Stop 標誌</b>：必須完全停車（3 秒），確認四方向安全後再行進，違規罰款重</div>
+        </div>
+        <div class="drive-item">
+          <div class="drive-badge">④</div>
+          <div class="drive-text"><b>速限英里制</b>：市區 25–35 mph（40–56 km/h）、鄉道 55 mph（88 km/h）、高速公路 65–70 mph（105–113 km/h）</div>
+        </div>
+        <div class="drive-item">
+          <div class="drive-badge">⑤</div>
+          <div class="drive-text"><b>HOV 菱形車道</b>（Carpool Lane）：高速公路最左側，車內須 2 人以上才能行駛，違規重罰</div>
+        </div>
+        <div class="drive-item">
+          <div class="drive-badge">⑥</div>
+          <div class="drive-text"><b>行人絕對優先</b>：看到行人在斑馬線，車輛必須完全禮讓，不讓即違法</div>
+        </div>
+        <div class="drive-item">
+          <div class="drive-badge warn">⑦</div>
+          <div class="drive-text"><b>禁止手持手機</b>：必須使用藍牙或車用免持設備，違規罰款 $160+ USD</div>
+        </div>
+        <div class="drive-item">
+          <div class="drive-badge">⑧</div>
+          <div class="drive-text"><b>全車繫安全帶</b>，含後座所有乘客，違規者各自受罰</div>
+        </div>
+        <div class="drive-item">
+          <div class="drive-badge">⑨</div>
+          <div class="drive-text"><b>路邊停車顏色</b>：紅線＝禁停 / 黃線＝限裝卸 / 藍線＝殘障 / 白線＝一般（依標誌）</div>
+        </div>
+        <div class="drive-item">
+          <div class="drive-badge">⑩</div>
+          <div class="drive-text"><b>自助加油</b>：先插信用卡 → 輸入郵遞區號（ZIP）可填 00000 或 billing ZIP → 選 Regular 87 → 加油。沒有服務人員</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 入境須知 & 出發前準備（合併） -->
     <div class="section-header">
       <div class="section-icon">
         <svg fill="none" stroke="white" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 21a9.004 9.004 0 0 0 8.716-6.747M12 21a9.004 9.004 0 0 1-8.716-6.747M12 21c2.485 0 4.5-4.03 4.5-9S14.485 3 12 3m0 18c-2.485 0-4.5-4.03-4.5-9S9.515 3 12 3m0 0a8.997 8.997 0 0 1 7.843 4.582M12 3a8.997 8.997 0 0 0-7.843 4.582m15.686 0A11.953 11.953 0 0 1 12 10.5c-2.998 0-5.74-1.1-7.843-2.918m15.686 0A8.959 8.959 0 0 1 21 12c0 .778-.099 1.533-.284 2.253m0 0A17.919 17.919 0 0 1 12 16.5c-3.162 0-6.133-.815-8.716-2.247m0 0A9.015 9.015 0 0 1 3 12c0-1.605.42-3.113 1.157-4.418"/></svg>
       </div>
-      <div class="section-title-text">入境與注意事項</div>
+      <div class="section-title-text">入境須知 &amp; 出發前準備</div>
     </div>
 
     <div class="entry-card">
-      <div class="entry-section-title">準備事項</div>
+      <div class="entry-section-title">入境準備事項</div>
       <div class="entry-list">
         <div class="entry-item">
           <div class="entry-check check-ok">✓</div>
@@ -713,15 +984,7 @@
       </div>
     </div>
 
-    <!-- 出發前提醒 -->
-    <div class="section-header">
-      <div class="section-icon">
-        <svg fill="none" stroke="white" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M14.857 17.082a23.848 23.848 0 0 0 5.454-1.31A8.967 8.967 0 0 1 18 9.75V9A6 6 0 0 0 6 9v.75a8.967 8.967 0 0 1-2.312 6.022c1.733.64 3.56 1.085 5.455 1.31m5.714 0a24.255 24.255 0 0 1-5.714 0m5.714 0a3 3 0 1 1-5.714 0"/></svg>
-      </div>
-      <div class="section-title-text">出發前提醒</div>
-    </div>
-
-    <div class="grid-2">
+    <div class="grid-2" style="margin-bottom:2px">
       <div class="grid-card">
         <div class="grid-icon"><svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75 11.25 15 15 9.75m-3-7.036A11.959 11.959 0 0 1 3.598 6 11.99 11.99 0 0 0 3 9.749c0 5.592 3.824 10.29 9 11.623 5.176-1.332 9-6.03 9-11.622 0-1.31-.21-2.571-.598-3.751h-.152c-3.196 0-6.1-1.248-8.25-3.285Z"/></svg></div>
         <div class="grid-title">旅遊保險</div>
@@ -742,19 +1005,9 @@
         <div class="grid-title">國際駕照</div>
         <div class="grid-desc">需在台灣監理所辦理，與台灣駕照一起帶缺一不可</div>
       </div>
-      <div class="grid-card">
-        <div class="grid-icon" style="background:var(--amber-l);color:var(--amber)"><svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M3.75 13.5l10.5-11.25L12 10.5h8.25L9.75 21.75 12 13.5H3.75z"/></svg></div>
-        <div class="grid-title">行動電源</div>
-        <div class="grid-desc">必須放隨身行李，禁止托運，上限 100Wh</div>
-      </div>
-      <div class="grid-card">
-        <div class="grid-icon"><svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M21 8.25c0-2.485-2.099-4.5-4.688-4.5-1.935 0-3.597 1.126-4.312 2.733-.715-1.607-2.377-2.733-4.313-2.733C5.1 3.75 3 5.765 3 8.25c0 7.22 9 12 9 12s9-4.78 9-12Z"/></svg></div>
-        <div class="grid-title">常備藥品</div>
-        <div class="grid-desc">腸胃藥、感冒藥、暈車藥、痠痛貼布備齊</div>
-      </div>
     </div>
 
-    <!-- 行李清單 -->
+    <!-- 行李 Check List -->
     <div class="section-header">
       <div class="section-icon">
         <svg fill="none" stroke="white" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M20.25 7.5l-.625 10.632a2.25 2.25 0 0 1-2.247 2.118H6.622a2.25 2.25 0 0 1-2.247-2.118L3.75 7.5M10 7.5V6a2 2 0 1 1 4 0v1.5m-7.5 0h11"/></svg>
@@ -762,22 +1015,65 @@
       <div class="section-title-text">行李 Check List</div>
     </div>
 
+    <!-- 行李規定 -->
+    <div class="luggage-rule-card" style="margin-bottom:10px">
+      <div class="card-hdr">
+        <div><div class="card-hdr-title">行李規定（星宇航空）</div></div>
+        <div class="card-pill">請官網確認</div>
+      </div>
+      <div class="allowance-row">
+        <div class="allowance-col">
+          <div class="allowance-label">去程 JX012 · 經濟艙</div>
+          <div class="allowance-item">托運 <b>1 件 × 23 kg</b></div>
+          <div class="allowance-item">隨身 <b>1 件 ≤ 7 kg</b></div>
+        </div>
+        <div class="allowance-col">
+          <div class="allowance-label">回程 JX011 · 豪華經濟</div>
+          <div class="allowance-item">托運 <b>2 件 × 23 kg</b></div>
+          <div class="allowance-item">隨身 <b>1 件 ≤ 7 kg</b></div>
+        </div>
+      </div>
+      <div class="luggage-cols">
+        <div class="luggage-col">
+          <div class="luggage-col-title checked">✈ 托運行李放這些</div>
+          <div class="luggage-list-item">衣物、鞋子、拖鞋</div>
+          <div class="luggage-list-item">大容量盥洗用品</div>
+          <div class="luggage-list-item">防曬乳（大瓶）</div>
+          <div class="luggage-list-item">毛巾、睡衣</div>
+          <div class="luggage-list-item">雨傘、雨衣</div>
+          <div class="luggage-list-item">購物袋</div>
+          <div class="luggage-list-item">常備藥品（備用量）</div>
+        </div>
+        <div class="luggage-col">
+          <div class="luggage-col-title cabin">🎒 隨身行李放這些</div>
+          <div class="luggage-list-item">行動電源（必須）</div>
+          <div class="luggage-list-item">手機、相機、筆電</div>
+          <div class="luggage-list-item">充電器、充電線</div>
+          <div class="luggage-list-item">護照、ESTA、駕照</div>
+          <div class="luggage-list-item">現金、信用卡</div>
+          <div class="luggage-list-item">液體 ≤100ml/罐</div>
+          <div class="luggage-must">行動電源禁止托運</div>
+        </div>
+      </div>
+      <div class="luggage-warn-row">⚡ 行動電源規定：≤100Wh（約 27,000 mAh）可自由帶 · 100–160Wh 最多 2 顆且須告知航空公司 · &gt;160Wh 禁止攜帶上機</div>
+    </div>
+
     <div class="card" style="margin-bottom:10px">
       <div class="card-hdr">
-        <div><div class="card-hdr-title">行李箱清單</div></div>
-        <div class="card-pill">禁放電子產品</div>
+        <div><div class="card-hdr-title">托運行李清單</div></div>
+        <div class="card-pill">禁放鋰電池</div>
       </div>
       <div class="checklist-body">
         <label class="check-item"><input type="checkbox"><span class="check-label">個人盥洗用品</span></label>
         <label class="check-item"><input type="checkbox"><span class="check-label">鞋子、登山鞋、拖鞋</span></label>
-        <label class="check-item"><input type="checkbox"><span class="check-label">衣物（建議分層穿法，日夜溫差大）</span></label>
-        <label class="check-item"><input type="checkbox"><span class="check-label">每日穿搭（5–20°C 溫差，帶保暖層）</span></label>
+        <label class="check-item"><input type="checkbox"><span class="check-label">衣物（分層穿法，日夜溫差大）</span></label>
         <label class="check-item"><input type="checkbox"><span class="check-label">內衣、內褲、睡衣、襪子</span></label>
         <label class="check-item"><input type="checkbox"><span class="check-label">保暖外套（山區夜間偏冷）</span></label>
         <label class="check-item"><input type="checkbox"><span class="check-label">雨具（雨傘或輕量雨衣）</span></label>
         <label class="check-item"><input type="checkbox"><span class="check-label">化妝 / 保養品（瓶罐裝）</span></label>
         <label class="check-item"><input type="checkbox"><span class="check-label">隱形眼鏡及清潔液</span></label>
-        <label class="check-item"><input type="checkbox"><span class="check-label">個人藥品</span></label>
+        <label class="check-item"><input type="checkbox"><span class="check-label">個人藥品（備用量）</span></label>
+        <label class="check-item"><input type="checkbox"><span class="check-label">常備藥品（腸胃藥、感冒藥、暈車藥、痠痛貼布備齊）</span></label>
         <label class="check-item"><input type="checkbox"><span class="check-label">防曬乳（高海拔 UV 強，重要！）</span></label>
         <label class="check-item"><input type="checkbox"><span class="check-label">防蚊液 / 防蟲噴霧</span></label>
         <label class="check-item"><input type="checkbox"><span class="check-label">毛巾</span></label>
@@ -793,8 +1089,8 @@
       <div class="checklist-body">
         <label class="check-item"><input type="checkbox"><span class="check-label">眼鏡、墨鏡、帽子等配件</span></label>
         <label class="check-item"><input type="checkbox"><span class="check-label">充電器、充電線</span></label>
-        <label class="check-item"><input type="checkbox"><span class="check-label">行動電源（禁止托運，容量 ≤ 100Wh）</span></label>
-        <label class="check-item"><input type="checkbox"><span class="check-label">化妝品、藥品小容量版</span></label>
+        <label class="check-item"><input type="checkbox"><span class="check-label">行動電源（禁止托運 · ≤100Wh 可直接帶 · 100–160Wh 須事先告知航空公司）</span></label>
+        <label class="check-item"><input type="checkbox"><span class="check-label">常備藥品小容量版（機上備用）</span></label>
         <label class="check-item"><input type="checkbox"><span class="check-label">液體遵守 3-1-1：每罐 ≤ 100ml，裝透明夾鏈袋</span></label>
         <label class="check-item"><input type="checkbox"><span class="check-label">耳機</span></label>
         <label class="check-item"><input type="checkbox"><span class="check-label">頸枕（長途飛行必備）</span></label>
@@ -820,73 +1116,58 @@
       <div class="section-title-text">航班資訊</div>
     </div>
 
-    <div class="flight-card">
-      <div class="card-hdr">
-        <div><div class="card-hdr-title">去程</div><div class="card-hdr-sub">星宇航空 STARLUX · JX012</div></div>
-        <div class="card-pill">經濟艙</div>
-      </div>
-      <div class="flight-body">
-        <div class="flight-route">
-          <div class="airport-col">
-            <div class="airport-time">00:05</div>
-            <div class="airport-code-sm">TPE</div>
-            <div class="airport-date">5/17 (日)</div>
-            <div class="airport-terminal">第 2 航廈</div>
-          </div>
-          <div class="route-mid">
-            <div class="route-dur">11h 25m</div>
-            <div class="route-line-wrap">
-              <div class="r-dot"></div><div class="r-line"></div>
-              <div class="r-plane">✈</div>
-              <div class="r-line"></div><div class="r-dot"></div>
-            </div>
-          </div>
-          <div class="airport-col right">
-            <div class="airport-time">20:30</div>
-            <div class="airport-code-sm">SFO</div>
-            <div class="airport-date">5/16 (六)</div>
-            <div class="airport-terminal">國際航廈</div>
-          </div>
+    <div class="grid-2" style="margin-bottom:12px">
+      <!-- 去程 -->
+      <div class="flight-compact">
+        <div class="fc-hdr">
+          <span class="fc-title">去程</span>
+          <span class="fc-pill">經濟艙</span>
         </div>
-        <hr class="flight-divider">
-        <div class="flight-chips">
-          <div class="chip"><b>集合</b> 5/17 凌晨前</div>
-          <div class="chip"><b>桃園</b> 第 2 航廈</div>
+        <div class="fc-body">
+          <div class="fc-airline">星宇航空 JX012</div>
+          <div class="fc-airport">
+            <span class="fc-time">00:05</span>
+            <span class="fc-code">TPE</span>
+          </div>
+          <div class="fc-date">🇹🇼 台灣 5/17 (日) · T2</div>
+          <div class="fc-mid">
+            <div class="fc-mid-line"></div>
+            <span class="fc-mid-info">11h 25m ✈</span>
+            <div class="fc-mid-line"></div>
+          </div>
+          <div class="fc-airport">
+            <span class="fc-time">20:30</span>
+            <span class="fc-code">SFO</span>
+          </div>
+          <div class="fc-date">🇺🇸 美國 5/16 (六) · 國際廈</div>
+          <div class="fc-dateline-note">↩ 跨越換日線，抵達比出發早一天</div>
+          <div class="fc-reminder">⏰ 起飛前 48 小時可線上選位</div>
         </div>
       </div>
-    </div>
-
-    <div class="flight-card">
-      <div class="card-hdr">
-        <div><div class="card-hdr-title">回程</div><div class="card-hdr-sub">星宇航空 STARLUX · JX011</div></div>
-        <div class="card-pill">豪華經濟艙</div>
-      </div>
-      <div class="flight-body">
-        <div class="flight-route">
-          <div class="airport-col">
-            <div class="airport-time">00:50</div>
-            <div class="airport-code-sm">SFO</div>
-            <div class="airport-date">5/31 (日)</div>
-            <div class="airport-terminal">國際航廈</div>
-          </div>
-          <div class="route-mid">
-            <div class="route-dur">13h 35m</div>
-            <div class="route-line-wrap">
-              <div class="r-dot"></div><div class="r-line"></div>
-              <div class="r-plane">✈</div>
-              <div class="r-line"></div><div class="r-dot"></div>
-            </div>
-          </div>
-          <div class="airport-col right">
-            <div class="airport-time">05:25</div>
-            <div class="airport-code-sm">TPE</div>
-            <div class="airport-date">6/1 (一)</div>
-            <div class="airport-terminal">第 2 航廈</div>
-          </div>
+      <!-- 回程 -->
+      <div class="flight-compact">
+        <div class="fc-hdr">
+          <span class="fc-title">回程</span>
+          <span class="fc-pill">豪華經濟</span>
         </div>
-        <hr class="flight-divider">
-        <div class="flight-chips">
-          <div class="chip"><b>桃園</b> 第 2 航廈抵達</div>
+        <div class="fc-body">
+          <div class="fc-airline">星宇航空 JX011</div>
+          <div class="fc-airport">
+            <span class="fc-time">00:50</span>
+            <span class="fc-code">SFO</span>
+          </div>
+          <div class="fc-date">🇺🇸 美國 5/31 (日) · 國際廈</div>
+          <div class="fc-mid">
+            <div class="fc-mid-line"></div>
+            <span class="fc-mid-info">13h 35m ✈</span>
+            <div class="fc-mid-line"></div>
+          </div>
+          <div class="fc-airport">
+            <span class="fc-time">05:25</span>
+            <span class="fc-code">TPE</span>
+          </div>
+          <div class="fc-date">🇹🇼 台灣 6/1 (一) · T2</div>
+          <div class="fc-reminder">⏰ 起飛前 48 小時可線上選位</div>
         </div>
       </div>
     </div>
@@ -899,33 +1180,68 @@
       <div class="section-title-text">SFO 取車流程</div>
     </div>
 
+    <!-- AirTrain 路線圖 -->
+    <div class="airtrain-card">
+      <div class="airtrain-header">
+        AirTrain 紅線路線圖
+        <span>免費 · 24 小時運行</span>
+      </div>
+      <div class="airtrain-track">
+        <div class="airtrain-stop">
+          <div class="airtrain-dot key"></div>
+          <div class="airtrain-name highlight">國際航廈<br>入境口</div>
+        </div>
+        <div class="airtrain-line"></div>
+        <div class="airtrain-stop">
+          <div class="airtrain-dot"></div>
+          <div class="airtrain-name">Terminal<br>1</div>
+        </div>
+        <div class="airtrain-line"></div>
+        <div class="airtrain-stop">
+          <div class="airtrain-dot"></div>
+          <div class="airtrain-name">Terminal<br>2 / 3</div>
+        </div>
+        <div class="airtrain-line"></div>
+        <div class="airtrain-stop">
+          <div class="airtrain-dot dest"></div>
+          <div class="airtrain-name highlight">Rental<br>Car Ctr</div>
+        </div>
+        <div class="airtrain-line"></div>
+        <div class="airtrain-stop">
+          <div class="airtrain-dot"></div>
+          <div class="airtrain-name">BART<br>站</div>
+        </div>
+      </div>
+      <div class="airtrain-note">入境後出 Arrivals → 跟著紅色 AirTrain 指標 → 約 5–10 分鐘抵達 Rental Car Center 站</div>
+    </div>
+
     <div class="steps-card">
       <div class="step-row">
         <div class="step-num">1</div>
         <div class="step-body">
           <div class="step-main">抵達 SFO 國際航廈</div>
-          <div class="step-sub">入境後出 Arrivals，跟著 AirTrain 指標走</div>
+          <div class="step-sub">入境、行李提領完成後，出 Arrivals 出口，跟著 AirTrain 紅色指標走</div>
         </div>
       </div>
       <div class="step-row">
         <div class="step-num">2</div>
         <div class="step-body">
           <div class="step-main">搭 AirTrain 紅線</div>
-          <div class="step-sub">免費、24 小時，往 Rental Car Center 方向</div>
+          <div class="step-sub">免費 · 24 小時 · 往 Rental Car Center 方向，約 5–10 分鐘</div>
         </div>
       </div>
       <div class="step-row">
         <div class="step-num">3</div>
         <div class="step-body">
           <div class="step-main">Rental Car Center 站下車</div>
-          <div class="step-sub">所有租車公司集中在同一棟大樓</div>
+          <div class="step-sub">所有租車公司集中在同一棟大樓，搭電梯至各品牌樓層</div>
         </div>
       </div>
       <div class="step-row">
         <div class="step-num">4</div>
         <div class="step-body">
           <div class="step-main">找預訂的租車公司櫃台</div>
-          <div class="step-sub">辦理取車、確認保險，開往 Millbrae 住宿</div>
+          <div class="step-sub">出示確認信 + 國際駕照 + 台灣駕照 + 信用卡，確認保險，取車出發</div>
         </div>
       </div>
     </div>
@@ -938,33 +1254,32 @@
       <div class="section-title-text">住宿</div>
     </div>
 
-    <div class="acc-card">
-      <div class="card-hdr">
-        <div><div class="card-hdr-title">Millbrae 住宿</div><div class="card-hdr-sub">5/16 (六) — 5/17 (日)</div></div>
-        <div class="card-pill">1 晚</div>
+    <div class="grid-2" style="margin-bottom:12px">
+      <div class="acc-compact">
+        <div class="acc-compact-hdr">
+          <div class="acc-compact-title">Millbrae 住宿</div>
+          <div class="acc-compact-dates">🇹🇼 5/17 (日) · 🇺🇸 5/16 (六) — 5/17 (日) · 1 晚</div>
+        </div>
+        <div class="acc-compact-body">
+          <div class="acc-compact-addr">463 Helen Drive, Millbrae, CA 94030</div>
+          <button class="acc-compact-btn" onclick="navTo('463 Helen Drive, Millbrae, CA 94030')">
+            <svg fill="none" stroke="white" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M15 10.5a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z"/><path stroke-linecap="round" stroke-linejoin="round" d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1 1 15 0Z"/></svg>
+            導航前往
+          </button>
+        </div>
       </div>
-      <div class="acc-body">
-        <div class="acc-addr">463 Helen Drive, Millbrae, CA 94030</div>
-        <div class="acc-meta">代墊：鳳梨 · 每人攤付 NT$10,756</div>
-        <button class="acc-btn" onclick="navTo('463 Helen Drive, Millbrae, CA 94030')">
-          <svg fill="none" stroke="white" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M15 10.5a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z"/><path stroke-linecap="round" stroke-linejoin="round" d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1 1 15 0Z"/></svg>
-          導航前往
-        </button>
-      </div>
-    </div>
-
-    <div class="acc-card">
-      <div class="card-hdr">
-        <div><div class="card-hdr-title">Mount Shasta 住宿</div><div class="card-hdr-sub">5/17 (日) — 5/31 (日)</div></div>
-        <div class="card-pill">14 晚</div>
-      </div>
-      <div class="acc-body">
-        <div class="acc-addr">504 Redwood Road, Mount Shasta, CA 96067</div>
-        <div class="acc-meta">代墊：采鴻</div>
-        <button class="acc-btn" onclick="navTo('504 Redwood Road, Mount Shasta, CA 96067')">
-          <svg fill="none" stroke="white" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M15 10.5a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z"/><path stroke-linecap="round" stroke-linejoin="round" d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1 1 15 0Z"/></svg>
-          導航前往
-        </button>
+      <div class="acc-compact">
+        <div class="acc-compact-hdr">
+          <div class="acc-compact-title">Mount Shasta 住宿</div>
+          <div class="acc-compact-dates">5/17 (日) — 5/31 (日) · 14 晚</div>
+        </div>
+        <div class="acc-compact-body">
+          <div class="acc-compact-addr">504 Redwood Road, Mount Shasta, CA 96067</div>
+          <button class="acc-compact-btn" onclick="navTo('504 Redwood Road, Mount Shasta, CA 96067')">
+            <svg fill="none" stroke="white" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M15 10.5a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z"/><path stroke-linecap="round" stroke-linejoin="round" d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1 1 15 0Z"/></svg>
+            導航前往
+          </button>
+        </div>
       </div>
     </div>
 
@@ -997,11 +1312,11 @@
 <script>
 const PLACES = [
   { id:'acc1', name:'Millbrae 住宿', type:'住宿', area:'灣區',
-    sub:'5/16–5/17 · 鳳梨代墊',
+    sub:'5/16–5/17 · Millbrae',
     addr:'463 Helen Drive, Millbrae, CA 94030',
     lat:37.5998, lng:-122.3867 },
   { id:'acc2', name:'Mount Shasta 住宿', type:'住宿', area:'雪士達',
-    sub:'5/17–5/31 · 采鴻代墊',
+    sub:'5/17–5/31 · Mount Shasta',
     addr:'504 Redwood Road, Mount Shasta, CA 96067',
     lat:41.3092, lng:-122.3317 },
   { id:'sfo', name:'SFO 租車中心', type:'交通', area:'灣區',
