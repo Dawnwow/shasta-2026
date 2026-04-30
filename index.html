@@ -1348,35 +1348,23 @@ const PLACES = [
   { id:'acc2', name:'Mount Shasta 住宿', type:'住宿', area:'雪士達',
     sub:'5/17–5/31 · Mount Shasta',
     addr:'504 Redwood Road, Mount Shasta, CA 96067',
-    lat:41.3092, lng:-122.3317 },
+    lat:41.3290, lng:-122.3133 },
   { id:'sfo', name:'SFO 租車中心', type:'交通', area:'灣區',
     sub:'SFO Rental Car Center · AirTrain 可到',
     addr:'SFO Rental Car Center, South McDonnell Rd, San Francisco, CA 94128',
     lat:37.6126, lng:-122.3860 },
-  { id:'s1', name:'99 Ranch Market 大華超市', type:'採買', area:'灣區',
-    sub:'灣區 · 亞洲超市', addr:'636 El Camino Real, Millbrae, CA 94030',
-    lat:37.5994, lng:-122.3882 },
-  { id:'s2', name:'Nijiya Market 虹屋超市', type:'採買', area:'灣區',
-    sub:'灣區 · 日系超市', addr:'231 E 3rd Ave, San Mateo, CA 94401',
-    lat:37.5659, lng:-122.3257 },
-  { id:'s3', name:'Marina Supermarket', type:'採買', area:'灣區',
-    sub:'灣區 · 亞洲雜貨', addr:'299 S B St, San Mateo, CA 94401',
-    lat:37.5626, lng:-122.3277 },
   { id:'s4', name:'Whole Foods Market', type:'採買', area:'灣區',
     sub:'灣區 · 有機超市', addr:'1010 Park Pl, San Mateo, CA 94403',
     lat:37.5575, lng:-122.2987 },
   { id:'s5', name:'Costco South San Francisco', type:'採買', area:'灣區',
     sub:'灣區 · 倉儲超市', addr:'451 S Airport Blvd, South San Francisco, CA 94080',
     lat:37.6468, lng:-122.4045 },
-  { id:'s6', name:'Costco Foster City', type:'採買', area:'灣區',
-    sub:'灣區 · 倉儲超市', addr:'1001 Metro Center Blvd, Foster City, CA 94404',
-    lat:37.5576, lng:-122.2693 },
+  { id:'s6', name:'Costco Business Center', type:'採買', area:'灣區',
+    sub:'灣區 · 好市多商務中心', addr:'900 Dubuque Ave, South San Francisco, CA 94080',
+    lat:37.6600, lng:-122.4039 },
   { id:'s7', name:'Costco San Francisco', type:'採買', area:'灣區',
     sub:'灣區 · 倉儲超市', addr:'450 10th St, San Francisco, CA 94103',
     lat:37.7728, lng:-122.4099 },
-  { id:'s8', name:'Livermore Premium Outlets', type:'採買', area:'灣區',
-    sub:'灣區 · 購物中心', addr:'2774 Livermore Outlets Dr, Livermore, CA 94551',
-    lat:37.6879, lng:-121.8192 },
   { id:'s9', name:"Trader Joe's Redding", type:'採買', area:'雪士達',
     sub:'Redding 區', addr:'845 Browning St, Redding, CA 96003',
     lat:40.5829, lng:-122.3813 },
@@ -1588,11 +1576,7 @@ function renderPlaceList(filter) {
 
 function navTo(addr) {
   const q = encodeURIComponent(addr);
-  if (/iPad|iPhone|iPod/.test(navigator.userAgent)) {
-    window.location.href = `maps://?daddr=${q}&dirflg=d`;
-  } else {
-    window.open(`https://www.google.com/maps/dir/?api=1&destination=${q}`, '_blank');
-  }
+  window.open(`https://www.google.com/maps/dir/?api=1&destination=${q}`, '_blank');
 }
 
 function switchTab(tab) {
