@@ -155,6 +155,35 @@
       border-color: var(--p);
     }
 
+    /* ── Map (全部) ── */
+    #map { flex: 1; display: none; }
+
+    /* ── 3-col grid ── */
+    .grid-3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 8px; }
+    .grid-3 .grid-card { padding: 12px 10px; }
+    .grid-3 .grid-icon { width: 30px; height: 30px; border-radius: 9px; margin-bottom: 8px; }
+    .grid-3 .grid-icon svg { width: 15px; height: 15px; }
+    .grid-3 .grid-title { font-size: 12px; }
+    .grid-3 .grid-desc  { font-size: 10px; }
+
+    /* ── Coins ── */
+    .coin-row {
+      display: flex; justify-content: space-around; align-items: flex-end;
+      padding: 18px 14px 16px;
+    }
+    .coin-wrap { display: flex; flex-direction: column; align-items: center; gap: 7px; }
+    .coin-circle {
+      border-radius: 50%; display: flex; align-items: center; justify-content: center;
+      font-size: 10px; font-weight: 800; color: rgba(0,0,0,0.35);
+      box-shadow: 0 3px 8px rgba(0,0,0,0.18), inset 0 1px 2px rgba(255,255,255,0.5);
+    }
+    .coin-penny   { background: linear-gradient(135deg,#d9924a,#b8622a); width:36px; height:36px; }
+    .coin-nickel  { background: linear-gradient(135deg,#d4d4da,#b2b2b8); width:40px; height:40px; }
+    .coin-dime    { background: linear-gradient(135deg,#ccd4dc,#a8b0b8); width:32px; height:32px; }
+    .coin-quarter { background: linear-gradient(135deg,#dcdce4,#bcbcc4); width:46px; height:46px; }
+    .coin-value { font-size: 16px; font-weight: 800; color: var(--tx); }
+    .coin-name  { font-size: 10px; color: var(--tx3); font-weight: 600; }
+
     /* ── Place list ── */
     #place-list {
       flex: 1;
@@ -740,8 +769,8 @@
       border-right: 1px solid var(--bdr-l);
     }
     .allowance-col:last-child { border-right: none; }
-    .allowance-label { font-size: 11px; font-weight: 800; color: var(--p); letter-spacing: 0.5px; text-transform: uppercase; margin-bottom: 7px; }
-    .allowance-item { font-size: 13px; color: var(--tx2); font-weight: 500; line-height: 1.6; }
+    .allowance-label { font-size: 12px; font-weight: 800; color: var(--p); letter-spacing: 0.4px; text-transform: uppercase; margin-bottom: 8px; }
+    .allowance-item { font-size: 15px; color: var(--tx2); font-weight: 500; line-height: 1.6; }
     .allowance-item b { color: var(--tx); font-weight: 700; }
   </style>
 </head>
@@ -781,7 +810,31 @@
     <button class="filter-btn" onclick="setFilter(this,'灣區')">灣區</button>
     <button class="filter-btn" onclick="setFilter(this,'雪士達')">雪士達</button>
   </div>
+  <div id="map"></div>
   <div id="place-list"></div>
+</div>
+
+<!-- Bottom Sheet (全部 map mode) -->
+<div id="overlay" onclick="closeSheet()"></div>
+<div id="sheet">
+  <div class="sheet-handle"></div>
+  <button id="sheet-close" onclick="closeSheet()">
+    <svg fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18 18 6M6 6l12 12"/></svg>
+  </button>
+  <div id="sheet-badge" class="badge-景點">景點</div>
+  <div id="sheet-name">—</div>
+  <div id="sheet-sub"></div>
+  <div id="sheet-addr"></div>
+  <div id="sheet-btns">
+    <button class="nav-btn btn-google" onclick="openGoogle()">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="white"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
+      Google 導航
+    </button>
+    <button class="nav-btn btn-apple" onclick="openApple()">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="white"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
+      Apple 導航
+    </button>
+  </div>
 </div>
 
 <!-- 行前整理頁 -->
@@ -807,7 +860,6 @@
         <div class="pledge-item"><div class="pledge-num">1</div><div class="pledge-text">快樂出門、平安回家，全程保持正能量</div></div>
         <div class="pledge-item"><div class="pledge-num">2</div><div class="pledge-text">尊重彼此步調，想獨處就說，不需要解釋</div></div>
         <div class="pledge-item"><div class="pledge-num">3</div><div class="pledge-text">行程彈性調整</div></div>
-        <div class="pledge-item"><div class="pledge-num">4</div><div class="pledge-text">15 天的珍貴回憶，全力以赴，不省這個</div></div>
       </div>
     </div>
 
@@ -819,21 +871,50 @@
       <div class="section-title-text">在美國要知道的事</div>
     </div>
 
-    <div class="grid-2">
+    <div class="grid-3">
       <div class="grid-card">
         <div class="grid-icon"><svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 6v12m-3-2.818.879.659c1.171.879 3.07.879 4.242 0 1.172-.879 1.172-2.303 0-3.182C13.536 12.219 12.768 12 12 12c-.725 0-1.45-.22-2.003-.659-1.106-.879-1.106-2.303 0-3.182s2.9-.879 4.006 0l.415.33M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z"/></svg></div>
         <div class="grid-title">小費文化</div>
-        <div class="grid-desc">餐廳建議給 18–20%，外帶可給 10% 或不給，點餐機通常自動帶入</div>
+        <div class="grid-desc">餐廳 18–20%，外帶可 10% 或不給</div>
       </div>
       <div class="grid-card">
         <div class="grid-icon"><svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 14.25l6-6m4.5-3.493V21.75l-3.75-1.5-3.75 1.5-3.75-1.5-3.75 1.5V4.757c0-1.108.806-2.057 1.907-2.185a48.507 48.507 0 0 1 11.186 0c1.1.128 1.907 1.077 1.907 2.185ZM9.75 9h.008v.008H9.75V9Zm.375 0a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Zm4.125 4.5h.008v.008h-.008V13.5Zm.375 0a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Z"/></svg></div>
         <div class="grid-title">稅金另計</div>
-        <div class="grid-desc">標價未含稅，加州稅率約 8–10%，結帳才會加上</div>
+        <div class="grid-desc">標價未含稅，加州約 8–10%，結帳才加</div>
       </div>
       <div class="grid-card">
         <div class="grid-icon" style="background:var(--red-l);color:var(--red)"><svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M14.857 17.082a23.848 23.848 0 0 0 5.454-1.31A8.967 8.967 0 0 1 18 9.75V9A6 6 0 0 0 6 9v.75a8.967 8.967 0 0 1-2.312 6.022c1.733.64 3.56 1.085 5.455 1.31m5.714 0a24.255 24.255 0 0 1-5.714 0m5.714 0a3 3 0 1 1-5.714 0"/></svg></div>
         <div class="grid-title">緊急電話</div>
-        <div class="grid-desc">911 為緊急救援，警察 / 火警 / 救護車統一撥打</div>
+        <div class="grid-desc">911 警察 / 火警 / 救護車統一撥</div>
+      </div>
+    </div>
+
+    <!-- 美國硬幣 -->
+    <div class="card" style="margin-top:10px">
+      <div class="card-hdr">
+        <div><div class="card-hdr-title">美國硬幣面額</div><div class="card-hdr-sub">實際大小比例顯示</div></div>
+      </div>
+      <div class="coin-row">
+        <div class="coin-wrap">
+          <div class="coin-circle coin-dime"></div>
+          <div class="coin-value">10¢</div>
+          <div class="coin-name">Dime</div>
+        </div>
+        <div class="coin-wrap">
+          <div class="coin-circle coin-penny"></div>
+          <div class="coin-value">1¢</div>
+          <div class="coin-name">Penny</div>
+        </div>
+        <div class="coin-wrap">
+          <div class="coin-circle coin-nickel"></div>
+          <div class="coin-value">5¢</div>
+          <div class="coin-name">Nickel</div>
+        </div>
+        <div class="coin-wrap">
+          <div class="coin-circle coin-quarter"></div>
+          <div class="coin-value">25¢</div>
+          <div class="coin-name">Quarter</div>
+        </div>
       </div>
     </div>
 
@@ -923,7 +1004,7 @@
         </div>
         <div class="drive-item">
           <div class="drive-badge">⑩</div>
-          <div class="drive-text"><b>自助加油</b>：先插信用卡 → 輸入 ZIP 碼 → 選油號加油。台灣油號對照：92 ≈ Regular 87 / 95 ≈ Plus 89 / 98 ≈ Premium 91+，一般租車加 <b>Regular 87</b> 即可，沒有服務人員</div>
+          <div class="drive-text">自助加油，選油號加油。台灣油號對照：92 ≈ Regular 87 / 95 ≈ Plus 89 / 98 ≈ Premium 91+，一般租車加 <b>Regular 87</b> 即可。</div>
         </div>
       </div>
     </div>
@@ -1395,10 +1476,96 @@ const BADGE_CLASS = {
   '住宿': 'badge-住宿', '景點': 'badge-景點', '採買': 'badge-採買', '交通': 'badge-交通',
 };
 
+const TYPE_COLOR = {
+  '住宿': '#dc2626', '景點': '#d97706', '採買': '#16a34a', '交通': '#2563eb',
+};
+
+let map, markers = [], currentPlace = null, currentFilter = '全部';
+
+function initMap() {
+  map = new google.maps.Map(document.getElementById('map'), {
+    center: { lat: 39.5, lng: -122.33 },
+    zoom: 7,
+    mapTypeControl: false,
+    streetViewControl: false,
+    fullscreenControl: false,
+    clickableIcons: false,
+    zoomControlOptions: { position: google.maps.ControlPosition.RIGHT_CENTER },
+  });
+
+  const bounds = new google.maps.LatLngBounds();
+
+  PLACES.forEach(place => {
+    const marker = new google.maps.Marker({
+      position: { lat: place.lat, lng: place.lng },
+      map,
+      title: place.name,
+      icon: {
+        path: google.maps.SymbolPath.CIRCLE,
+        fillColor: TYPE_COLOR[place.type],
+        fillOpacity: 1,
+        strokeColor: '#ffffff',
+        strokeWeight: 2,
+        scale: place.type === '住宿' ? 11 : 8,
+      },
+    });
+    marker.placeData = place;
+    marker.addListener('click', () => showSheet(place));
+    markers.push(marker);
+    bounds.extend({ lat: place.lat, lng: place.lng });
+  });
+
+  map.fitBounds(bounds, { top: 20, right: 20, bottom: 20, left: 20 });
+
+  if (currentFilter === '全部') {
+    document.getElementById('map').style.display = 'block';
+    document.getElementById('place-list').style.display = 'none';
+  }
+}
+
+function showSheet(place) {
+  currentPlace = place;
+  document.getElementById('sheet-badge').textContent = place.type;
+  document.getElementById('sheet-badge').className   = `badge-${place.type}`;
+  document.getElementById('sheet-name').textContent  = place.name;
+  document.getElementById('sheet-sub').textContent   = place.sub || '';
+  document.getElementById('sheet-addr').textContent  = place.addr;
+  document.getElementById('sheet').classList.add('open');
+  document.getElementById('overlay').classList.add('open');
+}
+
+function closeSheet() {
+  document.getElementById('sheet').classList.remove('open');
+  document.getElementById('overlay').classList.remove('open');
+  currentPlace = null;
+}
+
+function openGoogle() {
+  if (!currentPlace) return;
+  window.open(`https://www.google.com/maps/dir/?api=1&destination=${encodeURIComponent(currentPlace.addr)}`, '_blank');
+}
+
+function openApple() {
+  if (!currentPlace) return;
+  window.location.href = `maps://?daddr=${encodeURIComponent(currentPlace.addr)}&dirflg=d`;
+}
+
 function setFilter(btn, filter) {
   document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
   btn.classList.add('active');
-  renderPlaceList(filter);
+  currentFilter = filter;
+  const mapEl  = document.getElementById('map');
+  const listEl = document.getElementById('place-list');
+  if (filter === '全部') {
+    mapEl.style.display  = 'block';
+    listEl.style.display = 'none';
+    markers.forEach(m => m.setVisible(true));
+    closeSheet();
+  } else {
+    mapEl.style.display  = 'none';
+    listEl.style.display = 'block';
+    renderPlaceList(filter);
+  }
 }
 
 function renderPlaceList(filter) {
@@ -1458,9 +1625,13 @@ function switchTab(tab) {
   }
 }
 
-renderPlaceList('全部');
+// Initial state: 全部 shows map (place-list hidden until a non-全部 filter is selected)
+document.getElementById('place-list').style.display = 'none';
 </script>
 
+<script async defer
+  src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB6sLmCqGG3UCBYzmG2O6ee3tfKz42LHVw&callback=initMap&language=zh-TW&region=TW">
+</script>
 
 </body>
 </html>
