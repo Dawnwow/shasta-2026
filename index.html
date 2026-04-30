@@ -4,94 +4,131 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
   <title>2026 雪士達旅遊地圖</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   <style>
+    :root {
+      --p:     #3A7055;
+      --p-d:   #2C5842;
+      --p-dd:  #1C3C2C;
+      --p-l:   #E6F3EC;
+      --p-ll:  #F3FAF6;
+      --bg:    #F0EBE2;
+      --surf:  #FFFFFF;
+      --bdr:   #DDD7CC;
+      --bdr-l: #EDE8E0;
+      --tx:    #1B2620;
+      --tx2:   #586260;
+      --tx3:   #98A89E;
+      --red:   #C83B3B;
+      --red-l: #FDEAEA;
+      --amber: #A06B0A;
+      --amber-l: #FEF4DC;
+      --blue:  #2855A0;
+      --blue-l: #E6EDFA;
+      --gold:  #C9963C;
+    }
+
     * { box-sizing: border-box; margin: 0; padding: 0; }
 
     body {
-      font-family: -apple-system, BlinkMacSystemFont, 'Noto Sans TC', 'PingFang TC', sans-serif;
+      font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'PingFang TC', 'Noto Sans TC', sans-serif;
       height: 100dvh;
       display: flex;
       flex-direction: column;
       overflow: hidden;
-      background: #F6F3EE;
+      background: var(--bg);
+      color: var(--tx);
+      -webkit-font-smoothing: antialiased;
     }
 
     /* ── Header ── */
     #header {
-      background: linear-gradient(160deg, #3A6349 0%, #578A6A 100%);
+      background: linear-gradient(150deg, var(--p-dd) 0%, var(--p-d) 55%, var(--p) 100%);
       color: white;
-      padding: 16px 18px 20px;
-      padding-top: calc(16px + env(safe-area-inset-top));
+      padding: 14px 20px 24px;
+      padding-top: calc(14px + env(safe-area-inset-top));
       flex-shrink: 0;
       position: relative;
       overflow: hidden;
     }
-    #header h1 {
-      font-size: 18px;
+    .hdr-eyebrow {
+      font-size: 10px;
       font-weight: 700;
-      letter-spacing: 0.3px;
-      position: relative;
-      z-index: 1;
+      letter-spacing: 1.8px;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.5);
+      margin-bottom: 5px;
+      position: relative; z-index: 1;
+    }
+    #header h1 {
+      font-size: 22px;
+      font-weight: 800;
+      letter-spacing: -0.4px;
+      line-height: 1.15;
+      position: relative; z-index: 1;
     }
     #header p {
-      font-size: 13px;
-      opacity: 0.78;
-      margin-top: 3px;
-      font-weight: 400;
-      letter-spacing: 0.3px;
-      position: relative;
-      z-index: 1;
+      font-size: 12px;
+      color: rgba(255,255,255,0.55);
+      margin-top: 5px;
+      font-weight: 500;
+      position: relative; z-index: 1;
     }
-    .header-mountain {
+    .hdr-orb {
+      position: absolute;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.05);
+    }
+    .hdr-orb-1 { width: 130px; height: 130px; top: -35px; right: -25px; }
+    .hdr-orb-2 { width: 70px;  height: 70px;  top: 15px;  right: 80px; }
+    .hdr-orb-3 { width: 40px;  height: 40px;  bottom: 10px; left: 160px; }
+    .hdr-wave {
       position: absolute;
       bottom: 0; left: 0; right: 0;
-      width: 100%;
-      display: block;
+      width: 100%; display: block;
     }
 
-    /* ── Top Tab Bar ── */
+    /* ── Tab Bar ── */
     #top-tabs {
       display: flex;
-      background: white;
-      border-bottom: 1px solid #EAE6E0;
+      background: var(--surf);
+      border-bottom: 1px solid var(--bdr-l);
       flex-shrink: 0;
     }
     .top-tab {
       flex: 1;
-      padding: 13px 8px;
+      padding: 10px 8px 11px;
       border: none;
       background: none;
-      font-size: 13px;
-      font-weight: 600;
-      color: #B0AAA2;
+      font-size: 12px;
+      font-weight: 700;
+      color: var(--tx3);
       border-bottom: 2.5px solid transparent;
       cursor: pointer;
       font-family: inherit;
-      transition: all 0.2s;
+      transition: color 0.2s, border-color 0.2s;
       margin-bottom: -1px;
-      letter-spacing: 0.2px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 5px;
+      letter-spacing: 0.1px;
     }
-    .top-tab.active {
-      color: #4A7A5E;
-      border-bottom-color: #4A7A5E;
-    }
+    .top-tab svg { width: 14px; height: 14px; flex-shrink: 0; }
+    .top-tab.active { color: var(--p); border-bottom-color: var(--p); }
 
     /* ── Map View ── */
-    #map-view {
-      display: flex;
-      flex-direction: column;
-      flex: 1;
-      overflow: hidden;
-    }
+    #map-view { display: flex; flex-direction: column; flex: 1; overflow: hidden; }
 
-    /* Filter bar */
     #filters {
-      background: white;
-      padding: 10px 14px;
+      background: var(--surf);
+      padding: 9px 14px;
       display: flex;
-      gap: 8px;
+      gap: 7px;
       overflow-x: auto;
-      border-bottom: 1px solid #EAE6E0;
+      border-bottom: 1px solid var(--bdr-l);
       flex-shrink: 0;
       -webkit-overflow-scrolling: touch;
       scrollbar-width: none;
@@ -101,113 +138,122 @@
     .filter-btn {
       white-space: nowrap;
       padding: 6px 15px;
-      border-radius: 20px;
-      border: 1.5px solid #DDD9D3;
-      background: white;
-      font-size: 13px;
-      color: #4A4A4A;
+      border-radius: 99px;
+      border: 1.5px solid var(--bdr);
+      background: var(--surf);
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--tx2);
       cursor: pointer;
       flex-shrink: 0;
       font-family: inherit;
       transition: all 0.15s;
     }
     .filter-btn.active {
-      background: #4A7A5E;
+      background: var(--p);
       color: white;
-      border-color: #4A7A5E;
+      border-color: var(--p);
     }
 
     #map { flex: 1; }
 
-    /* Legend */
     #legend {
       position: fixed;
-      top: 160px;
-      right: 10px;
-      background: white;
+      top: 160px; right: 10px;
+      background: var(--surf);
       border-radius: 12px;
-      padding: 9px 12px;
-      box-shadow: 0 2px 16px rgba(74,122,94,0.13);
+      padding: 10px 13px;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.10);
       font-size: 11px;
+      font-weight: 600;
       z-index: 10;
-      line-height: 1.9;
-      border: 1px solid rgba(0,0,0,0.04);
+      line-height: 2;
+      border: 1px solid var(--bdr-l);
+      color: var(--tx2);
     }
-    .legend-item { display: flex; align-items: center; gap: 6px; }
+    .legend-item { display: flex; align-items: center; gap: 7px; }
     .legend-dot {
-      width: 10px; height: 10px; border-radius: 50%;
+      width: 9px; height: 9px; border-radius: 50%;
       border: 2px solid white;
-      box-shadow: 0 0 0 1px rgba(0,0,0,0.15);
+      box-shadow: 0 0 0 1px rgba(0,0,0,0.12);
       flex-shrink: 0;
     }
 
     /* ── Bottom Sheet ── */
-    #overlay { display: none; position: fixed; inset: 0; z-index: 100; background: rgba(30,40,30,0.18); }
+    #overlay {
+      display: none;
+      position: fixed; inset: 0; z-index: 100;
+      background: rgba(15,25,18,0.45);
+      backdrop-filter: blur(3px);
+      -webkit-backdrop-filter: blur(3px);
+    }
     #overlay.open { display: block; }
 
     #sheet {
       position: fixed;
       bottom: 0; left: 0; right: 0;
-      background: white;
-      border-radius: 24px 24px 0 0;
-      padding: 0 18px;
+      background: var(--surf);
+      border-radius: 22px 22px 0 0;
+      padding: 0 20px;
       padding-bottom: calc(30px + env(safe-area-inset-bottom));
-      box-shadow: 0 -4px 32px rgba(74,122,94,0.16);
+      box-shadow: 0 -8px 40px rgba(0,0,0,0.14);
       transform: translateY(100%);
-      transition: transform 0.28s cubic-bezier(0.34,1.56,0.64,1);
+      transition: transform 0.3s cubic-bezier(0.32,0.72,0,1);
       z-index: 200;
     }
     #sheet.open { transform: translateY(0); }
 
     .sheet-handle {
       width: 36px; height: 4px;
-      background: #DDD9D3;
+      background: var(--bdr);
       border-radius: 2px;
-      margin: 12px auto 16px;
+      margin: 10px auto 18px;
     }
-
     #sheet-close {
       position: absolute;
-      top: 14px; right: 16px;
-      background: #F4F1EC;
+      top: 14px; right: 18px;
+      background: var(--bg);
       border: none;
-      width: 28px; height: 28px;
+      width: 30px; height: 30px;
       border-radius: 50%;
       cursor: pointer;
-      font-size: 12px;
-      color: #7A7A7A;
+      color: var(--tx2);
       display: flex; align-items: center; justify-content: center;
     }
+    #sheet-close svg { width: 13px; height: 13px; }
 
     #sheet-badge {
-      display: inline-block;
+      display: inline-flex;
+      align-items: center;
       font-size: 11px;
-      padding: 3px 10px;
-      border-radius: 20px;
-      font-weight: 600;
-      margin-bottom: 8px;
+      padding: 3px 11px;
+      border-radius: 99px;
+      font-weight: 700;
+      margin-bottom: 10px;
+      letter-spacing: 0.3px;
     }
-    .badge-住宿 { background: #FEEAEA; color: #B83232; }
-    .badge-景點 { background: #FEF6E0; color: #A07010; }
-    .badge-採買 { background: #E8F5EC; color: #2E7D4A; }
-    .badge-交通 { background: #E8F0FE; color: #2563EB; }
+    .badge-住宿 { background: var(--red-l);   color: var(--red); }
+    .badge-景點 { background: var(--amber-l); color: var(--amber); }
+    .badge-採買 { background: var(--p-l);     color: var(--p-d); }
+    .badge-交通 { background: var(--blue-l);  color: var(--blue); }
 
-    #sheet-name { font-size: 19px; font-weight: 700; color: #1A1A1A; margin-bottom: 3px; line-height: 1.3; }
-    #sheet-sub  { font-size: 12px; color: #8A8A8A; margin-bottom: 6px; }
-    #sheet-addr { font-size: 13px; color: #5A5A5A; line-height: 1.6; margin-bottom: 18px; }
+    #sheet-name { font-size: 19px; font-weight: 800; color: var(--tx); margin-bottom: 4px; line-height: 1.3; }
+    #sheet-sub  { font-size: 12px; color: var(--tx3); margin-bottom: 5px; font-weight: 500; }
+    #sheet-addr { font-size: 13px; color: var(--tx2); line-height: 1.6; margin-bottom: 18px; font-weight: 500; }
 
     #sheet-btns { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
     .nav-btn {
       padding: 13px 8px;
-      border-radius: 14px;
+      border-radius: 12px;
       border: none;
       cursor: pointer;
       font-size: 13px;
-      font-weight: 600;
+      font-weight: 700;
       font-family: inherit;
       display: flex; align-items: center; justify-content: center; gap: 6px;
+      transition: opacity 0.15s;
     }
-    .nav-btn:active { opacity: 0.75; }
+    .nav-btn:active { opacity: 0.8; }
     .btn-google { background: #4285f4; color: white; }
     .btn-apple  { background: #1c1c1e; color: white; }
 
@@ -217,12 +263,11 @@
       flex: 1;
       overflow-y: auto;
       -webkit-overflow-scrolling: touch;
-      background: #F6F3EE;
+      background: var(--bg);
     }
-
     .info-content {
-      padding: 16px;
-      padding-bottom: calc(32px + env(safe-area-inset-bottom));
+      padding: 16px 14px;
+      padding-bottom: calc(44px + env(safe-area-inset-bottom));
     }
 
     /* Section header */
@@ -230,430 +275,313 @@
       display: flex;
       align-items: center;
       gap: 10px;
-      margin: 26px 0 12px;
+      margin: 28px 0 12px;
     }
-    .section-header:first-child { margin-top: 4px; }
+    .section-header:first-child { margin-top: 2px; }
     .section-icon {
-      width: 32px; height: 32px;
+      width: 34px; height: 34px;
       border-radius: 10px;
-      background: #4A7A5E;
+      background: var(--p);
       display: flex; align-items: center; justify-content: center;
-      font-size: 16px;
       flex-shrink: 0;
+      box-shadow: 0 2px 8px rgba(58,112,85,0.3);
     }
+    .section-icon svg { width: 18px; height: 18px; }
     .section-title-text {
       font-size: 16px;
-      font-weight: 700;
-      color: #1A1A1A;
-      letter-spacing: 0.2px;
+      font-weight: 800;
+      color: var(--tx);
+      letter-spacing: -0.2px;
     }
 
-    /* ── Boarding Pass Card ── */
-    .flight-card {
-      background: white;
-      border-radius: 22px;
+    /* ── Card base ── */
+    .card {
+      background: var(--surf);
+      border-radius: 20px;
       overflow: hidden;
-      box-shadow: 0 3px 20px rgba(74,122,94,0.10);
-      margin-bottom: 14px;
-      border: 1px solid rgba(0,0,0,0.04);
+      box-shadow: 0 2px 18px rgba(44,88,66,0.09), 0 0 0 1px rgba(0,0,0,0.04);
     }
-    .flight-header {
-      background: linear-gradient(135deg, #2E5740, #4A7A5E);
+    .card-hdr {
+      background: linear-gradient(130deg, var(--p-dd) 0%, var(--p) 100%);
       padding: 16px 18px;
       display: flex;
       justify-content: space-between;
       align-items: flex-start;
     }
-    .flight-dir {
-      font-size: 16px;
-      font-weight: 700;
-      color: white;
+    .card-hdr-title {
+      font-size: 15px; font-weight: 700; color: white; line-height: 1.3;
     }
-    .flight-airline {
-      font-size: 11px;
-      color: rgba(255,255,255,0.65);
-      margin-top: 3px;
+    .card-hdr-sub {
+      font-size: 11px; color: rgba(255,255,255,0.58); margin-top: 3px;
     }
-    .flight-class-pill {
-      background: rgba(255,255,255,0.18);
+    .card-pill {
+      background: rgba(255,255,255,0.15);
       color: white;
-      font-size: 11px;
-      font-weight: 600;
+      font-size: 11px; font-weight: 700;
       padding: 4px 12px;
-      border-radius: 20px;
+      border-radius: 99px;
       flex-shrink: 0;
       margin-top: 2px;
     }
-
-    .flight-body { padding: 20px 18px 18px; }
-
-    .flight-route {
-      display: flex;
-      align-items: flex-start;
-    }
-    .airport-col { flex: none; }
-    .airport-col.right { text-align: right; }
-
-    .airport-time {
-      font-size: 28px;
-      font-weight: 900;
-      color: #1A1A1A;
-      letter-spacing: -1px;
-      line-height: 1;
-    }
-    .airport-code-sm {
-      font-size: 14px;
-      font-weight: 700;
-      color: #4A7A5E;
-      margin-top: 5px;
-      letter-spacing: 0.5px;
-    }
-    .airport-date {
-      font-size: 11px;
-      color: #AAAAAA;
-      margin-top: 2px;
-    }
-    .airport-terminal {
-      font-size: 11px;
-      color: #8A8A8A;
-      margin-top: 2px;
-    }
-
-    .route-mid {
-      flex: 1;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      padding: 7px 10px 0;
-      gap: 4px;
-    }
-    .route-dur { font-size: 10px; color: #B0AAA2; font-weight: 600; letter-spacing: 0.3px; }
-    .route-line-wrap {
-      width: 100%;
-      display: flex;
-      align-items: center;
-      gap: 3px;
-    }
-    .r-dot { width: 5px; height: 5px; border-radius: 50%; background: #DDD9D3; flex-shrink: 0; }
-    .r-line { flex: 1; height: 1.5px; background: #EAE6E0; }
-    .r-plane { font-size: 14px; color: #B0AAA2; flex-shrink: 0; }
-
-    .flight-divider {
-      border: none;
-      border-top: 1.5px dashed #EAE6E0;
-      margin: 16px 0 14px;
-    }
-    .flight-chips { display: flex; gap: 7px; flex-wrap: wrap; }
-    .chip {
-      background: #F4F1EC;
-      border-radius: 8px;
-      padding: 5px 11px;
-      font-size: 11px;
-      color: #6A6060;
-    }
-    .chip b { color: #2A2A2A; font-weight: 700; }
-
-    /* ── Steps Card ── */
-    .steps-card {
-      background: white;
-      border-radius: 22px;
-      padding: 20px 18px;
-      box-shadow: 0 3px 20px rgba(74,122,94,0.10);
-      border: 1px solid rgba(0,0,0,0.04);
-    }
-    .step-row {
-      display: flex;
-      gap: 14px;
-      position: relative;
-    }
-    .step-row:not(:last-child)::after {
-      content: '';
-      position: absolute;
-      left: 13px;
-      top: 28px;
-      bottom: -6px;
-      width: 2px;
-      background: #EAE6E0;
-    }
-    .step-row + .step-row { margin-top: 16px; }
-    .step-num {
-      width: 28px; height: 28px;
-      border-radius: 50%;
-      background: #4A7A5E;
-      color: white;
-      font-size: 12px;
-      font-weight: 700;
-      display: flex; align-items: center; justify-content: center;
-      flex-shrink: 0;
-    }
-    .step-body { flex: 1; padding-top: 4px; }
-    .step-main { font-size: 14px; font-weight: 700; color: #1A1A1A; line-height: 1.3; }
-    .step-sub  { font-size: 12px; color: #8A8A8A; margin-top: 3px; line-height: 1.5; }
-
-    /* ── Accommodation Card ── */
-    .acc-card {
-      background: white;
-      border-radius: 22px;
-      overflow: hidden;
-      box-shadow: 0 3px 20px rgba(74,122,94,0.10);
-      margin-bottom: 14px;
-      border: 1px solid rgba(0,0,0,0.04);
-    }
-    .acc-header {
-      background: linear-gradient(135deg, #2E5740, #4A7A5E);
-      padding: 16px 18px;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-    }
-    .acc-title { font-size: 16px; font-weight: 700; color: white; }
-    .acc-dates-label { font-size: 11px; color: rgba(255,255,255,0.65); margin-top: 3px; }
-    .acc-nights-pill {
-      background: rgba(255,255,255,0.18);
-      color: white;
-      font-size: 12px;
-      font-weight: 700;
-      padding: 5px 14px;
-      border-radius: 20px;
-      flex-shrink: 0;
-    }
-    .acc-body { padding: 18px; }
-    .acc-addr { font-size: 13px; color: #4A4A4A; line-height: 1.7; margin-bottom: 5px; }
-    .acc-meta { font-size: 12px; color: #AAAAAA; margin-bottom: 16px; }
-    .acc-btn {
-      width: 100%;
-      padding: 14px;
-      border-radius: 14px;
-      border: none;
-      background: #4A7A5E;
-      color: white;
-      font-size: 14px;
-      font-weight: 600;
-      font-family: inherit;
-      cursor: pointer;
-      letter-spacing: 0.3px;
-    }
-    .acc-btn:active { opacity: 0.85; }
+    .card-body { padding: 16px 18px; }
 
     /* ── 行前宣誓 ── */
-    .pledge-card {
-      background: white;
-      border-radius: 22px;
-      overflow: hidden;
-      box-shadow: 0 3px 20px rgba(74,122,94,0.10);
-      border: 1px solid rgba(0,0,0,0.04);
-    }
-    .pledge-header {
-      background: linear-gradient(135deg, #2E5740, #4A7A5E);
-      padding: 16px 18px;
-    }
-    .pledge-header-title { font-size: 16px; font-weight: 700; color: white; }
-    .pledge-header-sub { font-size: 11px; color: rgba(255,255,255,0.65); margin-top: 3px; }
-    .pledge-body { padding: 6px 18px 14px; }
+    .pledge-body { padding: 4px 18px 4px; }
     .pledge-item {
       display: flex;
-      gap: 14px;
+      gap: 13px;
       align-items: flex-start;
-      padding: 12px 0;
-      border-bottom: 1px solid #F4F1EC;
+      padding: 11px 0;
+      border-bottom: 1px solid var(--bdr-l);
     }
-    .pledge-item:last-child { border-bottom: none; padding-bottom: 4px; }
+    .pledge-item:last-child { border-bottom: none; padding-bottom: 6px; }
     .pledge-num {
       width: 26px; height: 26px;
-      border-radius: 50%;
-      background: #EDF4EF;
-      color: #4A7A5E;
-      font-size: 12px;
-      font-weight: 800;
+      border-radius: 8px;
+      background: var(--p-l);
+      color: var(--p);
+      font-size: 12px; font-weight: 800;
       display: flex; align-items: center; justify-content: center;
-      flex-shrink: 0;
-      margin-top: 1px;
+      flex-shrink: 0; margin-top: 1px;
     }
-    .pledge-text { font-size: 14px; color: #2A2A2A; line-height: 1.55; }
+    .pledge-text { font-size: 14px; color: var(--tx); line-height: 1.6; font-weight: 500; }
 
-    /* ── 注意事項 grid ── */
-    .tips-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 10px;
-    }
-    .tip-card {
-      background: white;
+    /* ── 2-col grid ── */
+    .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+    .grid-card {
+      background: var(--surf);
       border-radius: 16px;
-      padding: 14px 13px;
-      box-shadow: 0 2px 12px rgba(74,122,94,0.08);
-      border: 1px solid rgba(0,0,0,0.04);
+      padding: 15px 14px;
+      box-shadow: 0 2px 12px rgba(44,88,66,0.07), 0 0 0 1px rgba(0,0,0,0.04);
     }
-    .tip-icon { font-size: 22px; margin-bottom: 8px; display: block; }
-    .tip-title { font-size: 13px; font-weight: 700; color: #1A1A1A; margin-bottom: 4px; }
-    .tip-desc { font-size: 11px; color: #7A7A7A; line-height: 1.55; }
+    .grid-icon {
+      width: 36px; height: 36px;
+      border-radius: 10px;
+      background: var(--p-l);
+      display: flex; align-items: center; justify-content: center;
+      margin-bottom: 10px;
+      color: var(--p);
+    }
+    .grid-icon svg { width: 18px; height: 18px; }
+    .grid-title { font-size: 13px; font-weight: 700; color: var(--tx); margin-bottom: 5px; }
+    .grid-desc  { font-size: 11px; color: var(--tx2); line-height: 1.6; }
 
-    /* ── 入境與注意事項 ── */
+    /* ── Entry card ── */
     .entry-card {
-      background: white;
-      border-radius: 22px;
+      background: var(--surf);
+      border-radius: 20px;
       overflow: hidden;
-      box-shadow: 0 3px 20px rgba(74,122,94,0.10);
-      border: 1px solid rgba(0,0,0,0.04);
+      box-shadow: 0 2px 18px rgba(44,88,66,0.09), 0 0 0 1px rgba(0,0,0,0.04);
       margin-bottom: 10px;
     }
     .entry-section-title {
-      font-size: 12px;
-      font-weight: 700;
-      color: #4A7A5E;
-      letter-spacing: 0.5px;
-      padding: 14px 18px 10px;
-      border-bottom: 1px solid #F4F1EC;
+      font-size: 10px; font-weight: 700; color: var(--p);
+      letter-spacing: 1px; text-transform: uppercase;
+      padding: 13px 18px 10px;
+      border-bottom: 1px solid var(--bdr-l);
     }
-    .entry-list { padding: 4px 18px 14px; }
+    .entry-list { padding: 2px 18px 12px; }
     .entry-item {
-      display: flex;
-      gap: 12px;
-      align-items: flex-start;
+      display: flex; gap: 12px; align-items: flex-start;
       padding: 10px 0;
-      border-bottom: 1px solid #F8F5F1;
+      border-bottom: 1px solid var(--bdr-l);
     }
-    .entry-item:last-child { border-bottom: none; padding-bottom: 2px; }
+    .entry-item:last-child { border-bottom: none; }
     .entry-check {
-      width: 20px; height: 20px;
-      border-radius: 50%;
-      flex-shrink: 0;
-      margin-top: 2px;
+      width: 22px; height: 22px; border-radius: 50%;
+      flex-shrink: 0; margin-top: 1px;
       display: flex; align-items: center; justify-content: center;
-      font-size: 10px;
-      font-weight: 800;
+      font-size: 10px; font-weight: 800;
     }
-    .check-ok   { background: #E8F5EC; color: #2E7D4A; }
-    .check-warn { background: #FEF6E0; color: #A07010; }
-    .check-ban  { background: #FEEAEA; color: #B83232; }
-    .entry-main { font-size: 13px; font-weight: 600; color: #1A1A1A; }
-    .entry-sub  { font-size: 11px; color: #8A8A8A; margin-top: 2px; line-height: 1.5; }
+    .check-ok   { background: var(--p-l);     color: var(--p); }
+    .check-warn { background: var(--amber-l); color: var(--amber); }
+    .check-ban  { background: var(--red-l);   color: var(--red); }
+    .entry-main { font-size: 13px; font-weight: 700; color: var(--tx); }
+    .entry-sub  { font-size: 11px; color: var(--tx3); margin-top: 2px; line-height: 1.5; font-weight: 500; }
 
-    /* ── 出發前提醒 ── */
-    .reminder-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 10px;
-    }
-    .reminder-card {
-      background: white;
-      border-radius: 16px;
-      padding: 14px 13px;
-      box-shadow: 0 2px 12px rgba(74,122,94,0.08);
-      border: 1px solid rgba(0,0,0,0.04);
-    }
-    .reminder-icon { font-size: 22px; margin-bottom: 8px; display: block; }
-    .reminder-title { font-size: 13px; font-weight: 700; color: #1A1A1A; margin-bottom: 4px; }
-    .reminder-desc { font-size: 11px; color: #7A7A7A; line-height: 1.55; }
-
-    /* ── 行李清單 ── */
-    .checklist-card {
-      background: white;
-      border-radius: 22px;
-      overflow: hidden;
-      box-shadow: 0 3px 20px rgba(74,122,94,0.10);
-      border: 1px solid rgba(0,0,0,0.04);
-      margin-bottom: 10px;
-    }
-    .checklist-header {
-      background: linear-gradient(135deg, #2E5740, #4A7A5E);
-      padding: 14px 18px;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-    }
-    .checklist-header-title { font-size: 15px; font-weight: 700; color: white; }
-    .checklist-note {
-      font-size: 10px;
-      color: rgba(255,255,255,0.85);
-      background: rgba(255,255,255,0.18);
-      padding: 3px 9px;
-      border-radius: 10px;
-      flex-shrink: 0;
-    }
-    .checklist-body { padding: 6px 18px 14px; }
+    /* ── Checklist ── */
+    .checklist-body { padding: 4px 18px 12px; }
     .check-item {
-      display: flex;
-      align-items: center;
-      gap: 13px;
+      display: flex; align-items: center; gap: 13px;
       padding: 11px 0;
-      border-bottom: 1px solid #F4F1EC;
+      border-bottom: 1px solid var(--bdr-l);
       cursor: pointer;
     }
-    .check-item:last-child { border-bottom: none; padding-bottom: 4px; }
+    .check-item:last-child { border-bottom: none; }
     .check-item input[type="checkbox"] {
       width: 20px; height: 20px;
-      accent-color: #4A7A5E;
-      flex-shrink: 0;
-      cursor: pointer;
+      accent-color: var(--p);
+      flex-shrink: 0; cursor: pointer;
     }
     .check-label {
-      font-size: 14px;
-      color: #2A2A2A;
-      line-height: 1.4;
-      cursor: pointer;
-      flex: 1;
+      font-size: 14px; color: var(--tx); line-height: 1.4;
+      cursor: pointer; flex: 1; font-weight: 500;
     }
     .check-item input:checked ~ .check-label {
-      color: #C0BCBA;
-      text-decoration: line-through;
+      color: var(--tx3); text-decoration: line-through;
     }
     .must-have-card {
-      background: linear-gradient(135deg, #3D2E1E, #6B4226);
-      border-radius: 22px;
-      padding: 16px 18px;
-      box-shadow: 0 3px 20px rgba(107,66,38,0.18);
+      background: linear-gradient(135deg, #182820, #2A4A38);
+      border-radius: 20px;
+      padding: 18px 18px 14px;
+      box-shadow: 0 6px 28px rgba(24,40,32,0.28);
     }
-    .must-have-title { font-size: 14px; font-weight: 700; color: white; margin-bottom: 12px; }
+    .must-have-title {
+      font-size: 13px; font-weight: 800;
+      color: rgba(255,255,255,0.92);
+      margin-bottom: 14px;
+      display: flex; align-items: center; gap: 9px;
+    }
+    .must-stripe {
+      display: inline-block;
+      width: 4px; height: 16px;
+      background: var(--gold);
+      border-radius: 2px; flex-shrink: 0;
+    }
     .must-item {
-      display: flex;
-      align-items: center;
-      gap: 13px;
-      padding: 9px 0;
-      border-bottom: 1px solid rgba(255,255,255,0.1);
+      display: flex; align-items: center; gap: 13px;
+      padding: 10px 0;
+      border-bottom: 1px solid rgba(255,255,255,0.09);
       cursor: pointer;
     }
     .must-item:last-child { border-bottom: none; padding-bottom: 0; }
     .must-item input[type="checkbox"] {
       width: 20px; height: 20px;
-      accent-color: #D4935A;
+      accent-color: var(--gold);
       flex-shrink: 0;
     }
     .must-label {
-      font-size: 14px;
-      color: rgba(255,255,255,0.92);
-      flex: 1;
-      cursor: pointer;
+      font-size: 14px; color: rgba(255,255,255,0.86);
+      flex: 1; cursor: pointer; font-weight: 500;
     }
     .must-item input:checked ~ .must-label {
-      color: rgba(255,255,255,0.35);
-      text-decoration: line-through;
+      color: rgba(255,255,255,0.28); text-decoration: line-through;
     }
+
+    /* ── Flight card ── */
+    .flight-card {
+      background: var(--surf);
+      border-radius: 20px;
+      overflow: hidden;
+      box-shadow: 0 2px 18px rgba(44,88,66,0.09), 0 0 0 1px rgba(0,0,0,0.04);
+      margin-bottom: 12px;
+    }
+    .flight-body { padding: 20px 18px 18px; }
+    .flight-route { display: flex; align-items: flex-start; }
+    .airport-col { flex: none; }
+    .airport-col.right { text-align: right; }
+    .airport-time {
+      font-size: 30px; font-weight: 800;
+      color: var(--tx); letter-spacing: -1.5px; line-height: 1;
+    }
+    .airport-code-sm {
+      font-size: 13px; font-weight: 800; color: var(--p);
+      margin-top: 6px; letter-spacing: 1.2px;
+    }
+    .airport-date   { font-size: 11px; color: var(--tx3); margin-top: 3px; font-weight: 500; }
+    .airport-terminal { font-size: 11px; color: var(--tx3); margin-top: 1px; font-weight: 500; }
+    .route-mid {
+      flex: 1; display: flex; flex-direction: column;
+      align-items: center; padding: 6px 12px 0; gap: 5px;
+    }
+    .route-dur { font-size: 10px; color: var(--tx3); font-weight: 700; letter-spacing: 0.5px; }
+    .route-line-wrap { width: 100%; display: flex; align-items: center; gap: 3px; }
+    .r-dot  { width: 5px; height: 5px; border-radius: 50%; background: var(--bdr); flex-shrink: 0; }
+    .r-line { flex: 1; height: 1.5px; background: var(--bdr-l); }
+    .r-plane { font-size: 13px; color: var(--tx3); flex-shrink: 0; }
+    .flight-divider {
+      border: none; border-top: 1.5px dashed var(--bdr-l);
+      margin: 16px 0 13px;
+    }
+    .flight-chips { display: flex; gap: 7px; flex-wrap: wrap; }
+    .chip {
+      background: var(--bg); border-radius: 8px;
+      padding: 5px 11px; font-size: 11px; color: var(--tx2); font-weight: 500;
+    }
+    .chip b { color: var(--tx); font-weight: 700; }
+
+    /* ── Steps card ── */
+    .steps-card {
+      background: var(--surf);
+      border-radius: 20px;
+      padding: 20px 18px;
+      box-shadow: 0 2px 18px rgba(44,88,66,0.09), 0 0 0 1px rgba(0,0,0,0.04);
+    }
+    .step-row { display: flex; gap: 14px; position: relative; }
+    .step-row:not(:last-child)::after {
+      content: '';
+      position: absolute; left: 13px; top: 30px; bottom: -4px;
+      width: 2px; background: var(--p-l);
+    }
+    .step-row + .step-row { margin-top: 18px; }
+    .step-num {
+      width: 28px; height: 28px; border-radius: 50%;
+      background: var(--p); color: white;
+      font-size: 12px; font-weight: 800;
+      display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0;
+      box-shadow: 0 2px 8px rgba(58,112,85,0.3);
+    }
+    .step-body { flex: 1; padding-top: 3px; }
+    .step-main { font-size: 14px; font-weight: 700; color: var(--tx); line-height: 1.3; }
+    .step-sub  { font-size: 12px; color: var(--tx2); margin-top: 3px; line-height: 1.5; font-weight: 500; }
+
+    /* ── Accommodation card ── */
+    .acc-card {
+      background: var(--surf);
+      border-radius: 20px; overflow: hidden;
+      box-shadow: 0 2px 18px rgba(44,88,66,0.09), 0 0 0 1px rgba(0,0,0,0.04);
+      margin-bottom: 12px;
+    }
+    .acc-body { padding: 16px 18px; }
+    .acc-addr { font-size: 13px; color: var(--tx2); line-height: 1.7; margin-bottom: 4px; font-weight: 500; }
+    .acc-meta { font-size: 12px; color: var(--tx3); margin-bottom: 14px; font-weight: 500; }
+    .acc-btn {
+      width: 100%; padding: 13px;
+      border-radius: 12px; border: none;
+      background: var(--p); color: white;
+      font-size: 13px; font-weight: 700; font-family: inherit;
+      cursor: pointer; letter-spacing: 0.2px;
+      display: flex; align-items: center; justify-content: center; gap: 7px;
+      transition: opacity 0.15s;
+    }
+    .acc-btn:active { opacity: 0.85; }
+    .acc-btn svg { width: 15px; height: 15px; }
   </style>
 </head>
 <body>
 
 <div id="header">
-  <h1>🏔 2026 雪士達旅遊地圖</h1>
+  <div class="hdr-orb hdr-orb-1"></div>
+  <div class="hdr-orb hdr-orb-2"></div>
+  <div class="hdr-orb hdr-orb-3"></div>
+  <div class="hdr-eyebrow">2026 加州之旅</div>
+  <h1>雪士達旅遊地圖</h1>
   <p>5/16–5/31 · Mount Shasta, California</p>
-  <svg class="header-mountain" viewBox="0 0 390 46" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
-    <path d="M0,46 L0,28 L52,7 L108,24 L158,4 L214,19 L264,6 L318,22 L390,11 L390,46 Z" fill="rgba(255,255,255,0.06)"/>
-    <path d="M0,46 L0,37 L42,21 L88,34 L138,14 L182,30 L228,18 L278,32 L328,20 L390,29 L390,46 Z" fill="rgba(255,255,255,0.11)"/>
+  <svg class="hdr-wave" viewBox="0 0 390 48" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+    <path d="M0,48 L0,30 L40,14 L80,28 L130,8 L175,22 L220,10 L265,24 L310,12 L350,26 L390,18 L390,48 Z" fill="rgba(255,255,255,0.04)"/>
+    <path d="M0,48 L0,38 L35,27 L78,37 L118,20 L158,33 L198,23 L238,35 L278,24 L318,36 L358,27 L390,33 L390,48 Z" fill="rgba(255,255,255,0.06)"/>
   </svg>
 </div>
 
 <div id="top-tabs">
-  <button class="top-tab active" id="tab-map" onclick="switchTab('map')">🗺 景點地圖</button>
-  <button class="top-tab" id="tab-info" onclick="switchTab('info')">✈️ 行前整理</button>
+  <button class="top-tab active" id="tab-map" onclick="switchTab('map')">
+    <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 6.75V15m6-6v8.25m.503 3.498 4.875-2.437c.381-.19.622-.58.622-1.006V4.82c0-.836-.88-1.38-1.628-1.006l-3.869 1.934c-.317.159-.69.159-1.006 0L9.503 3.252a1.125 1.125 0 0 0-1.006 0L3.622 5.689C3.24 5.88 3 6.27 3 6.695V19.18c0 .836.88 1.38 1.628 1.006l3.869-1.934c.317-.159.69-.159 1.006 0l4.994 2.497c.317.158.69.158 1.006 0Z"/></svg>
+    景點地圖
+  </button>
+  <button class="top-tab" id="tab-info" onclick="switchTab('info')">
+    <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12h3.75M9 15h3.75M9 18h3.75m3 .75H18a2.25 2.25 0 0 0 2.25-2.25V6.108c0-1.135-.845-2.098-1.976-2.192a48.424 48.424 0 0 0-1.123-.08m-5.801 0c-.065.21-.1.433-.1.664 0 .414.336.75.75.75h4.5a.75.75 0 0 0 .75-.75 2.25 2.25 0 0 0-.1-.664m-5.8 0A2.251 2.251 0 0 1 13.5 2.25H15c1.012 0 1.867.668 2.15 1.586m-5.8 0c-.376.023-.75.05-1.124.08C9.095 4.01 8.25 4.973 8.25 6.108V8.25m0 0H4.875c-.621 0-1.125.504-1.125 1.125v11.25c0 .621.504 1.125 1.125 1.125h9.75c.621 0 1.125-.504 1.125-1.125V9.375c0-.621-.504-1.125-1.125-1.125H8.25ZM6.75 12h.008v.008H6.75V12Zm0 3h.008v.008H6.75V15Zm0 3h.008v.008H6.75V18Z"/></svg>
+    行前整理
+  </button>
 </div>
 
 <!-- 地圖頁 -->
 <div id="map-view">
   <div id="filters">
     <button class="filter-btn active" onclick="setFilter(this,'全部')">全部</button>
-    <button class="filter-btn" onclick="setFilter(this,'住宿')">🏠 住宿</button>
-    <button class="filter-btn" onclick="setFilter(this,'景點')">🏔 景點</button>
-    <button class="filter-btn" onclick="setFilter(this,'採買')">🛒 採買</button>
+    <button class="filter-btn" onclick="setFilter(this,'住宿')">住宿</button>
+    <button class="filter-btn" onclick="setFilter(this,'景點')">景點</button>
+    <button class="filter-btn" onclick="setFilter(this,'採買')">採買</button>
     <button class="filter-btn" onclick="setFilter(this,'灣區')">灣區</button>
     <button class="filter-btn" onclick="setFilter(this,'雪士達')">雪士達</button>
   </div>
@@ -672,90 +600,77 @@
   <div class="info-content">
 
     <!-- 行前宣誓 -->
-    <div class="section-header" style="margin-top:4px">
-      <div class="section-icon">🤝</div>
+    <div class="section-header">
+      <div class="section-icon">
+        <svg fill="none" stroke="white" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M11.48 3.499a.562.562 0 0 1 1.04 0l2.125 5.111a.563.563 0 0 0 .475.345l5.518.442c.499.04.701.663.321.988l-4.204 3.602a.563.563 0 0 0-.182.557l1.285 5.385a.562.562 0 0 1-.84.61l-4.725-2.885a.562.562 0 0 0-.586 0L6.982 20.54a.562.562 0 0 1-.84-.61l1.285-5.386a.562.562 0 0 0-.182-.557l-4.204-3.602a.562.562 0 0 1 .321-.988l5.518-.442a.563.563 0 0 0 .475-.345L11.48 3.5Z"/></svg>
+      </div>
       <div class="section-title-text">行前宣誓</div>
     </div>
 
-    <div class="pledge-card">
-      <div class="pledge-header">
-        <div class="pledge-header-title">出發前，我們先約好</div>
-        <div class="pledge-header-sub">2026 雪士達 15 日出走公約</div>
+    <div class="card">
+      <div class="card-hdr">
+        <div>
+          <div class="card-hdr-title">出發前，我們先約好</div>
+          <div class="card-hdr-sub">2026 雪士達 15 日出走公約</div>
+        </div>
       </div>
       <div class="pledge-body">
-        <div class="pledge-item">
-          <div class="pledge-num">1</div>
-          <div class="pledge-text">快樂出門、平安回家，全程保持正能量</div>
-        </div>
-        <div class="pledge-item">
-          <div class="pledge-num">2</div>
-          <div class="pledge-text">不臭臉、不抱怨，有意見直接說，別憋著</div>
-        </div>
-        <div class="pledge-item">
-          <div class="pledge-num">3</div>
-          <div class="pledge-text">集合準時到，讓大家等你就罰請喝咖啡</div>
-        </div>
-        <div class="pledge-item">
-          <div class="pledge-num">4</div>
-          <div class="pledge-text">美景美食都要拍，好照片統一丟群組分享</div>
-        </div>
-        <div class="pledge-item">
-          <div class="pledge-num">5</div>
-          <div class="pledge-text">尊重彼此步調，想獨處就說，不需要解釋</div>
-        </div>
-        <div class="pledge-item">
-          <div class="pledge-num">6</div>
-          <div class="pledge-text">行程彈性調整，沒人是神明，天氣說了算</div>
-        </div>
-        <div class="pledge-item">
-          <div class="pledge-num">7</div>
-          <div class="pledge-text">15 天的珍貴回憶，全力以赴，不省這個</div>
-        </div>
+        <div class="pledge-item"><div class="pledge-num">1</div><div class="pledge-text">快樂出門、平安回家，全程保持正能量</div></div>
+        <div class="pledge-item"><div class="pledge-num">2</div><div class="pledge-text">不臭臉、不抱怨，有意見直接說，別憋著</div></div>
+        <div class="pledge-item"><div class="pledge-num">3</div><div class="pledge-text">集合準時到，讓大家等你就罰請喝咖啡</div></div>
+        <div class="pledge-item"><div class="pledge-num">4</div><div class="pledge-text">美景美食都要拍，好照片統一丟群組分享</div></div>
+        <div class="pledge-item"><div class="pledge-num">5</div><div class="pledge-text">尊重彼此步調，想獨處就說，不需要解釋</div></div>
+        <div class="pledge-item"><div class="pledge-num">6</div><div class="pledge-text">行程彈性調整，沒人是神明，天氣說了算</div></div>
+        <div class="pledge-item"><div class="pledge-num">7</div><div class="pledge-text">15 天的珍貴回憶，全力以赴，不省這個</div></div>
       </div>
     </div>
 
     <!-- 在美國要知道的事 -->
     <div class="section-header">
-      <div class="section-icon">💡</div>
+      <div class="section-icon">
+        <svg fill="none" stroke="white" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 18v-5.25m0 0a6.01 6.01 0 0 0 1.5-.189m-1.5.189a6.01 6.01 0 0 1-1.5-.189m3.75 7.478a12.06 12.06 0 0 1-4.5 0m3.75 2.383a14.406 14.406 0 0 1-3 0M14.25 18v-.192c0-.983.658-1.823 1.508-2.316a7.5 7.5 0 1 0-7.517 0c.85.493 1.509 1.333 1.509 2.316V18"/></svg>
+      </div>
       <div class="section-title-text">在美國要知道的事</div>
     </div>
 
-    <div class="tips-grid">
-      <div class="tip-card">
-        <span class="tip-icon">💵</span>
-        <div class="tip-title">小費文化</div>
-        <div class="tip-desc">餐廳建議給 18–20%，外帶可給 10% 或不給</div>
+    <div class="grid-2">
+      <div class="grid-card">
+        <div class="grid-icon"><svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 6v12m-3-2.818.879.659c1.171.879 3.07.879 4.242 0 1.172-.879 1.172-2.303 0-3.182C13.536 12.219 12.768 12 12 12c-.725 0-1.45-.22-2.003-.659-1.106-.879-1.106-2.303 0-3.182s2.9-.879 4.006 0l.415.33M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z"/></svg></div>
+        <div class="grid-title">小費文化</div>
+        <div class="grid-desc">餐廳建議給 18–20%，外帶可給 10% 或不給</div>
       </div>
-      <div class="tip-card">
-        <span class="tip-icon">🏷️</span>
-        <div class="tip-title">稅金另計</div>
-        <div class="tip-desc">標價未含稅，加州稅率約 8–10%，結帳才加上</div>
+      <div class="grid-card">
+        <div class="grid-icon"><svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 14.25l6-6m4.5-3.493V21.75l-3.75-1.5-3.75 1.5-3.75-1.5-3.75 1.5V4.757c0-1.108.806-2.057 1.907-2.185a48.507 48.507 0 0 1 11.186 0c1.1.128 1.907 1.077 1.907 2.185ZM9.75 9h.008v.008H9.75V9Zm.375 0a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Zm4.125 4.5h.008v.008h-.008V13.5Zm.375 0a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Z"/></svg></div>
+        <div class="grid-title">稅金另計</div>
+        <div class="grid-desc">標價未含稅，加州稅率約 8–10%，結帳才加上</div>
       </div>
-      <div class="tip-card">
-        <span class="tip-icon">🍺</span>
-        <div class="tip-title">飲酒年齡</div>
-        <div class="tip-desc">21 歲以上才能買酒，超商可能要出示護照</div>
+      <div class="grid-card">
+        <div class="grid-icon"><svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M15.75 10.5V6a3.75 3.75 0 1 0-7.5 0v4.5m11.356-1.993 1.263 12c.07.665-.45 1.243-1.119 1.243H4.25a1.125 1.125 0 0 1-1.12-1.243l1.264-12A1.125 1.125 0 0 1 5.513 7.5h12.974c.576 0 1.059.435 1.119 1.007ZM8.625 10.5a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Zm7.5 0a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Z"/></svg></div>
+        <div class="grid-title">飲酒年齡</div>
+        <div class="grid-desc">21 歲以上才能買酒，超商可能要出示護照</div>
       </div>
-      <div class="tip-card">
-        <span class="tip-icon">🆘</span>
-        <div class="tip-title">緊急電話</div>
-        <div class="tip-desc">911 為緊急救援，警察 / 火警 / 救護車統一撥打</div>
+      <div class="grid-card">
+        <div class="grid-icon" style="background:var(--red-l);color:var(--red)"><svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M14.857 17.082a23.848 23.848 0 0 0 5.454-1.31A8.967 8.967 0 0 1 18 9.75V9A6 6 0 0 0 6 9v.75a8.967 8.967 0 0 1-2.312 6.022c1.733.64 3.56 1.085 5.455 1.31m5.714 0a24.255 24.255 0 0 1-5.714 0m5.714 0a3 3 0 1 1-5.714 0"/></svg></div>
+        <div class="grid-title">緊急電話</div>
+        <div class="grid-desc">911 為緊急救援，警察 / 火警 / 救護車統一撥打</div>
       </div>
-      <div class="tip-card">
-        <span class="tip-icon">🕐</span>
-        <div class="tip-title">時差</div>
-        <div class="tip-desc">美西 PDT = 台灣 − 15 小時（5–6 月夏令時間）</div>
+      <div class="grid-card">
+        <div class="grid-icon"><svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 6v6h4.5m4.5 0a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z"/></svg></div>
+        <div class="grid-title">時差</div>
+        <div class="grid-desc">美西 PDT = 台灣 − 15 小時（5–6 月夏令時間）</div>
       </div>
-      <div class="tip-card">
-        <span class="tip-icon">🚗</span>
-        <div class="tip-title">加州開車</div>
-        <div class="tip-desc">靠右行駛，紅燈可右轉（確認無禁止標誌），速限英里制</div>
+      <div class="grid-card">
+        <div class="grid-icon"><svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M8.25 18.75a1.5 1.5 0 0 1-3 0m3 0a1.5 1.5 0 0 0-3 0m3 0h6m-9 0H3.375a1.125 1.125 0 0 1-1.125-1.125V14.25m17.25 4.5a1.5 1.5 0 0 1-3 0m3 0a1.5 1.5 0 0 0-3 0m3 0h1.125c.621 0 1.129-.504 1.09-1.124a17.902 17.902 0 0 0-3.213-9.193 2.056 2.056 0 0 0-1.58-.86H14.25M16.5 18.75h-2.25m0-11.177v-.958c0-.568-.422-1.048-.987-1.106a48.554 48.554 0 0 0-10.026 0 1.106 1.106 0 0 0-.987 1.106v7.635m12-6.677v6.677m0 4.5v-4.5m0 0h-12"/></svg></div>
+        <div class="grid-title">加州開車</div>
+        <div class="grid-desc">靠右行駛，紅燈可右轉（確認無禁止標誌），速限英里制</div>
       </div>
     </div>
 
     <!-- 入境與注意事項 -->
     <div class="section-header">
-      <div class="section-icon">🛂</div>
+      <div class="section-icon">
+        <svg fill="none" stroke="white" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 21a9.004 9.004 0 0 0 8.716-6.747M12 21a9.004 9.004 0 0 1-8.716-6.747M12 21c2.485 0 4.5-4.03 4.5-9S14.485 3 12 3m0 18c-2.485 0-4.5-4.03-4.5-9S9.515 3 12 3m0 0a8.997 8.997 0 0 1 7.843 4.582M12 3a8.997 8.997 0 0 0-7.843 4.582m15.686 0A11.953 11.953 0 0 1 12 10.5c-2.998 0-5.74-1.1-7.843-2.918m15.686 0A8.959 8.959 0 0 1 21 12c0 .778-.099 1.533-.284 2.253m0 0A17.919 17.919 0 0 1 12 16.5c-3.162 0-6.133-.815-8.716-2.247m0 0A9.015 9.015 0 0 1 3 12c0-1.605.42-3.113 1.157-4.418"/></svg>
+      </div>
       <div class="section-title-text">入境與注意事項</div>
     </div>
 
@@ -764,31 +679,19 @@
       <div class="entry-list">
         <div class="entry-item">
           <div class="entry-check check-ok">✓</div>
-          <div>
-            <div class="entry-main">護照效期 6 個月以上</div>
-            <div class="entry-sub">入境美國要求效期超過停留期間</div>
-          </div>
+          <div><div class="entry-main">護照效期 6 個月以上</div><div class="entry-sub">入境美國要求效期超過停留期間</div></div>
         </div>
         <div class="entry-item">
           <div class="entry-check check-ok">✓</div>
-          <div>
-            <div class="entry-main">提前申請 ESTA</div>
-            <div class="entry-sub">台灣適用免簽計畫（VWP），出發 72 小時前申請，官網 esta.cbp.dhs.gov</div>
-          </div>
+          <div><div class="entry-main">提前申請 ESTA</div><div class="entry-sub">台灣適用免簽計畫（VWP），出發 72 小時前申請，官網 esta.cbp.dhs.gov</div></div>
         </div>
         <div class="entry-item">
           <div class="entry-check check-ok">✓</div>
-          <div>
-            <div class="entry-main">海關申報表（CBP Form 6059B）</div>
-            <div class="entry-sub">機上會發，如實填寫，虛報有刑責</div>
-          </div>
+          <div><div class="entry-main">海關申報表（CBP Form 6059B）</div><div class="entry-sub">機上會發，如實填寫，虛報有刑責</div></div>
         </div>
         <div class="entry-item">
           <div class="entry-check check-warn">!</div>
-          <div>
-            <div class="entry-main">現金超過 $10,000 USD 需申報</div>
-            <div class="entry-sub">超過不一定沒收，但不申報違法</div>
-          </div>
+          <div><div class="entry-main">現金超過 $10,000 USD 需申報</div><div class="entry-sub">超過不一定沒收，但不申報違法</div></div>
         </div>
       </div>
     </div>
@@ -798,77 +701,72 @@
       <div class="entry-list">
         <div class="entry-item">
           <div class="entry-check check-ban">✕</div>
-          <div>
-            <div class="entry-main">肉類及肉製品</div>
-            <div class="entry-sub">含泡麵、肉乾、湯塊等含肉成分食品，一律禁止</div>
-          </div>
+          <div><div class="entry-main">肉類及肉製品</div><div class="entry-sub">含泡麵、肉乾、湯塊等含肉成分食品，一律禁止</div></div>
         </div>
         <div class="entry-item">
           <div class="entry-check check-ban">✕</div>
-          <div>
-            <div class="entry-main">新鮮蔬果</div>
-            <div class="entry-sub">大部分新鮮農產品禁止攜入，加工 / 罐裝可帶</div>
-          </div>
+          <div><div class="entry-main">新鮮蔬果</div><div class="entry-sub">大部分新鮮農產品禁止攜入，加工 / 罐裝可帶</div></div>
         </div>
         <div class="entry-item">
           <div class="entry-check check-ok">✓</div>
-          <div>
-            <div class="entry-main">可帶：純素泡麵、餅乾、糖果、茶葉、調味料</div>
-            <div class="entry-sub">確認無肉類成分，建議保留原包裝</div>
-          </div>
+          <div><div class="entry-main">可帶：純素泡麵、餅乾、糖果、茶葉、調味料</div><div class="entry-sub">確認無肉類成分，建議保留原包裝</div></div>
         </div>
       </div>
     </div>
 
     <!-- 出發前提醒 -->
     <div class="section-header">
-      <div class="section-icon">📋</div>
+      <div class="section-icon">
+        <svg fill="none" stroke="white" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M14.857 17.082a23.848 23.848 0 0 0 5.454-1.31A8.967 8.967 0 0 1 18 9.75V9A6 6 0 0 0 6 9v.75a8.967 8.967 0 0 1-2.312 6.022c1.733.64 3.56 1.085 5.455 1.31m5.714 0a24.255 24.255 0 0 1-5.714 0m5.714 0a3 3 0 1 1-5.714 0"/></svg>
+      </div>
       <div class="section-title-text">出發前提醒</div>
     </div>
 
-    <div class="reminder-grid">
-      <div class="reminder-card">
-        <span class="reminder-icon">🛡️</span>
-        <div class="reminder-title">旅遊保險</div>
-        <div class="reminder-desc">建議含醫療的旅遊險，美國就醫費用極高</div>
+    <div class="grid-2">
+      <div class="grid-card">
+        <div class="grid-icon"><svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75 11.25 15 15 9.75m-3-7.036A11.959 11.959 0 0 1 3.598 6 11.99 11.99 0 0 0 3 9.749c0 5.592 3.824 10.29 9 11.623 5.176-1.332 9-6.03 9-11.622 0-1.31-.21-2.571-.598-3.751h-.152c-3.196 0-6.1-1.248-8.25-3.285Z"/></svg></div>
+        <div class="grid-title">旅遊保險</div>
+        <div class="grid-desc">建議含醫療的旅遊險，美國就醫費用極高</div>
       </div>
-      <div class="reminder-card">
-        <span class="reminder-icon">📱</span>
-        <div class="reminder-title">網路 / eSIM</div>
-        <div class="reminder-desc">推薦 T-Mobile eSIM，出發前確認手機支援</div>
+      <div class="grid-card">
+        <div class="grid-icon"><svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M10.5 1.5H8.25A2.25 2.25 0 0 0 6 3.75v16.5a2.25 2.25 0 0 0 2.25 2.25h7.5A2.25 2.25 0 0 0 18 20.25V3.75a2.25 2.25 0 0 0-2.25-2.25H13.5m-3 0V3h3V1.5m-3 0h3m-3 18.75h3"/></svg></div>
+        <div class="grid-title">網路 / eSIM</div>
+        <div class="grid-desc">推薦 T-Mobile eSIM，出發前確認手機支援</div>
       </div>
-      <div class="reminder-card">
-        <span class="reminder-icon">💱</span>
-        <div class="reminder-title">換匯</div>
-        <div class="reminder-desc">帶少量美元現金，日常刷卡為主，ATM 手續費高</div>
+      <div class="grid-card">
+        <div class="grid-icon"><svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 6v12m-3-2.818.879.659c1.171.879 3.07.879 4.242 0 1.172-.879 1.172-2.303 0-3.182C13.536 12.219 12.768 12 12 12c-.725 0-1.45-.22-2.003-.659-1.106-.879-1.106-2.303 0-3.182s2.9-.879 4.006 0l.415.33M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z"/></svg></div>
+        <div class="grid-title">換匯</div>
+        <div class="grid-desc">帶少量美元現金，日常刷卡為主，ATM 手續費高</div>
       </div>
-      <div class="reminder-card">
-        <span class="reminder-icon">🪪</span>
-        <div class="reminder-title">國際駕照</div>
-        <div class="reminder-desc">需在台灣監理所辦理，與台灣駕照一起帶缺一不可</div>
+      <div class="grid-card">
+        <div class="grid-icon"><svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M15 9h3.75M15 12h3.75M15 15h3.75M4.5 19.5h15a2.25 2.25 0 0 0 2.25-2.25V6.75A2.25 2.25 0 0 0 19.5 4.5h-15a2.25 2.25 0 0 0-2.25 2.25v10.5A2.25 2.25 0 0 0 4.5 19.5Zm6-10.125a1.875 1.875 0 1 1-3.75 0 1.875 1.875 0 0 1 3.75 0Zm1.294 6.336a6.721 6.721 0 0 1-3.17.789 6.721 6.721 0 0 1-3.168-.789 3.376 3.376 0 0 1 6.338 0Z"/></svg></div>
+        <div class="grid-title">國際駕照</div>
+        <div class="grid-desc">需在台灣監理所辦理，與台灣駕照一起帶缺一不可</div>
       </div>
-      <div class="reminder-card">
-        <span class="reminder-icon">🔋</span>
-        <div class="reminder-title">行動電源</div>
-        <div class="reminder-desc">必須放隨身行李，禁止托運，上限 100Wh</div>
+      <div class="grid-card">
+        <div class="grid-icon" style="background:var(--amber-l);color:var(--amber)"><svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M3.75 13.5l10.5-11.25L12 10.5h8.25L9.75 21.75 12 13.5H3.75z"/></svg></div>
+        <div class="grid-title">行動電源</div>
+        <div class="grid-desc">必須放隨身行李，禁止托運，上限 100Wh</div>
       </div>
-      <div class="reminder-card">
-        <span class="reminder-icon">💊</span>
-        <div class="reminder-title">常備藥品</div>
-        <div class="reminder-desc">腸胃藥、感冒藥、暈車藥、痠痛貼布備齊</div>
+      <div class="grid-card">
+        <div class="grid-icon"><svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M21 8.25c0-2.485-2.099-4.5-4.688-4.5-1.935 0-3.597 1.126-4.312 2.733-.715-1.607-2.377-2.733-4.313-2.733C5.1 3.75 3 5.765 3 8.25c0 7.22 9 12 9 12s9-4.78 9-12Z"/></svg></div>
+        <div class="grid-title">常備藥品</div>
+        <div class="grid-desc">腸胃藥、感冒藥、暈車藥、痠痛貼布備齊</div>
       </div>
     </div>
 
     <!-- 行李清單 -->
     <div class="section-header">
-      <div class="section-icon">🧳</div>
+      <div class="section-icon">
+        <svg fill="none" stroke="white" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M20.25 7.5l-.625 10.632a2.25 2.25 0 0 1-2.247 2.118H6.622a2.25 2.25 0 0 1-2.247-2.118L3.75 7.5M10 7.5V6a2 2 0 1 1 4 0v1.5m-7.5 0h11"/></svg>
+      </div>
       <div class="section-title-text">行李 Check List</div>
     </div>
 
-    <div class="checklist-card">
-      <div class="checklist-header">
-        <div class="checklist-header-title">行李箱清單</div>
-        <div class="checklist-note">⚠️ 禁放電子產品</div>
+    <div class="card" style="margin-bottom:10px">
+      <div class="card-hdr">
+        <div><div class="card-hdr-title">行李箱清單</div></div>
+        <div class="card-pill">禁放電子產品</div>
       </div>
       <div class="checklist-body">
         <label class="check-item"><input type="checkbox"><span class="check-label">個人盥洗用品</span></label>
@@ -888,10 +786,10 @@
       </div>
     </div>
 
-    <div class="checklist-card">
-      <div class="checklist-header">
-        <div class="checklist-header-title">隨身行李清單</div>
-        <div class="checklist-note">帶上飛機</div>
+    <div class="card" style="margin-bottom:12px">
+      <div class="card-hdr">
+        <div><div class="card-hdr-title">隨身行李清單</div></div>
+        <div class="card-pill">帶上飛機</div>
       </div>
       <div class="checklist-body">
         <label class="check-item"><input type="checkbox"><span class="check-label">眼鏡、墨鏡、帽子等配件</span></label>
@@ -907,7 +805,7 @@
     </div>
 
     <div class="must-have-card">
-      <div class="must-have-title">超重要 — 隨時放身上</div>
+      <div class="must-have-title"><span class="must-stripe"></span>超重要 — 隨時放身上</div>
       <label class="must-item"><input type="checkbox"><span class="must-label">護照 + ESTA 申請確認信</span></label>
       <label class="must-item"><input type="checkbox"><span class="must-label">國際駕照 + 台灣駕照（缺一不可）</span></label>
       <label class="must-item"><input type="checkbox"><span class="must-label">手機、充電線</span></label>
@@ -917,17 +815,16 @@
 
     <!-- 航班資訊 -->
     <div class="section-header">
-      <div class="section-icon">✈</div>
+      <div class="section-icon">
+        <svg fill="none" stroke="white" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M6 12 3.269 3.125A59.769 59.769 0 0 1 21.485 12 59.768 59.768 0 0 1 3.27 20.875L5.999 12Zm0 0h7.5"/></svg>
+      </div>
       <div class="section-title-text">航班資訊</div>
     </div>
 
     <div class="flight-card">
-      <div class="flight-header">
-        <div>
-          <div class="flight-dir">去程</div>
-          <div class="flight-airline">星宇航空 STARLUX · JX012</div>
-        </div>
-        <div class="flight-class-pill">經濟艙</div>
+      <div class="card-hdr">
+        <div><div class="card-hdr-title">去程</div><div class="card-hdr-sub">星宇航空 STARLUX · JX012</div></div>
+        <div class="card-pill">經濟艙</div>
       </div>
       <div class="flight-body">
         <div class="flight-route">
@@ -940,11 +837,9 @@
           <div class="route-mid">
             <div class="route-dur">11h 25m</div>
             <div class="route-line-wrap">
-              <div class="r-dot"></div>
-              <div class="r-line"></div>
+              <div class="r-dot"></div><div class="r-line"></div>
               <div class="r-plane">✈</div>
-              <div class="r-line"></div>
-              <div class="r-dot"></div>
+              <div class="r-line"></div><div class="r-dot"></div>
             </div>
           </div>
           <div class="airport-col right">
@@ -963,12 +858,9 @@
     </div>
 
     <div class="flight-card">
-      <div class="flight-header">
-        <div>
-          <div class="flight-dir">回程</div>
-          <div class="flight-airline">星宇航空 STARLUX · JX011</div>
-        </div>
-        <div class="flight-class-pill">豪華經濟艙</div>
+      <div class="card-hdr">
+        <div><div class="card-hdr-title">回程</div><div class="card-hdr-sub">星宇航空 STARLUX · JX011</div></div>
+        <div class="card-pill">豪華經濟艙</div>
       </div>
       <div class="flight-body">
         <div class="flight-route">
@@ -981,11 +873,9 @@
           <div class="route-mid">
             <div class="route-dur">13h 35m</div>
             <div class="route-line-wrap">
-              <div class="r-dot"></div>
-              <div class="r-line"></div>
+              <div class="r-dot"></div><div class="r-line"></div>
               <div class="r-plane">✈</div>
-              <div class="r-line"></div>
-              <div class="r-dot"></div>
+              <div class="r-line"></div><div class="r-dot"></div>
             </div>
           </div>
           <div class="airport-col right">
@@ -1002,8 +892,11 @@
       </div>
     </div>
 
+    <!-- SFO 取車 -->
     <div class="section-header">
-      <div class="section-icon">🚗</div>
+      <div class="section-icon">
+        <svg fill="none" stroke="white" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M8.25 18.75a1.5 1.5 0 0 1-3 0m3 0a1.5 1.5 0 0 0-3 0m3 0h6m-9 0H3.375a1.125 1.125 0 0 1-1.125-1.125V14.25m17.25 4.5a1.5 1.5 0 0 1-3 0m3 0a1.5 1.5 0 0 0-3 0m3 0h1.125c.621 0 1.129-.504 1.09-1.124a17.902 17.902 0 0 0-3.213-9.193 2.056 2.056 0 0 0-1.58-.86H14.25M16.5 18.75h-2.25m0-11.177v-.958c0-.568-.422-1.048-.987-1.106a48.554 48.554 0 0 0-10.026 0 1.106 1.106 0 0 0-.987 1.106v7.635m12-6.677v6.677m0 4.5v-4.5m0 0h-12"/></svg>
+      </div>
       <div class="section-title-text">SFO 取車流程</div>
     </div>
 
@@ -1038,38 +931,41 @@
       </div>
     </div>
 
+    <!-- 住宿 -->
     <div class="section-header">
-      <div class="section-icon">🏠</div>
+      <div class="section-icon">
+        <svg fill="none" stroke="white" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="m2.25 12 8.954-8.955c.44-.439 1.152-.439 1.591 0L21.75 12M4.5 9.75v10.125c0 .621.504 1.125 1.125 1.125H9.75v-4.875c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125V21h4.125c.621 0 1.125-.504 1.125-1.125V9.75M8.25 21h8.25"/></svg>
+      </div>
       <div class="section-title-text">住宿</div>
     </div>
 
     <div class="acc-card">
-      <div class="acc-header">
-        <div>
-          <div class="acc-title">Millbrae 住宿</div>
-          <div class="acc-dates-label">5/16 (六) — 5/17 (日)</div>
-        </div>
-        <div class="acc-nights-pill">1 晚</div>
+      <div class="card-hdr">
+        <div><div class="card-hdr-title">Millbrae 住宿</div><div class="card-hdr-sub">5/16 (六) — 5/17 (日)</div></div>
+        <div class="card-pill">1 晚</div>
       </div>
       <div class="acc-body">
         <div class="acc-addr">463 Helen Drive, Millbrae, CA 94030</div>
         <div class="acc-meta">代墊：鳳梨 · 每人攤付 NT$10,756</div>
-        <button class="acc-btn" onclick="navTo('463 Helen Drive, Millbrae, CA 94030')">導航前往</button>
+        <button class="acc-btn" onclick="navTo('463 Helen Drive, Millbrae, CA 94030')">
+          <svg fill="none" stroke="white" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M15 10.5a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z"/><path stroke-linecap="round" stroke-linejoin="round" d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1 1 15 0Z"/></svg>
+          導航前往
+        </button>
       </div>
     </div>
 
     <div class="acc-card">
-      <div class="acc-header">
-        <div>
-          <div class="acc-title">Mount Shasta 住宿</div>
-          <div class="acc-dates-label">5/17 (日) — 5/31 (日)</div>
-        </div>
-        <div class="acc-nights-pill">14 晚</div>
+      <div class="card-hdr">
+        <div><div class="card-hdr-title">Mount Shasta 住宿</div><div class="card-hdr-sub">5/17 (日) — 5/31 (日)</div></div>
+        <div class="card-pill">14 晚</div>
       </div>
       <div class="acc-body">
         <div class="acc-addr">504 Redwood Road, Mount Shasta, CA 96067</div>
         <div class="acc-meta">代墊：采鴻</div>
-        <button class="acc-btn" onclick="navTo('504 Redwood Road, Mount Shasta, CA 96067')">導航前往</button>
+        <button class="acc-btn" onclick="navTo('504 Redwood Road, Mount Shasta, CA 96067')">
+          <svg fill="none" stroke="white" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M15 10.5a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z"/><path stroke-linecap="round" stroke-linejoin="round" d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1 1 15 0Z"/></svg>
+          導航前往
+        </button>
       </div>
     </div>
 
@@ -1080,7 +976,9 @@
 <div id="overlay" onclick="closeSheet()"></div>
 <div id="sheet">
   <div class="sheet-handle"></div>
-  <button id="sheet-close" onclick="closeSheet()">✕</button>
+  <button id="sheet-close" onclick="closeSheet()">
+    <svg fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18 18 6M6 6l12 12"/></svg>
+  </button>
   <div id="sheet-badge" class="badge-景點">景點</div>
   <div id="sheet-name">—</div>
   <div id="sheet-sub"></div>
