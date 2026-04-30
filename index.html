@@ -217,7 +217,7 @@
       padding: 11px 8px; border-radius: 10px; border: none;
       cursor: pointer; font-size: 12px; font-weight: 700; font-family: inherit;
       display: flex; align-items: center; justify-content: center; gap: 5px;
-      transition: opacity 0.15s;
+      transition: opacity 0.15s; text-decoration: none;
     }
     .place-nav-btn:active { opacity: 0.8; }
 
@@ -806,7 +806,6 @@
     <button class="filter-btn" onclick="setFilter(this,'住宿')">住宿</button>
     <button class="filter-btn" onclick="setFilter(this,'景點')">景點</button>
     <button class="filter-btn" onclick="setFilter(this,'採買')">採買</button>
-    <button class="filter-btn" onclick="setFilter(this,'灣區')">灣區</button>
     <button class="filter-btn" onclick="setFilter(this,'雪士達')">雪士達</button>
   </div>
   <div id="map"></div>
@@ -1418,8 +1417,8 @@ const PLACES = [
     sub:'#5', addr:'Castle Lake Rd, Mount Shasta, CA 96067',
     lat:41.2272, lng:-122.3839 },
   { id:'a6', name:"冥王洞 Pluto's Cave", type:'景點', area:'雪士達',
-    sub:'#6', addr:"Pluto's Cave, Weed, CA 96094",
-    lat:41.7330, lng:-122.4377 },
+    sub:'#6', addr:"Pluto's Cave Trailhead, Weed, CA 96094",
+    lat:41.5708, lng:-122.2791 },
   { id:'a7', name:'火山活口湖 Crater Lake', type:'景點', area:'雪士達',
     sub:'#7 · 奧勒岡州（車程約 3.5 小時）', addr:'Crater Lake National Park, OR 97604',
     lat:42.9446, lng:-122.1090 },
@@ -1439,7 +1438,7 @@ const PLACES = [
     sub:'#14 加州最美瀑布之一', addr:'McArthur-Burney Falls Memorial State Park, Burney, CA 96013',
     lat:41.0119, lng:-121.6527 },
   { id:'a15', name:'莫斯比瀑布 Mossbrae Falls', type:'景點', area:'雪士達',
-    sub:'#15 鐵道旁秘境 · 停車導航用', addr:'4705 Dunsmuir Ave, Dunsmuir, CA 96025',
+    sub:'#15 鐵道旁秘境 · 停車導航用', addr:'4727 Dunsmuir Ave, Dunsmuir, CA 96025',
     lat:41.2361, lng:-122.2752 },
   { id:'a16', name:'樹籬溪瀑布 Hedge Creek Falls', type:'景點', area:'雪士達',
     sub:'樹籬溪瀑布步道', addr:'4131 Dunsmuir Ave, Dunsmuir, CA 96025',
