@@ -7,6 +7,8 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
   <style>
     :root {
       --p:     #3A7055;
@@ -1130,6 +1132,8 @@
         </div>
       </div>
       <div class="luggage-warn-row">⚡ 行動電源規定：≤100Wh（約 27,000 mAh）可自由帶 · 100–160Wh 最多 2 顆且須告知航空公司 · &gt;160Wh 禁止攜帶上機</div>
+      <div class="luggage-warn-row">💧 液體托運：無容量限制，大瓶盥洗用品、防曬乳直接放托運 · 酒精類飲料限 5L（濃度 24–70%）· 隨身才受 3-1-1 限制</div>
+      <div class="luggage-warn-row">🔌 電壓插頭：台灣與美國同為 110–120V / 60Hz，插頭形狀也相同（Type A 扁兩孔）— 不需要變壓器也不需要轉接頭</div>
     </div>
 
     <div class="card" style="margin-bottom:10px">
@@ -1158,6 +1162,8 @@
         <label class="check-item"><input type="checkbox"><span class="check-label">衣架（可帶可不帶）</span></label>
         <label class="check-item"><input type="checkbox"><span class="check-label">水晶</span></label>
         <label class="check-item"><input type="checkbox"><span class="check-label">蠟燭</span></label>
+        <label class="check-item"><input type="checkbox"><span class="check-label">淨化噴霧</span></label>
+        <label class="check-item"><input type="checkbox"><span class="check-label">天使音叉</span></label>
         <label class="check-item"><input type="checkbox"><span class="check-label">白飯若干包</span></label>
         <label class="check-item"><input type="checkbox"><span class="check-label">調理包若干</span></label>
         <label class="check-item"><input type="checkbox"><span class="check-label">糖果餅乾零食（選配）</span></label>
@@ -1193,9 +1199,9 @@
         <div class="card-pill">出發前採買</div>
       </div>
       <div class="checklist-body">
-        <label class="check-item"><input type="checkbox"><span class="check-label">水晶 — 列木尼亞根（Lemurian Seed Crystal）</span></label>
-        <label class="check-item"><input type="checkbox"><span class="check-label">水晶 — 冰與火白水晶（Fire &amp; Ice Quartz）</span></label>
+        <label class="check-item"><input type="checkbox"><span class="check-label">水晶 — 列木尼亞根（Lemurian Seed Crystal）／冰與火白水晶（Fire &amp; Ice Quartz）／激光柱</span></label>
         <label class="check-item"><input type="checkbox"><span class="check-label">Ghirardelli Intense Dark 72% 巧克力</span></label>
+        <label class="check-item"><input type="checkbox"><span class="check-label">橄欖油</span></label>
       </div>
     </div>
 
@@ -1510,52 +1516,35 @@ const TYPE_COLOR = {
 let map, markers = [], currentPlace = null, currentFilter = '全部';
 
 function initMap() {
-  map = new google.maps.Map(document.getElementById('map'), {
-    center: { lat: 39.5, lng: -122.33 },
-    zoom: 7,
-    mapTypeControl: false,
-    streetViewControl: false,
-    fullscreenControl: false,
-    clickableIcons: false,
-    zoomControlOptions: { position: google.maps.ControlPosition.RIGHT_CENTER },
-  });
+  map = L.map('map', { zoomControl: true });
 
-  const bounds = new google.maps.LatLngBounds();
+  L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+    attribution: '© <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>',
+    maxZoom: 19,
+  }).addTo(map);
+
+  const bounds = [];
 
   PLACES.forEach(place => {
-    const marker = new google.maps.Marker({
-      position: { lat: place.lat, lng: place.lng },
-      map,
-      title: place.name,
-      icon: {
-        path: google.maps.SymbolPath.CIRCLE,
-        fillColor: TYPE_COLOR[place.type],
-        fillOpacity: 1,
-        strokeColor: '#ffffff',
-        strokeWeight: 2,
-        scale: place.type === '住宿' ? 11 : 8,
-      },
-    });
+    const marker = L.circleMarker([place.lat, place.lng], {
+      radius: place.type === '住宿' ? 11 : 8,
+      fillColor: TYPE_COLOR[place.type] || '#666666',
+      color: '#ffffff',
+      weight: 2,
+      fillOpacity: 1,
+    }).addTo(map);
     marker.placeData = place;
-    marker.addListener('click', () => showSheet(place));
+    marker.on('click', () => showSheet(place));
     markers.push(marker);
-    bounds.extend({ lat: place.lat, lng: place.lng });
+    bounds.push([place.lat, place.lng]);
   });
 
-  map.fitBounds(bounds, { top: 20, right: 20, bottom: 20, left: 20 });
-
-  // 用 Geocoder 修正無法從 OSM 找到的地址 pin 位置
-  const geocoder = new google.maps.Geocoder();
-  markers.forEach(m => {
-    if (!m.placeData.geocode) return;
-    geocoder.geocode({ address: m.placeData.addr }, (results, status) => {
-      if (status === 'OK') m.setPosition(results[0].geometry.location);
-    });
-  });
+  if (bounds.length) map.fitBounds(bounds, { padding: [20, 20] });
 
   if (currentFilter === '全部') {
     document.getElementById('map').style.display = 'block';
     document.getElementById('place-list').style.display = 'none';
+    map.invalidateSize();
   }
 }
 
@@ -1595,7 +1584,7 @@ function setFilter(btn, filter) {
   if (filter === '全部') {
     mapEl.style.display  = 'block';
     listEl.style.display = 'none';
-    markers.forEach(m => m.setVisible(true));
+    map.invalidateSize();
     closeSheet();
   } else {
     mapEl.style.display  = 'none';
@@ -1650,6 +1639,7 @@ function switchTab(tab) {
     infoView.style.display = 'none';
     tabMap.classList.add('active');
     tabInfo.classList.remove('active');
+    setTimeout(() => map && map.invalidateSize(), 50);
   } else {
     mapView.style.display  = 'none';
     infoView.style.display = 'block';
@@ -1658,12 +1648,14 @@ function switchTab(tab) {
   }
 }
 
-// Initial state: 全部 shows map (place-list hidden until a non-全部 filter is selected)
 document.getElementById('place-list').style.display = 'none';
+window.addEventListener('load', initMap);
 </script>
 
-<script async defer
-  src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB6sLmCqGG3UCBYzmG2O6ee3tfKz42LHVw&callback=initMap&language=zh-TW&region=TW">
+<script>
+  if ('serviceWorker' in navigator) {
+    window.addEventListener('load', () => navigator.serviceWorker.register('./sw.js'));
+  }
 </script>
 
 </body>
