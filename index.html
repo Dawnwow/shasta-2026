@@ -7,8 +7,6 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
-  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
   <style>
     :root {
       --p:     #3A7055;
@@ -1516,36 +1514,43 @@ const TYPE_COLOR = {
 let map, markers = [], currentPlace = null, currentFilter = '全部';
 
 function initMap() {
-  map = L.map('map', { zoomControl: true });
-
-  L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-    attribution: '© <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>',
-    maxZoom: 19,
-    crossOrigin: 'anonymous',
-  }).addTo(map);
-
-  const bounds = [];
-
-  PLACES.forEach(place => {
-    const marker = L.circleMarker([place.lat, place.lng], {
-      radius: place.type === '住宿' ? 11 : 8,
-      fillColor: TYPE_COLOR[place.type] || '#666666',
-      color: '#ffffff',
-      weight: 2,
-      fillOpacity: 1,
-    }).addTo(map);
-    marker.placeData = place;
-    marker.on('click', () => showSheet(place));
-    markers.push(marker);
-    bounds.push([place.lat, place.lng]);
+  map = new google.maps.Map(document.getElementById('map'), {
+    center: { lat: 39.5, lng: -122.33 },
+    zoom: 7,
+    mapTypeControl: false,
+    streetViewControl: false,
+    fullscreenControl: false,
+    clickableIcons: false,
+    zoomControlOptions: { position: google.maps.ControlPosition.RIGHT_CENTER },
   });
 
-  if (bounds.length) map.fitBounds(bounds, { padding: [20, 20] });
+  const bounds = new google.maps.LatLngBounds();
+
+  PLACES.forEach(place => {
+    const marker = new google.maps.Marker({
+      position: { lat: place.lat, lng: place.lng },
+      map,
+      title: place.name,
+      icon: {
+        path: google.maps.SymbolPath.CIRCLE,
+        fillColor: TYPE_COLOR[place.type],
+        fillOpacity: 1,
+        strokeColor: '#ffffff',
+        strokeWeight: 2,
+        scale: place.type === '住宿' ? 11 : 8,
+      },
+    });
+    marker.placeData = place;
+    marker.addListener('click', () => showSheet(place));
+    markers.push(marker);
+    bounds.extend({ lat: place.lat, lng: place.lng });
+  });
+
+  map.fitBounds(bounds, { top: 20, right: 20, bottom: 20, left: 20 });
 
   if (currentFilter === '全部') {
     document.getElementById('map').style.display = 'block';
     document.getElementById('place-list').style.display = 'none';
-    map.invalidateSize();
   }
 }
 
@@ -1585,7 +1590,7 @@ function setFilter(btn, filter) {
   if (filter === '全部') {
     mapEl.style.display  = 'block';
     listEl.style.display = 'none';
-    map.invalidateSize();
+    markers.forEach(m => m.setVisible(true));
     closeSheet();
   } else {
     mapEl.style.display  = 'none';
@@ -1640,7 +1645,6 @@ function switchTab(tab) {
     infoView.style.display = 'none';
     tabMap.classList.add('active');
     tabInfo.classList.remove('active');
-    setTimeout(() => map && map.invalidateSize(), 50);
   } else {
     mapView.style.display  = 'none';
     infoView.style.display = 'block';
@@ -1650,7 +1654,10 @@ function switchTab(tab) {
 }
 
 document.getElementById('place-list').style.display = 'none';
-window.addEventListener('load', initMap);
+</script>
+
+<script async defer
+  src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB6sLmCqGG3UCBYzmG2O6ee3tfKz42LHVw&callback=initMap&language=zh-TW&region=TW">
 </script>
 
 <script>
