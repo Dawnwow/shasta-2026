@@ -808,9 +808,11 @@
     <button class="filter-btn" onclick="setFilter(this,'景點')">景點</button>
     <button class="filter-btn" onclick="setFilter(this,'採買')">採買</button>
     <button class="filter-btn" onclick="setFilter(this,'雪士達')">雪士達</button>
+    <button class="filter-btn" onclick="setFilter(this,'離線地圖')">離線地圖</button>
   </div>
   <div id="map"></div>
   <div id="place-list"></div>
+  <div id="offline-guide" style="display:none;overflow-y:auto;padding:12px 16px 32px;"></div>
 </div>
 
 <!-- Bottom Sheet (全部 map mode) -->
@@ -1585,18 +1587,86 @@ function setFilter(btn, filter) {
   document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
   btn.classList.add('active');
   currentFilter = filter;
-  const mapEl  = document.getElementById('map');
-  const listEl = document.getElementById('place-list');
+  const mapEl     = document.getElementById('map');
+  const listEl    = document.getElementById('place-list');
+  const offlineEl = document.getElementById('offline-guide');
   if (filter === '全部') {
-    mapEl.style.display  = 'block';
-    listEl.style.display = 'none';
+    mapEl.style.display     = 'block';
+    listEl.style.display    = 'none';
+    offlineEl.style.display = 'none';
     markers.forEach(m => m.setVisible(true));
     closeSheet();
+  } else if (filter === '離線地圖') {
+    mapEl.style.display     = 'none';
+    listEl.style.display    = 'none';
+    offlineEl.style.display = 'block';
+    renderOfflineGuide();
+    closeSheet();
   } else {
-    mapEl.style.display  = 'none';
-    listEl.style.display = 'block';
+    mapEl.style.display     = 'none';
+    listEl.style.display    = 'block';
+    offlineEl.style.display = 'none';
     renderPlaceList(filter);
   }
+}
+
+function renderOfflineGuide() {
+  const el = document.getElementById('offline-guide');
+  if (el.innerHTML) return;
+  el.innerHTML = `
+    <div style="font-size:15px;font-weight:700;margin-bottom:4px;">離線地圖下載說明</div>
+    <div style="font-size:12px;color:#86868b;margin-bottom:14px;">讓旅伴照著設定，確保相同範圍</div>
+
+    <div style="font-size:13px;font-weight:600;color:#555;margin-bottom:6px;">下載範圍（四個邊界地標）</div>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:14px;">
+      <div style="background:white;border-radius:12px;padding:10px 12px;">
+        <div style="font-size:11px;color:#86868b;">↑ 上緣</div>
+        <div style="font-size:14px;font-weight:600;color:#e85d04;">Medford 梅福德</div>
+      </div>
+      <div style="background:white;border-radius:12px;padding:10px 12px;">
+        <div style="font-size:11px;color:#86868b;">↓ 下緣</div>
+        <div style="font-size:14px;font-weight:600;color:#6d6875;">Red Bluff 雷德布拉夫</div>
+      </div>
+      <div style="background:white;border-radius:12px;padding:10px 12px;">
+        <div style="font-size:11px;color:#86868b;">← 左緣</div>
+        <div style="font-size:14px;font-weight:600;color:#2563eb;">Yreka 外里卡</div>
+      </div>
+      <div style="background:white;border-radius:12px;padding:10px 12px;">
+        <div style="font-size:11px;color:#86868b;">→ 右緣</div>
+        <div style="font-size:14px;font-weight:600;color:#16a34a;">Lassen Volcanic NP</div>
+      </div>
+    </div>
+
+    <div style="background:#fff9e6;border-left:3px solid #f59e0b;border-radius:8px;padding:10px 12px;font-size:13px;color:#78350f;margin-bottom:14px;">
+      ⚠️ <b>Crater Lake</b>（火山口湖）在範圍外，到當地再另外補下載一塊即可。
+    </div>
+
+    <div style="font-size:13px;font-weight:700;margin-bottom:8px;">🗺️ Google Maps 下載步驟</div>
+    <div style="background:white;border-radius:14px;padding:14px;margin-bottom:6px;">
+      <div style="font-size:13px;color:#555;margin-bottom:10px;">大頭貼 → 離線地圖 → 選取自己的地圖</div>
+      <img src="img/offline-google.png" style="width:100%;border-radius:10px;display:block;margin-bottom:10px;" loading="lazy">
+      <div style="font-size:13px;line-height:1.7;">
+        調整方框讓以上四個地標都在框內。<br>
+        檔案大小約 <b>80–150 MB</b>，建議 WiFi 下載。<br>
+        有效期 <b>30 天</b>，到期會提醒更新。
+      </div>
+    </div>
+
+    <div style="font-size:13px;font-weight:700;margin:14px 0 8px;">🍎 Apple 地圖下載步驟</div>
+    <div style="background:white;border-radius:14px;padding:14px;margin-bottom:6px;">
+      <div style="font-size:13px;color:#555;margin-bottom:10px;">設定 → 地圖 → 離線地圖 → 下載新地圖（需 iOS 17+）</div>
+      <img src="img/offline-apple.png" style="width:100%;border-radius:10px;display:block;margin-bottom:10px;" loading="lazy">
+      <div style="font-size:13px;line-height:1.7;">
+        調整方框讓以上四個地標都在框內。<br>
+        Apple 地圖下緣可以到 <b>尤巴市（Yuba City）</b>。<br>
+        檔案大小約 <b>1.68 GB</b>，<b>必須用 WiFi</b> 下載。
+      </div>
+    </div>
+
+    <div style="background:#f0f7ff;border-left:3px solid #2563eb;border-radius:8px;padding:10px 12px;font-size:13px;color:#1e3a5f;margin-top:14px;">
+      💡 兩個都下載，Google Maps 導航主力，Apple 地圖備用。出發前在台灣用 WiFi 下載好。
+    </div>
+  `;
 }
 
 function renderPlaceList(filter) {
