@@ -860,6 +860,82 @@
     .budget-group-sub td:first-child { text-align: left; }
     .budget-store-gap { height: 12px; background: var(--bg); border: none; }
     .budget-store-gap td { border: none; padding: 0; }
+
+    /* ── Day Card (折疊卡) ── */
+    .day-card {
+      background: var(--surf);
+      border-radius: 14px;
+      overflow: hidden;
+      border: 1px solid var(--bdr-l);
+      margin-bottom: 16px;
+    }
+    .day-card-hdr {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 14px 16px;
+      cursor: pointer;
+      user-select: none;
+      -webkit-tap-highlight-color: transparent;
+    }
+    .day-card-hdr:active { background: var(--p-ll); }
+    .day-date-label {
+      font-size: 15px;
+      font-weight: 800;
+      color: var(--tx);
+      letter-spacing: -0.2px;
+    }
+    .day-store-count {
+      font-size: 11px;
+      color: var(--tx3);
+      margin-top: 2px;
+    }
+    .day-hdr-right {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .day-total-amt {
+      font-size: 16px;
+      font-weight: 800;
+      color: var(--red);
+    }
+    .day-chevron {
+      width: 18px; height: 18px;
+      color: var(--tx3);
+      flex-shrink: 0;
+      transition: transform 0.25s ease;
+    }
+    .day-card.open .day-chevron { transform: rotate(180deg); }
+    .day-card-body {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.35s ease;
+    }
+    .day-card.open .day-card-body { max-height: 6000px; }
+
+    /* ── Store Block ── */
+    .store-block { border-top: 1px solid var(--bdr-l); }
+    .store-block-hdr {
+      background: var(--p-l);
+      color: var(--p-dd);
+      font-size: 11px;
+      font-weight: 800;
+      letter-spacing: 0.5px;
+      padding: 7px 12px;
+      border-top: 2px solid var(--p);
+    }
+    .day-daily-total {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 12px 16px;
+      background: var(--p-ll);
+      border-top: 2px solid var(--p-l);
+      font-size: 13px;
+      font-weight: 800;
+      color: var(--p-d);
+    }
     .budget-proxy-row td {
       background: #FEF4DC;
       color: #7A4F0A;
@@ -1603,187 +1679,87 @@
       </div>
       <div class="section-title-text">支出 Expense</div>
     </div>
-    <div class="budget-card">
-      <table class="budget-table" id="expense-table">
-        <thead>
-          <tr>
-            <th>項目 Item</th>
-            <th>類別 Category</th>
-            <th>金額 Amount</th>
-          </tr>
-        </thead>
-        <tbody id="expense-body">
-          <!-- Costco Redding -->
-          <tr class="budget-group-hdr">
-            <td colspan="3">Costco Wholesale — Redding</td>
-          </tr>
-          <tr>
-            <td>鹼性水<br><span class="item-sub">Alkaline Water (KS)</span></td>
-            <td>飲料</td>
-            <td>$9.99</td>
-          </tr>
-          <tr>
-            <td>全脂牛奶<br><span class="item-sub">Whole Milk</span></td>
-            <td>食材</td>
-            <td>$7.79</td>
-          </tr>
-          <tr>
-            <td>有機柳橙汁<br><span class="item-sub">Organic Orange Juice (Uncle Matt's)</span></td>
-            <td>飲料</td>
-            <td>$12.99</td>
-          </tr>
-          <tr class="budget-proxy-row">
-            <td><span class="proxy-label">代付 Company</span><br>柳橙汁<br><span class="item-sub">Organic Orange Juice</span></td>
-            <td>代付</td>
-            <td>$12.99</td>
-          </tr>
-          <tr>
-            <td>加州回收費<br><span class="item-sub">CA Redemption Value</span></td>
-            <td>費用</td>
-            <td>$2.00</td>
-          </tr>
-          <tr>
-            <td>燕麥土司<br><span class="item-sub">Oat Nut Bread</span></td>
-            <td>食材</td>
-            <td>$7.29</td>
-          </tr>
-          <tr>
-            <td>酪梨<br><span class="item-sub">Avocados</span></td>
-            <td>食材</td>
-            <td>$5.99</td>
-          </tr>
-          <tr>
-            <td>有機蘑菇<br><span class="item-sub">Organic Mushroom</span></td>
-            <td>食材</td>
-            <td>$5.99</td>
-          </tr>
-          <tr>
-            <td>花椰菜<br><span class="item-sub">Broccoli</span></td>
-            <td>食材</td>
-            <td>$7.49</td>
-          </tr>
-          <tr>
-            <td>無鹽奶油<br><span class="item-sub">Unsalted Butter Quarters (KS)</span></td>
-            <td>食材</td>
-            <td>$10.99</td>
-          </tr>
-          <tr>
-            <td>洋芋片<br><span class="item-sub">Potato Chips</span></td>
-            <td>零食</td>
-            <td>$7.29</td>
-          </tr>
-          <tr>
-            <td>橄欖<br><span class="item-sub">Olives (Castelvetrano)</span></td>
-            <td>食材</td>
-            <td>$8.99</td>
-          </tr>
-          <tr>
-            <td>紅洋蔥<br><span class="item-sub">Red Onions</span></td>
-            <td>食材</td>
-            <td>$5.49</td>
-          </tr>
-          <tr>
-            <td>綜合沙拉菜<br><span class="item-sub">Spring Mix</span></td>
-            <td>食材</td>
-            <td>$4.99</td>
-          </tr>
-          <tr class="budget-proxy-row">
-            <td><span class="proxy-label">代付 Company</span><br>綜合沙拉菜<br><span class="item-sub">Spring Mix</span></td>
-            <td>代付</td>
-            <td>$4.99</td>
-          </tr>
-          <tr>
-            <td>新鮮大蒜<br><span class="item-sub">Fresh Garlic</span></td>
-            <td>食材</td>
-            <td>$6.99</td>
-          </tr>
-          <tr>
-            <td>馬鈴薯<br><span class="item-sub">Potatoes</span></td>
-            <td>食材</td>
-            <td>$5.99</td>
-          </tr>
-          <tr class="budget-group-sub">
-            <td colspan="2">Costco 小計 Subtotal</td>
-            <td>$110.26</td>
-          </tr>
-          <tr class="budget-store-gap"><td colspan="3"></td></tr>
 
-          <!-- Trader Joe's Millbrae -->
-          <tr class="budget-group-hdr">
-            <td colspan="3">Trader Joe's — Millbrae</td>
-          </tr>
-          <tr>
-            <td>切片紅蘿蔔<br><span class="item-sub">Carrots Cut &amp; Peeled (×2)</span></td>
-            <td>食材</td>
-            <td>$3.38</td>
-          </tr>
-          <tr>
-            <td>結球萵苣<br><span class="item-sub">Iceberg Lettuce (×2)</span></td>
-            <td>食材</td>
-            <td>$3.98</td>
-          </tr>
-          <tr>
-            <td>橄欖油<br><span class="item-sub">Imported Olive Oil</span></td>
-            <td>食材</td>
-            <td>$9.99</td>
-          </tr>
-          <tr>
-            <td>有機法棍麵包<br><span class="item-sub">Organic Baguette (×2)</span></td>
-            <td>食材</td>
-            <td>$3.98</td>
-          </tr>
-          <tr>
-            <td>茄子<br><span class="item-sub">Eggplant</span></td>
-            <td>食材</td>
-            <td>$1.59</td>
-          </tr>
-          <tr>
-            <td>有機草莓<br><span class="item-sub">Organic Strawberries (×2)</span></td>
-            <td>食材</td>
-            <td>$8.99</td>
-          </tr>
-          <tr>
-            <td>甜玉米<br><span class="item-sub">Sweet Corn on the Cob (4-pack)</span></td>
-            <td>食材</td>
-            <td>$4.49</td>
-          </tr>
-          <tr>
-            <td>雞蛋<br><span class="item-sub">Eggs Large Fertile White</span></td>
-            <td>食材</td>
-            <td>$4.99</td>
-          </tr>
-          <tr class="budget-group-sub">
-            <td colspan="2">Trader Joe's 小計 Subtotal</td>
-            <td>$41.39</td>
-          </tr>
-          <tr class="budget-store-gap"><td colspan="3"></td></tr>
+    <!-- ── Day Card: 5/17 六 ── -->
+    <div class="day-card open" id="day-0517">
+      <div class="day-card-hdr" onclick="toggleDay('day-0517')">
+        <div>
+          <div class="day-date-label">5/17 (六)</div>
+          <div class="day-store-count">3 間商店</div>
+        </div>
+        <div class="day-hdr-right">
+          <span class="day-total-amt">$261.65</span>
+          <svg class="day-chevron" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="m19.5 8.25-7.5 7.5-7.5-7.5"/></svg>
+        </div>
+      </div>
+      <div class="day-card-body">
 
-          <!-- 加油 -->
-          <tr class="budget-group-hdr">
-            <td colspan="3">加油 Fuel</td>
-          </tr>
-          <tr>
-            <td>油費<br><span class="item-sub">Fuel</span></td>
-            <td>交通</td>
-            <td>$60.00</td>
-          </tr>
-          <tr>
-            <td>油費<br><span class="item-sub">Fuel</span></td>
-            <td>交通</td>
-            <td>$50.00</td>
-          </tr>
-          <tr class="budget-group-sub">
-            <td colspan="2">加油小計 Subtotal</td>
-            <td>$110.00</td>
-          </tr>
-        </tbody>
-        <tfoot>
-          <tr>
-            <td colspan="2">合計 Total</td>
-            <td id="expense-total">$261.65</td>
-          </tr>
-        </tfoot>
-      </table>
+        <!-- Costco Redding -->
+        <div class="store-block">
+          <div class="store-block-hdr">Costco Wholesale — Redding</div>
+          <table class="budget-table">
+            <thead><tr><th>項目 Item</th><th>類別</th><th>金額</th></tr></thead>
+            <tbody>
+              <tr><td>鹼性水<br><span class="item-sub">Alkaline Water (KS)</span></td><td>飲料</td><td>$9.99</td></tr>
+              <tr><td>全脂牛奶<br><span class="item-sub">Whole Milk</span></td><td>食材</td><td>$7.79</td></tr>
+              <tr><td>有機柳橙汁<br><span class="item-sub">Organic Orange Juice (Uncle Matt's)</span></td><td>飲料</td><td>$12.99</td></tr>
+              <tr class="budget-proxy-row"><td><span class="proxy-label">代付 Company</span><br>柳橙汁<br><span class="item-sub">Organic Orange Juice</span></td><td>代付</td><td>$12.99</td></tr>
+              <tr><td>加州回收費<br><span class="item-sub">CA Redemption Value</span></td><td>費用</td><td>$2.00</td></tr>
+              <tr><td>燕麥土司<br><span class="item-sub">Oat Nut Bread</span></td><td>食材</td><td>$7.29</td></tr>
+              <tr><td>酪梨<br><span class="item-sub">Avocados</span></td><td>食材</td><td>$5.99</td></tr>
+              <tr><td>有機蘑菇<br><span class="item-sub">Organic Mushroom</span></td><td>食材</td><td>$5.99</td></tr>
+              <tr><td>花椰菜<br><span class="item-sub">Broccoli</span></td><td>食材</td><td>$7.49</td></tr>
+              <tr><td>無鹽奶油<br><span class="item-sub">Unsalted Butter Quarters (KS)</span></td><td>食材</td><td>$10.99</td></tr>
+              <tr><td>洋芋片<br><span class="item-sub">Potato Chips</span></td><td>零食</td><td>$7.29</td></tr>
+              <tr><td>橄欖<br><span class="item-sub">Olives (Castelvetrano)</span></td><td>食材</td><td>$8.99</td></tr>
+              <tr><td>紅洋蔥<br><span class="item-sub">Red Onions</span></td><td>食材</td><td>$5.49</td></tr>
+              <tr><td>綜合沙拉菜<br><span class="item-sub">Spring Mix</span></td><td>食材</td><td>$4.99</td></tr>
+              <tr class="budget-proxy-row"><td><span class="proxy-label">代付 Company</span><br>綜合沙拉菜<br><span class="item-sub">Spring Mix</span></td><td>代付</td><td>$4.99</td></tr>
+              <tr><td>新鮮大蒜<br><span class="item-sub">Fresh Garlic</span></td><td>食材</td><td>$6.99</td></tr>
+              <tr><td>馬鈴薯<br><span class="item-sub">Potatoes</span></td><td>食材</td><td>$5.99</td></tr>
+            </tbody>
+            <tfoot><tr><td colspan="2">Costco 小計 Subtotal</td><td>$110.26</td></tr></tfoot>
+          </table>
+        </div>
+
+        <!-- Trader Joe's Millbrae -->
+        <div class="store-block">
+          <div class="store-block-hdr">Trader Joe's — Millbrae</div>
+          <table class="budget-table">
+            <thead><tr><th>項目 Item</th><th>類別</th><th>金額</th></tr></thead>
+            <tbody>
+              <tr><td>切片紅蘿蔔<br><span class="item-sub">Carrots Cut &amp; Peeled (×2)</span></td><td>食材</td><td>$3.38</td></tr>
+              <tr><td>結球萵苣<br><span class="item-sub">Iceberg Lettuce (×2)</span></td><td>食材</td><td>$3.98</td></tr>
+              <tr><td>橄欖油<br><span class="item-sub">Imported Olive Oil</span></td><td>食材</td><td>$9.99</td></tr>
+              <tr><td>有機法棍麵包<br><span class="item-sub">Organic Baguette (×2)</span></td><td>食材</td><td>$3.98</td></tr>
+              <tr><td>茄子<br><span class="item-sub">Eggplant</span></td><td>食材</td><td>$1.59</td></tr>
+              <tr><td>有機草莓<br><span class="item-sub">Organic Strawberries (×2)</span></td><td>食材</td><td>$8.99</td></tr>
+              <tr><td>甜玉米<br><span class="item-sub">Sweet Corn on the Cob (4-pack)</span></td><td>食材</td><td>$4.49</td></tr>
+              <tr><td>雞蛋<br><span class="item-sub">Eggs Large Fertile White</span></td><td>食材</td><td>$4.99</td></tr>
+            </tbody>
+            <tfoot><tr><td colspan="2">Trader Joe's 小計 Subtotal</td><td>$41.39</td></tr></tfoot>
+          </table>
+        </div>
+
+        <!-- 加油 -->
+        <div class="store-block">
+          <div class="store-block-hdr">加油 Fuel</div>
+          <table class="budget-table">
+            <thead><tr><th>項目 Item</th><th>類別</th><th>金額</th></tr></thead>
+            <tbody>
+              <tr><td>油費<br><span class="item-sub">Fuel</span></td><td>交通</td><td>$60.00</td></tr>
+              <tr><td>油費<br><span class="item-sub">Fuel</span></td><td>交通</td><td>$50.00</td></tr>
+            </tbody>
+            <tfoot><tr><td colspan="2">加油小計 Subtotal</td><td>$110.00</td></tr></tfoot>
+          </table>
+        </div>
+
+        <div class="day-daily-total">
+          <span>當日合計 Daily Total</span>
+          <span>$261.65</span>
+        </div>
+
+      </div>
     </div>
 
   </div>
@@ -2129,6 +2105,10 @@ function renderPlaceList(filter) {
 function navTo(addr) {
   const q = encodeURIComponent(addr);
   window.open(`https://www.google.com/maps/dir/?api=1&destination=${q}`, '_blank');
+}
+
+function toggleDay(id) {
+  document.getElementById(id).classList.toggle('open');
 }
 
 function switchTab(tab) {
