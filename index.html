@@ -858,6 +858,8 @@
       text-align: right;
     }
     .budget-group-sub td:first-child { text-align: left; }
+    .budget-store-gap { height: 12px; background: var(--bg); border: none; }
+    .budget-store-gap td { border: none; padding: 0; }
     .budget-proxy-row td {
       background: #FEF4DC;
       color: #7A4F0A;
@@ -1666,8 +1668,8 @@
             <td>$10.99</td>
           </tr>
           <tr>
-            <td>茄子<br><span class="item-sub">Eggplant</span></td>
-            <td>食材</td>
+            <td>洋芋片<br><span class="item-sub">Potato Chips</span></td>
+            <td>零食</td>
             <td>$7.29</td>
           </tr>
           <tr>
@@ -1704,6 +1706,7 @@
             <td colspan="2">Costco 小計 Subtotal</td>
             <td>$110.26</td>
           </tr>
+          <tr class="budget-store-gap"><td colspan="3"></td></tr>
 
           <!-- Trader Joe's Millbrae -->
           <tr class="budget-group-hdr">
@@ -1753,6 +1756,7 @@
             <td colspan="2">Trader Joe's 小計 Subtotal</td>
             <td>$41.39</td>
           </tr>
+          <tr class="budget-store-gap"><td colspan="3"></td></tr>
 
           <!-- 加油 -->
           <tr class="budget-group-hdr">
