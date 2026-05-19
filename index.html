@@ -772,6 +772,148 @@
     .allowance-label { font-size: 12px; font-weight: 800; color: var(--p); letter-spacing: 0.4px; text-transform: uppercase; margin-bottom: 8px; }
     .allowance-item { font-size: 15px; color: var(--tx2); font-weight: 500; line-height: 1.6; }
     .allowance-item b { color: var(--tx); font-weight: 700; }
+
+    /* ── Budget View ── */
+    #budget-view {
+      display: none;
+      flex: 1;
+      overflow-y: auto;
+      -webkit-overflow-scrolling: touch;
+      background: var(--bg);
+    }
+    .budget-content {
+      padding: 16px 14px;
+      padding-bottom: calc(44px + env(safe-area-inset-bottom));
+    }
+    .budget-card {
+      background: var(--surf);
+      border-radius: 14px;
+      overflow: hidden;
+      border: 1px solid var(--bdr-l);
+      margin-bottom: 20px;
+    }
+    .budget-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 13px;
+    }
+    .budget-table thead tr {
+      background: var(--p-l);
+    }
+    .budget-table thead th {
+      padding: 9px 12px;
+      text-align: left;
+      font-size: 11px;
+      font-weight: 800;
+      color: var(--p-d);
+      letter-spacing: 0.6px;
+      text-transform: uppercase;
+    }
+    .budget-table thead th:not(:first-child) { text-align: right; }
+    .budget-table tbody td {
+      padding: 11px 12px;
+      border-top: 1px solid var(--bdr-l);
+      color: var(--tx);
+      font-weight: 500;
+      line-height: 1.4;
+    }
+    .budget-table tbody td:not(:first-child) { text-align: right; }
+    .budget-table .item-sub {
+      font-size: 11px;
+      color: var(--tx3);
+      font-weight: 400;
+    }
+    .budget-table tfoot tr {
+      background: var(--p-ll);
+    }
+    .budget-table tfoot td {
+      padding: 11px 12px;
+      border-top: 2px solid var(--p-l);
+      font-weight: 800;
+      color: var(--p-d);
+    }
+    .budget-table tfoot td:not(:first-child) { text-align: right; }
+    .budget-empty {
+      padding: 24px 16px;
+      text-align: center;
+      color: var(--tx3);
+      font-size: 13px;
+    }
+    .budget-group-hdr td {
+      background: var(--p-dd);
+      color: rgba(255,255,255,0.92);
+      font-size: 11px;
+      font-weight: 800;
+      letter-spacing: 0.5px;
+      padding: 7px 12px;
+      border-top: none;
+    }
+    .budget-group-sub td {
+      background: var(--p-l);
+      color: var(--p-d);
+      font-size: 11px;
+      font-weight: 800;
+      padding: 7px 12px;
+      border-top: 1px solid var(--bdr-l);
+      text-align: right;
+    }
+    .budget-group-sub td:first-child { text-align: left; }
+    .budget-summary {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+      margin-bottom: 20px;
+    }
+    .budget-summary-card {
+      background: var(--surf);
+      border-radius: 14px;
+      padding: 14px 16px;
+      border: 1px solid var(--bdr-l);
+    }
+    .bsc-label {
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.5px;
+      text-transform: uppercase;
+      margin-bottom: 4px;
+    }
+    .bsc-label.income { color: var(--p); }
+    .bsc-label.expense { color: var(--red); }
+    .bsc-label.balance { color: var(--blue); }
+    .bsc-sublabel {
+      font-size: 10px;
+      color: var(--tx3);
+      margin-bottom: 6px;
+    }
+    .bsc-amount {
+      font-size: 20px;
+      font-weight: 800;
+      letter-spacing: -0.5px;
+    }
+    .bsc-amount.income { color: var(--p-d); }
+    .bsc-amount.expense { color: var(--red); }
+    .bsc-amount.balance { color: var(--blue); }
+    .budget-summary-full {
+      background: var(--surf);
+      border-radius: 14px;
+      padding: 14px 16px;
+      border: 1px solid var(--bdr-l);
+      margin-bottom: 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .bsf-label {
+      font-size: 12px;
+      font-weight: 700;
+      color: var(--tx2);
+    }
+    .bsf-amount {
+      font-size: 22px;
+      font-weight: 800;
+      letter-spacing: -0.5px;
+      color: var(--p-d);
+    }
   </style>
 </head>
 <body>
@@ -797,6 +939,10 @@
   <button class="top-tab" id="tab-info" onclick="switchTab('info')">
     <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12h3.75M9 15h3.75M9 18h3.75m3 .75H18a2.25 2.25 0 0 0 2.25-2.25V6.108c0-1.135-.845-2.098-1.976-2.192a48.424 48.424 0 0 0-1.123-.08m-5.801 0c-.065.21-.1.433-.1.664 0 .414.336.75.75.75h4.5a.75.75 0 0 0 .75-.75 2.25 2.25 0 0 0-.1-.664m-5.8 0A2.251 2.251 0 0 1 13.5 2.25H15c1.012 0 1.867.668 2.15 1.586m-5.8 0c-.376.023-.75.05-1.124.08C9.095 4.01 8.25 4.973 8.25 6.108V8.25m0 0H4.875c-.621 0-1.125.504-1.125 1.125v11.25c0 .621.504 1.125 1.125 1.125h9.75c.621 0 1.125-.504 1.125-1.125V9.375c0-.621-.504-1.125-1.125-1.125H8.25ZM6.75 12h.008v.008H6.75V12Zm0 3h.008v.008H6.75V15Zm0 3h.008v.008H6.75V18Z"/></svg>
     行前整理
+  </button>
+  <button class="top-tab" id="tab-budget" onclick="switchTab('budget')">
+    <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 6v12m-3-2.818.879.659c1.171.879 3.07.879 4.242 0 1.172-.879 1.172-2.303 0-3.182C13.536 12.219 12.768 12 12 12c-.725 0-1.45-.22-2.003-.659-1.106-.879-1.106-2.303 0-3.182s2.9-.879 4.006 0l.415.33M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z"/></svg>
+    收支
   </button>
 </div>
 
@@ -1363,6 +1509,255 @@
   </div>
 </div>
 
+<!-- 收支頁 -->
+<div id="budget-view">
+  <div class="budget-content">
+
+    <!-- 總覽 -->
+    <div class="budget-summary">
+      <div class="budget-summary-card">
+        <div class="bsc-label income">收入 Income</div>
+        <div class="bsc-sublabel">兌換現鈔</div>
+        <div class="bsc-amount income">$2,000</div>
+      </div>
+      <div class="budget-summary-card">
+        <div class="bsc-label expense">支出 Expense</div>
+        <div class="bsc-sublabel">累計花費</div>
+        <div class="bsc-amount expense" id="total-expense">$261.65</div>
+      </div>
+    </div>
+    <div class="budget-summary-full">
+      <div class="bsf-label">結餘 Balance</div>
+      <div class="bsf-amount" id="total-balance">$1,738.35</div>
+    </div>
+
+    <!-- 收入 -->
+    <div class="section-header">
+      <div class="section-icon" style="background:var(--p)">
+        <svg fill="none" stroke="white" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M2.25 18.75a60.07 60.07 0 0 1 15.797 2.101c.727.198 1.453-.342 1.453-1.096V18.75M3.75 4.5v.75A.75.75 0 0 1 3 6h-.75m0 0v-.375c0-.621.504-1.125 1.125-1.125H20.25M2.25 6v9m18-10.5v.75c0 .414.336.75.75.75h.75m-1.5-1.5h.375c.621 0 1.125.504 1.125 1.125v9.75c0 .621-.504 1.125-1.125 1.125h-.375m1.5-1.5H21a.75.75 0 0 0-.75.75v.75m0 0H3.75m0 0h-.375a1.125 1.125 0 0 1-1.125-1.125V15m1.5 1.5v-.75A.75.75 0 0 0 3 15h-.75M15 10.5a3 3 0 1 1-6 0 3 3 0 0 1 6 0Zm3 0h.008v.008H18V10.5Zm-12 0h.008v.008H6V10.5Z"/></svg>
+      </div>
+      <div class="section-title-text">收入 Income</div>
+    </div>
+    <div class="budget-card">
+      <table class="budget-table">
+        <thead>
+          <tr>
+            <th>項目 Item</th>
+            <th>面額 Amount</th>
+            <th>張數 Qty</th>
+            <th>小計 Subtotal</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>
+              百元鈔<br>
+              <span class="item-sub">$100 Bills</span>
+            </td>
+            <td>$100</td>
+            <td>10</td>
+            <td>$1,000</td>
+          </tr>
+          <tr>
+            <td>
+              五十元鈔<br>
+              <span class="item-sub">$50 Bills</span>
+            </td>
+            <td>$50</td>
+            <td>20</td>
+            <td>$1,000</td>
+          </tr>
+        </tbody>
+        <tfoot>
+          <tr>
+            <td colspan="3">合計 Total</td>
+            <td>$2,000</td>
+          </tr>
+        </tfoot>
+      </table>
+    </div>
+
+    <!-- 支出 -->
+    <div class="section-header">
+      <div class="section-icon" style="background:var(--red)">
+        <svg fill="none" stroke="white" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 14.25l6-6m4.5-3.493V21.75l-3.75-1.5-3.75 1.5-3.75-1.5-3.75 1.5V4.757c0-1.108.806-2.057 1.907-2.185a48.507 48.507 0 0 1 11.186 0c1.1.128 1.907 1.077 1.907 2.185ZM9.75 9h.008v.008H9.75V9Zm.375 0a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Zm4.125 4.5h.008v.008h-.008V13.5Zm.375 0a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Z"/></svg>
+      </div>
+      <div class="section-title-text">支出 Expense</div>
+    </div>
+    <div class="budget-card">
+      <table class="budget-table" id="expense-table">
+        <thead>
+          <tr>
+            <th>項目 Item</th>
+            <th>類別 Category</th>
+            <th>金額 Amount</th>
+          </tr>
+        </thead>
+        <tbody id="expense-body">
+          <!-- Costco Redding -->
+          <tr class="budget-group-hdr">
+            <td colspan="3">Costco Wholesale — Redding</td>
+          </tr>
+          <tr>
+            <td>鹼性電池<br><span class="item-sub">Alkaline Batteries</span></td>
+            <td>生活用品</td>
+            <td>$9.99</td>
+          </tr>
+          <tr>
+            <td>全脂牛奶<br><span class="item-sub">Whole Milk</span></td>
+            <td>食材</td>
+            <td>$7.79</td>
+          </tr>
+          <tr>
+            <td>有機柳橙汁<br><span class="item-sub">Organic Orange Juice (Uncle Matt's)</span></td>
+            <td>飲料</td>
+            <td>$12.99</td>
+          </tr>
+          <tr>
+            <td>加州回收費<br><span class="item-sub">CA Redemption Value</span></td>
+            <td>費用</td>
+            <td>$2.00</td>
+          </tr>
+          <tr>
+            <td>椰棗腰果棒<br><span class="item-sub">Date Nut Bar</span></td>
+            <td>零食</td>
+            <td>$7.29</td>
+          </tr>
+          <tr>
+            <td>酪梨<br><span class="item-sub">Avocados</span></td>
+            <td>食材</td>
+            <td>$5.99</td>
+          </tr>
+          <tr>
+            <td>有機蘑菇<br><span class="item-sub">Organic Mushroom</span></td>
+            <td>食材</td>
+            <td>$5.99</td>
+          </tr>
+          <tr>
+            <td>花椰菜<br><span class="item-sub">Broccoli</span></td>
+            <td>食材</td>
+            <td>$7.49</td>
+          </tr>
+          <tr>
+            <td>無鹽奶油<br><span class="item-sub">Unsalted Butter Quarters (KS)</span></td>
+            <td>食材</td>
+            <td>$10.99</td>
+          </tr>
+          <tr>
+            <td>酸黃瓜<br><span class="item-sub">Pickles (Grillo's)</span></td>
+            <td>食材</td>
+            <td>$7.29</td>
+          </tr>
+          <tr>
+            <td>橄欖<br><span class="item-sub">Olives (Castelvetrano)</span></td>
+            <td>食材</td>
+            <td>$8.99</td>
+          </tr>
+          <tr>
+            <td>紅洋蔥<br><span class="item-sub">Red Onions</span></td>
+            <td>食材</td>
+            <td>$5.49</td>
+          </tr>
+          <tr>
+            <td>綜合沙拉菜<br><span class="item-sub">Spring Mix</span></td>
+            <td>食材</td>
+            <td>$4.99</td>
+          </tr>
+          <tr>
+            <td>新鮮大蒜<br><span class="item-sub">Fresh Garlic</span></td>
+            <td>食材</td>
+            <td>$6.99</td>
+          </tr>
+          <tr>
+            <td>馬鈴薯<br><span class="item-sub">Potatoes</span></td>
+            <td>食材</td>
+            <td>$5.99</td>
+          </tr>
+          <tr class="budget-group-sub">
+            <td colspan="2">Costco 小計 Subtotal</td>
+            <td>$110.26</td>
+          </tr>
+
+          <!-- Trader Joe's Millbrae -->
+          <tr class="budget-group-hdr">
+            <td colspan="3">Trader Joe's — Millbrae</td>
+          </tr>
+          <tr>
+            <td>切片紅蘿蔔<br><span class="item-sub">Carrots Cut &amp; Peeled (×2)</span></td>
+            <td>食材</td>
+            <td>$3.38</td>
+          </tr>
+          <tr>
+            <td>結球萵苣<br><span class="item-sub">Iceberg Lettuce (×2)</span></td>
+            <td>食材</td>
+            <td>$3.98</td>
+          </tr>
+          <tr>
+            <td>橄欖油<br><span class="item-sub">Imported Olive Oil</span></td>
+            <td>食材</td>
+            <td>$9.99</td>
+          </tr>
+          <tr>
+            <td>有機法棍麵包<br><span class="item-sub">Organic Baguette (×2)</span></td>
+            <td>食材</td>
+            <td>$3.98</td>
+          </tr>
+          <tr>
+            <td>茄子<br><span class="item-sub">Eggplant</span></td>
+            <td>食材</td>
+            <td>$1.59</td>
+          </tr>
+          <tr>
+            <td>有機草莓<br><span class="item-sub">Organic Strawberries (×2)</span></td>
+            <td>食材</td>
+            <td>$8.99</td>
+          </tr>
+          <tr>
+            <td>甜玉米<br><span class="item-sub">Sweet Corn on the Cob (4-pack)</span></td>
+            <td>食材</td>
+            <td>$4.49</td>
+          </tr>
+          <tr>
+            <td>雞蛋<br><span class="item-sub">Eggs Large Fertile White</span></td>
+            <td>食材</td>
+            <td>$4.99</td>
+          </tr>
+          <tr class="budget-group-sub">
+            <td colspan="2">Trader Joe's 小計 Subtotal</td>
+            <td>$41.39</td>
+          </tr>
+
+          <!-- 加油 -->
+          <tr class="budget-group-hdr">
+            <td colspan="3">加油 Fuel</td>
+          </tr>
+          <tr>
+            <td>油費<br><span class="item-sub">Fuel</span></td>
+            <td>交通</td>
+            <td>$60.00</td>
+          </tr>
+          <tr>
+            <td>油費<br><span class="item-sub">Fuel</span></td>
+            <td>交通</td>
+            <td>$50.00</td>
+          </tr>
+          <tr class="budget-group-sub">
+            <td colspan="2">加油小計 Subtotal</td>
+            <td>$110.00</td>
+          </tr>
+        </tbody>
+        <tfoot>
+          <tr>
+            <td colspan="2">合計 Total</td>
+            <td id="expense-total">$261.65</td>
+          </tr>
+        </tfoot>
+      </table>
+    </div>
+
+  </div>
+</div>
+
 
 <script>
 const PLACES = [
@@ -1706,20 +2101,29 @@ function navTo(addr) {
 }
 
 function switchTab(tab) {
-  const mapView  = document.getElementById('map-view');
-  const infoView = document.getElementById('info-view');
-  const tabMap   = document.getElementById('tab-map');
-  const tabInfo  = document.getElementById('tab-info');
+  const mapView    = document.getElementById('map-view');
+  const infoView   = document.getElementById('info-view');
+  const budgetView = document.getElementById('budget-view');
+  const tabMap     = document.getElementById('tab-map');
+  const tabInfo    = document.getElementById('tab-info');
+  const tabBudget  = document.getElementById('tab-budget');
+
+  mapView.style.display    = 'none';
+  infoView.style.display   = 'none';
+  budgetView.style.display = 'none';
+  tabMap.classList.remove('active');
+  tabInfo.classList.remove('active');
+  tabBudget.classList.remove('active');
+
   if (tab === 'map') {
-    mapView.style.display  = 'flex';
-    infoView.style.display = 'none';
+    mapView.style.display = 'flex';
     tabMap.classList.add('active');
-    tabInfo.classList.remove('active');
-  } else {
-    mapView.style.display  = 'none';
+  } else if (tab === 'info') {
     infoView.style.display = 'block';
-    tabMap.classList.remove('active');
     tabInfo.classList.add('active');
+  } else {
+    budgetView.style.display = 'block';
+    tabBudget.classList.add('active');
   }
 }
 
