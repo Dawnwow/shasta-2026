@@ -840,13 +840,13 @@
       font-size: 13px;
     }
     .budget-group-hdr td {
-      background: var(--p-dd);
-      color: rgba(255,255,255,0.92);
+      background: var(--p-l);
+      color: var(--p-dd);
       font-size: 11px;
       font-weight: 800;
       letter-spacing: 0.5px;
       padding: 7px 12px;
-      border-top: none;
+      border-top: 2px solid var(--p);
     }
     .budget-group-sub td {
       background: var(--p-l);
@@ -858,6 +858,23 @@
       text-align: right;
     }
     .budget-group-sub td:first-child { text-align: left; }
+    .budget-proxy-row td {
+      background: #FEF4DC;
+      color: #7A4F0A;
+      font-size: 12px;
+      border-top: 1px dashed #F0C96A;
+    }
+    .proxy-label {
+      display: inline-block;
+      background: #A06B0A;
+      color: white;
+      font-size: 10px;
+      font-weight: 800;
+      padding: 1px 6px;
+      border-radius: 4px;
+      margin-bottom: 2px;
+      letter-spacing: 0.3px;
+    }
     .budget-summary {
       display: grid;
       grid-template-columns: 1fr 1fr;
@@ -1599,8 +1616,8 @@
             <td colspan="3">Costco Wholesale — Redding</td>
           </tr>
           <tr>
-            <td>鹼性電池<br><span class="item-sub">Alkaline Batteries</span></td>
-            <td>生活用品</td>
+            <td>鹼性水<br><span class="item-sub">Alkaline Water (KS)</span></td>
+            <td>飲料</td>
             <td>$9.99</td>
           </tr>
           <tr>
@@ -1613,14 +1630,19 @@
             <td>飲料</td>
             <td>$12.99</td>
           </tr>
+          <tr class="budget-proxy-row">
+            <td><span class="proxy-label">代付 Company</span><br>柳橙汁含稅<br><span class="item-sub">OJ incl. tax (7.25%) $0.94</span></td>
+            <td>代付</td>
+            <td>$13.93</td>
+          </tr>
           <tr>
             <td>加州回收費<br><span class="item-sub">CA Redemption Value</span></td>
             <td>費用</td>
             <td>$2.00</td>
           </tr>
           <tr>
-            <td>椰棗腰果棒<br><span class="item-sub">Date Nut Bar</span></td>
-            <td>零食</td>
+            <td>燕麥土司<br><span class="item-sub">Oat Nut Bread</span></td>
+            <td>食材</td>
             <td>$7.29</td>
           </tr>
           <tr>
@@ -1644,7 +1666,7 @@
             <td>$10.99</td>
           </tr>
           <tr>
-            <td>酸黃瓜<br><span class="item-sub">Pickles (Grillo's)</span></td>
+            <td>茄子<br><span class="item-sub">Eggplant</span></td>
             <td>食材</td>
             <td>$7.29</td>
           </tr>
@@ -1662,6 +1684,11 @@
             <td>綜合沙拉菜<br><span class="item-sub">Spring Mix</span></td>
             <td>食材</td>
             <td>$4.99</td>
+          </tr>
+          <tr class="budget-proxy-row">
+            <td><span class="proxy-label">代付 Company</span><br>沙拉菜含稅<br><span class="item-sub">Spring Mix incl. tax (7.25%) $0.36</span></td>
+            <td>代付</td>
+            <td>$5.35</td>
           </tr>
           <tr>
             <td>新鮮大蒜<br><span class="item-sub">Fresh Garlic</span></td>
