@@ -1984,12 +1984,18 @@ function closeSheet() {
 
 function openGoogle() {
   if (!currentPlace) return;
-  window.open(`https://www.google.com/maps/dir/?api=1&destination=${encodeURIComponent(currentPlace.addr)}`, '_blank');
+  const dest = (currentPlace.lat && currentPlace.lng)
+    ? `${currentPlace.lat},${currentPlace.lng}`
+    : encodeURIComponent(currentPlace.addr);
+  window.open(`https://www.google.com/maps/dir/?api=1&destination=${dest}`, '_blank');
 }
 
 function openApple() {
   if (!currentPlace) return;
-  window.location.href = `maps://?daddr=${encodeURIComponent(currentPlace.addr)}&dirflg=d`;
+  const dest = (currentPlace.lat && currentPlace.lng)
+    ? `${currentPlace.lat},${currentPlace.lng}`
+    : encodeURIComponent(currentPlace.addr);
+  window.location.href = `maps://?daddr=${dest}&dirflg=d`;
 }
 
 function setFilter(btn, filter) {
