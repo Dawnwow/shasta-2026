@@ -1625,12 +1625,12 @@
       <div class="budget-summary-card">
         <div class="bsc-label expense">支出 Expense</div>
         <div class="bsc-sublabel">已扣代付 $17.99</div>
-        <div class="bsc-amount expense" id="total-expense">$243.66</div>
+        <div class="bsc-amount expense" id="total-expense">$432.91</div>
       </div>
     </div>
     <div class="budget-summary-full">
       <div class="bsf-label">結餘 Balance</div>
-      <div class="bsf-amount" id="total-balance">$1,756.34</div>
+      <div class="bsf-amount" id="total-balance">$1,567.09</div>
     </div>
 
     <!-- 收入 -->
@@ -1764,6 +1764,88 @@
         <div class="day-daily-total">
           <span>當日合計 Daily Total</span>
           <span>$261.65</span>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- ── Day Card: 5/22 四 ── -->
+    <div class="day-card open" id="day-0522">
+      <div class="day-card-hdr" onclick="toggleDay('day-0522')">
+        <div>
+          <div class="day-date-label">5/22 (四)</div>
+          <div class="day-store-count">4 間商店</div>
+        </div>
+        <div class="day-hdr-right">
+          <span class="day-total-amt">$189.25</span>
+          <svg class="day-chevron" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="m19.5 8.25-7.5 7.5-7.5-7.5"/></svg>
+        </div>
+      </div>
+      <div class="day-card-body">
+
+        <!-- Costco Redding -->
+        <div class="store-block">
+          <div class="store-block-hdr">Costco Wholesale — Redding</div>
+          <table class="budget-table">
+            <thead><tr><th>項目 Item</th><th>類別</th><th>金額</th></tr></thead>
+            <tbody>
+              <tr><td>鹼性水<br><span class="item-sub">Alkaline Water (KS)</span></td><td>飲料</td><td>$9.99</td></tr>
+              <tr><td>加州回收費<br><span class="item-sub">CA Redemption Value</span></td><td>費用</td><td>$1.80</td></tr>
+              <tr><td>紅洋蔥<br><span class="item-sub">Red Onions</span></td><td>食材</td><td>$5.49</td></tr>
+              <tr><td>檸檬<br><span class="item-sub">Lemons 3LB</span></td><td>食材</td><td>$4.99</td></tr>
+              <tr><td>香蕉<br><span class="item-sub">Bananas</span></td><td>食材</td><td>$1.79</td></tr>
+              <tr><td>甜玉米<br><span class="item-sub">Sweet Corn</span></td><td>食材</td><td>$6.99</td></tr>
+              <tr><td>全麥土司<br><span class="item-sub">100% Wheat Bread</span></td><td>食材</td><td>$7.29</td></tr>
+              <tr><td>哈瓦蒂起司<br><span class="item-sub">Havarti Cheese (Castello)</span></td><td>食材</td><td>$8.99</td></tr>
+              <tr><td>有機蘿蔓生菜<br><span class="item-sub">Organic Romaine</span></td><td>食材</td><td>$6.99</td></tr>
+              <tr><td>全脂牛奶<br><span class="item-sub">Whole Milk (×2)</span></td><td>食材</td><td>$7.79</td></tr>
+            </tbody>
+            <tfoot><tr><td colspan="2">Costco 小計 Subtotal</td><td>$62.11</td></tr></tfoot>
+          </table>
+        </div>
+
+        <!-- Trader Joe's Redding -->
+        <div class="store-block">
+          <div class="store-block-hdr">Trader Joe's — Redding</div>
+          <table class="budget-table">
+            <thead><tr><th>項目 Item</th><th>類別</th><th>金額</th></tr></thead>
+            <tbody>
+              <tr><td>有機法棍麵包<br><span class="item-sub">Organic Baguette (×2)</span></td><td>食材</td><td>$3.98</td></tr>
+              <tr><td>草莓<br><span class="item-sub">Strawberries 2LB</span></td><td>食材</td><td>$6.99</td></tr>
+            </tbody>
+            <tfoot><tr><td colspan="2">Trader Joe's 小計 Subtotal</td><td>$10.97</td></tr></tfoot>
+          </table>
+        </div>
+
+        <!-- Grocery Outlet Weed -->
+        <div class="store-block">
+          <div class="store-block-hdr">Grocery Outlet — Weed</div>
+          <table class="budget-table">
+            <thead><tr><th>項目 Item</th><th>類別</th><th>金額</th></tr></thead>
+            <tbody>
+              <tr><td>無花果<br><span class="item-sub">Fig (Apiterra)</span></td><td>食材</td><td>$2.99</td></tr>
+              <tr><td>香蕉（散裝）<br><span class="item-sub">Banana Loose 1.64LB</span></td><td>食材</td><td>$0.97</td></tr>
+            </tbody>
+            <tfoot><tr><td colspan="2">Grocery Outlet 小計 Subtotal</td><td>$3.96</td></tr></tfoot>
+          </table>
+        </div>
+
+        <!-- 加油 -->
+        <div class="store-block">
+          <div class="store-block-hdr">加油 Fuel</div>
+          <table class="budget-table">
+            <thead><tr><th>項目 Item</th><th>類別</th><th>金額</th></tr></thead>
+            <tbody>
+              <tr><td>油費（無收據）<br><span class="item-sub">Fuel — no receipt</span></td><td>交通</td><td>$52.21</td></tr>
+              <tr><td>油費（無收據）<br><span class="item-sub">Fuel — no receipt</span></td><td>交通</td><td>$60.00</td></tr>
+            </tbody>
+            <tfoot><tr><td colspan="2">加油小計 Subtotal</td><td>$112.21</td></tr></tfoot>
+          </table>
+        </div>
+
+        <div class="day-daily-total">
+          <span>當日合計 Daily Total</span>
+          <span>$189.25</span>
         </div>
 
       </div>
